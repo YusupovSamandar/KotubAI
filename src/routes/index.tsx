@@ -7,6 +7,7 @@ import Workspace from 'src/pages/workspace';
 import SignInPage from 'src/pages/signIn';
 
 const clientId = import.meta.env.VITE_OAuthClientId;
+console.log(clientId);
 
 function RoutElements() {
   const { isAuthenticated } = useRoutes();

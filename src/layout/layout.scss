@@ -1,0 +1,59 @@
+@import 'src/styles/variables.scss';
+
+.layout {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  background-color: $bg;
+
+  &-right {
+    width: calc(100vh - 272px);
+    flex-grow: 1;
+    height: 100%;
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $primary;
+      border-radius: 8px;
+    }
+  }
+
+  &-content {
+    width: 100%;
+    padding: 24px 24px 24px 32px;
+    height: calc(100vh - 76px);
+    scroll-behavior: smooth;
+    @include scroll;
+  }
+}
+
+.fadeIn {
+  animation: 0.5s fadeIn forwards;
+}
+
+.fadeOut {
+  animation: 0.5s fadeOut forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(-20px, 0);
+    opacity: 0;
+  }
+}

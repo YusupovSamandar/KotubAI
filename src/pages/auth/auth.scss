@@ -1,0 +1,122 @@
+@import 'src/styles/variables.scss';
+.auth {
+  background-color: $white;
+  @include flex-center;
+  height: 100vh;
+
+  &-form {
+    &-wrap {
+      padding: 50px 30px;
+      background-color: $white;
+      max-width: 500px;
+      border-radius: 30px;
+      box-shadow: 0 0 35px rgb(0 0 0 / 10%);
+      position: relative;
+      overflow: hidden;
+    }
+    &-title {
+      color: #000;
+      font-family: $font-primary;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 5;
+
+      h3 {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 42px;
+        margin-bottom: 6px;
+      }
+      p {
+        font-size: 20px;
+        line-height: 36px;
+      }
+    }
+    &-input {
+      border: none;
+      flex-grow: 1;
+      position: relative;
+      z-index: 5;
+
+      &-wrap {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        height: 44px;
+        margin-bottom: 40px;
+        border-bottom: 2px solid #bdbdbd;
+
+        .phone-outlined-icon,
+        .password-icon {
+          width: 24px;
+          height: 24px;
+        }
+        .phone-outlined-icon {
+          fill: #777575;
+        }
+        .password-icon {
+          stroke: #777575;
+        }
+      }
+    }
+    &-btn {
+      border: none;
+      background-color: #039ae0;
+      font-size: 17px;
+      font-weight: 400;
+      border-radius: 12px;
+      height: 50px;
+      color: #fff;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #048dcd;
+        color: #fff !important;
+      }
+    }
+    &-bg {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+
+  .ant-input {
+    &:hover {
+      border: none !important;
+    }
+    &-affix-wrapper,
+    &-group-wrapper,
+    &-wrapper {
+      background-color: transparent !important;
+      border: none !important;
+      border-radius: 32px !important;
+
+      &:hover {
+        border: none !important;
+      }
+      &:focus-within {
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+.auth-signin .ant-input-group-addon {
+  border: none;
+  background-color: transparent;
+  color: #6c757d;
+  font-size: 18px;
+  padding-bottom: 11px;
+}
+.auth-signin .ant-input,
+.auth-confirm .ant-input {
+  background-color: transparent !important;
+  border: none;
+  font-size: 18px !important;
+  &::placeholder {
+    color: #6c757d !important;
+  }
+  padding-bottom: 16px;
+}

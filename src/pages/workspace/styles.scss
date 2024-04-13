@@ -1,0 +1,40 @@
+.workspace {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &-file {
+    margin: 100px 0;
+    border-radius: 16px;
+    width: 319px;
+    padding: 12px;
+    border: 1px solid #717493;
+    background: #212a37;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    &-header {
+      display: inline-block;
+      padding: 17px 21px 16px 12px;
+      border-radius: 15px;
+      background-image: url('src/assets/svg/music.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  &-buttons-list button {
+    min-width: 173px;
+    &:not(.active) {
+      background-color: transparent;
+    }
+  }
+  &-results {
+    margin-top: 53px;
+    background: radial-gradient(circle at top left, #32383e, transparent 10%),
+      radial-gradient(circle at top right, #32383e, transparent 10%), #15171c;
+    min-width: 50%;
+    max-width: 812px;
+    padding: 30px;
+    border-radius: 30px;
+  }
+}

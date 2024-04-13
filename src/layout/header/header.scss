@@ -1,0 +1,151 @@
+@import 'src/styles/variables.scss';
+
+.header {
+  height: 76px;
+  padding: 10px 24px 10px 32px;
+  @include flex-between;
+  border-bottom: 1px solid #26272f;
+  background-color: $bg;
+
+  &-left {
+    width: 322px;
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+  }
+
+  &-mode {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    cursor: pointer;
+    background-color: $raisin_black;
+    @include flex-center;
+    border-radius: 50%;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+      path {
+        fill: $silver;
+        transition: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+    }
+
+    &:hover {
+      svg path {
+        fill: $primary;
+      }
+    }
+
+    &-close {
+      svg {
+        transform: rotateZ(180deg);
+      }
+    }
+  }
+
+  &__right {
+    gap: 16px;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+  }
+  &__user {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+    &-icon {
+      padding: 10px;
+      border-radius: 50%;
+      @include flex-center;
+      border: 1px solid $onyx;
+    }
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+    h3 {
+      color: $white;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    p {
+      color: $stroke;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+  &-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: $raisin_black;
+    position: relative;
+    @include flex-center;
+    flex-direction: column;
+    cursor: pointer;
+
+    p {
+      position: absolute;
+      top: 3px;
+      right: 2px;
+
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: $red;
+    }
+
+    span {
+      width: 4.4px;
+      height: 4.4px;
+      border-radius: 50%;
+      background-color: $white;
+      margin-bottom: 2px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.selectbtn {
+  gap: 8px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h2 {
+    flex-grow: 1;
+    color: $white;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+.userBtn {
+  gap: 8px;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
+  h3 {
+    color: var(--Black, #222);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  h4 {
+    color: #8c00bd;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}

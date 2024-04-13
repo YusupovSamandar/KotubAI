@@ -1,0 +1,36 @@
+.modal {
+  &-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 16px;
+    // padding-top: 3rem;
+
+    .ant-btn {
+      width: 50%;
+      background-color: #2c2025 !important;
+      color: #ff737a !important;
+      border: none !important;
+      &:hover {
+        background-color: #ff737a !important;
+        color: white !important;
+      }
+      &-primary {
+        background-color: #1b2c2a !important;
+        color: var(--Green, #52edac) !important;
+        &:hover {
+          background-color: #52edac !important;
+          color: white !important;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+}
+
+.modal-cancel-btn {
+  .ant-btn {
+    background-color: red !important;
+  }
+}

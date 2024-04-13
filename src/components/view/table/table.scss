@@ -1,0 +1,114 @@
+@import 'src/styles/variables.scss';
+
+.table {
+  &-comment {
+    cursor: pointer;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: -webkit-linear-gradient(
+      0deg,
+      #fff 0.05%,
+      #ffffff12 126.72%
+    );
+
+    font-size: 16px;
+    @include line-clamp1;
+  }
+  &-wrapper {
+    border-radius: 32px;
+    overflow: hidden;
+    &-blurs {
+      @include flex-between;
+      position: relative;
+      z-index: 10;
+      &-blue {
+        position: absolute;
+        top: -30px;
+        left: -230px;
+        z-index: 20;
+
+        width: 494.818px;
+        height: 48.614px;
+        transform: rotate(-60.82deg);
+        flex-shrink: 0;
+
+        border-radius: 494.818px;
+        opacity: 0.5;
+        background: $primary;
+        filter: blur(85px);
+      }
+      &-gray {
+        position: absolute;
+        top: -30px;
+        right: -250px;
+        z-index: 20;
+
+        width: 501.01px;
+        height: 48.014px;
+        transform: rotate(30.299deg);
+        flex-shrink: 0;
+
+        border-radius: 501.01px;
+        opacity: 0.5;
+        background: var(--White, #fff);
+        filter: blur(85px);
+      }
+    }
+  }
+
+  &-action {
+    width: 48px;
+    @include flex;
+    justify-content: center;
+    column-gap: 8px;
+
+    div {
+      cursor: pointer;
+
+      svg {
+        transition: 0.3s;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  &-header {
+    position: relative;
+
+    .gradient-icon {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      z-index: 0;
+    }
+    h2 {
+      position: relative;
+      z-index: 2;
+      font-size: 18px;
+      font-weight: 500;
+      font-family: $font-primary;
+    }
+  }
+  &-footer {
+    @include flex;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid $over_dark_2x;
+    padding-top: 16px;
+
+    p,
+    span {
+      font-family: $font-primary;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  &-flag {
+    display: flex;
+    gap: 4px;
+  }
+}

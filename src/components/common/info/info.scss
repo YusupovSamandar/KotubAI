@@ -1,0 +1,17 @@
+@import 'src/styles/variables.scss';
+
+.custom-info {
+  height: 32px;
+  border-radius: 42px;
+  @include flex-center;
+  font-size: 14px;
+
+  &-success {
+    color: #52edac;
+    background-color: #1b2d2a;
+  }
+  &-danger {
+    color: #ff737a;
+    background-color: #2c2025;
+  }
+}

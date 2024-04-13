@@ -1,0 +1,60 @@
+@import 'src/styles/variables.scss';
+
+.main-greeting {
+  max-width: 640px;
+  flex-shrink: 0;
+  border-radius: 32px;
+  background: radial-gradient(circle at top left, #32383e, transparent 20%),
+    radial-gradient(circle at top right, #32383e, transparent 20%), #1c1e23;
+  // background-blend-mode: multiply;
+  // background: #1c1e23;
+  margin: 52px auto;
+  &-header {
+    border-bottom: 1px solid #26272f;
+    padding: 20px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  &-form {
+    padding: 20px;
+  }
+  &-form {
+    .ant-select-arrow {
+      color: white !important;
+    }
+    &-select {
+      background-color: #27292e !important;
+      width: 100% !important;
+    }
+    .ant-select-selector {
+      border: none !important;
+    }
+  }
+  &-submit {
+    text-align: right;
+    margin-top: 20px;
+    button {
+      background-color: #1b2c2a;
+      color: #52edac;
+      &:hover {
+        background-color: #213634 !important;
+        color: #52edac !important;
+      }
+    }
+  }
+}
+
+.language-opt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ant-upload-icon .anticon.anticon-paper-clip {
+  color: $white !important;
+}
+
+.anticon.anticon-delete {
+  color: white !important;
+}

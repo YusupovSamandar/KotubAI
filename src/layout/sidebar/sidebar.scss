@@ -1,0 +1,174 @@
+@import 'src/styles/variables.scss';
+
+.sidebar {
+  width: 272px;
+  flex-shrink: 0;
+  border-right: 1px solid #26272f;
+  background-color: $bg;
+
+  &-title {
+    height: 76px;
+    border-bottom: 1px solid $border;
+    padding-left: 15px;
+    @include flex;
+    position: relative;
+
+    &-logo {
+      svg {
+        width: 120px;
+      }
+    }
+  }
+
+  &-footer {
+    padding: 16px 15px;
+
+    &-button {
+      width: 100%;
+      border-radius: 8px;
+      background: #2e2f34;
+
+      padding: 8px;
+
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+
+      display: flex;
+      align-items: center;
+      column-gap: 14px;
+      cursor: pointer;
+
+      transition: 0.3s;
+      &:hover {
+        background: #4d4f57;
+      }
+    }
+  }
+
+  &-close {
+    width: 70px;
+  }
+}
+
+.menu {
+  padding: 20px 15px 24px;
+  height: calc(100vh - 149px);
+  @include scroll-none;
+  overflow-x: hidden;
+
+  &-title {
+    color: $stroke;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 0 0 8px;
+    margin-bottom: 12px;
+  }
+  &-item {
+    margin-bottom: 16px;
+    transition: 0.3s ease-in-out;
+
+    p {
+      @include line-clamp1;
+    }
+
+    &-active {
+      .menu-item-parent {
+        background-color: $sidebarBg;
+        &-left {
+          color: $primary !important;
+        }
+      }
+    }
+
+    &-parent {
+      height: 41px;
+
+      @include flex-between;
+      cursor: pointer;
+      padding: 8px 6px 8px 8px;
+      border-radius: 120px;
+
+      &-left {
+        @include flex;
+        column-gap: 8px;
+        color: $sidebarColor;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      &-right {
+        transition: 0.15s;
+        transform: rotateZ(180deg);
+
+        display: flex;
+        align-items: center;
+
+        &-open {
+          transform: rotateZ(0deg);
+        }
+      }
+    }
+    &-children {
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+      transition: 0.3s;
+      border-radius: 16px;
+      background-color: $dark;
+      background-color: #27292e;
+      margin-top: 12px;
+
+      a {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+        color: #909193;
+        padding: 8px;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        transition: 0.3 cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-bottom: 1px solid transparent;
+        font-size: 14px;
+
+        svg path {
+          transition: 0.3 cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        &:hover {
+          // color: $primary !important;
+          // background-color: #152833;
+          color: $white !important;
+          background-color: $over_dark_2x;
+          border-color: $primary;
+          svg path {
+            // stroke: $primary !important;
+            color: $white !important;
+          }
+        }
+
+        .icon {
+          background-color: #909193;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+        }
+      }
+
+      &-active {
+        color: $primary !important;
+        // background-color: #152833;
+        // svg path {
+        //   stroke: $primary !important;
+        // }
+        color: $white !important;
+        background-color: $over_dark_2x;
+        // border-bottom: 1px solid $primary !important;
+        svg path {
+          color: $white !important;
+        }
+      }
+    }
+  }
+}

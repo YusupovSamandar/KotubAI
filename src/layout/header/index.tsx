@@ -57,7 +57,6 @@ function LayoutHeader() {
         >
           <OpenBarSvg />
         </div>
-        <FilterSearch />
       </div>
 
       <div className="header__right">

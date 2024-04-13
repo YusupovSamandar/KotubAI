@@ -12,7 +12,7 @@
     padding-left: 15px;
     @include flex;
     position: relative;
-
+    justify-content: center;
     &-logo {
       svg {
         width: 120px;

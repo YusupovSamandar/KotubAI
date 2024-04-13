@@ -1,5 +1,9 @@
 import React from 'react';
-import { UZBflag } from './../../../assets/svg/dashboard_svg';
+import {
+  UZBflag,
+  RussianFlag,
+  EnglishFlag,
+} from './../../../assets/svg/dashboard_svg';
 interface OptionValueProps {
   component: React.ElementType;
   txt: string;
@@ -21,13 +25,13 @@ const fileLanguageOptions = [
     value: 'ru-RU',
     label: (
       <div>
-        <OptionValue component={UZBflag} txt="Русский" />
+        <OptionValue component={RussianFlag} txt="Русский" />
       </div>
     ),
   },
   {
     value: 'en-US',
-    label: <OptionValue component={UZBflag} txt="English" />,
+    label: <OptionValue component={EnglishFlag} txt="English" />,
   },
 ];
 

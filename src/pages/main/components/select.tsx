@@ -15,8 +15,8 @@ const CustomSelect: React.FC<{
     }}
     options={[
       { value: 's-t-t', label: 'Speech to text' },
-      { value: 'lucy', label: 'Lucy' },
-      { value: 'Yiminghe', label: 'yiminghe' },
+      { value: 't-t-s', label: 'Text to speech' },
+      { value: 'smr', label: 'Website summary' },
     ]}
   />
   // </Space>

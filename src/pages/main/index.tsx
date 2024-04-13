@@ -2,7 +2,7 @@ import { useState, SetStateAction, Dispatch } from 'react';
 import Greeting from './components/greeting';
 import Select from './components/select';
 export default function Main() {
-  const [actionType, setActionType] = useState<'s-t-t' | 'lucy' | 't-t-s'>(
+  const [actionType, setActionType] = useState<'s-t-t' | 'smr' | 't-t-s'>(
     's-t-t'
   );
   return (

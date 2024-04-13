@@ -1,9 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import DashboardLayout from 'src/layout';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import Custom404 from 'src/pages/404';
-import ConfirmPage from 'src/pages/auth/confirm';
-import SignInPageOrigin from 'src/pages/auth/signIn';
 import useRoutes from './useRoutes';
 import Main from 'src/pages/main';
 import Workspace from 'src/pages/workspace';
@@ -36,7 +33,6 @@ function RoutElements() {
                 <Route index element={<SignInPage />} />
                 <Route path="/auth">
                   <Route path="signin" element={<SignInPage />} />
-                  <Route path="confirm" element={<ConfirmPage />} />
                 </Route>
                 <Route path="*" element={<SignInPage />} />
               </>

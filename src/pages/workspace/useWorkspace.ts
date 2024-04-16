@@ -96,7 +96,7 @@ export default function useWorkspace() {
           id: pageObj.id,
           lang: lang,
         }).unwrap();
-        setFileURL(res.result);
+        setFileURL(res.result.split('media/')[1]);
         setPageContent(null);
       },
     },

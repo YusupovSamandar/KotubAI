@@ -59,8 +59,10 @@ function Workspace() {
       <div style={{ margin: '47px 0 100px 0' }}>
         <FileCmp
           Icon={MusicSvg}
-          fileTxt={data?.result_docx}
-          downloadUrl={`${baseUrl}/api/download/${data?.result_docx}`}
+          fileTxt={(data?.result_docx).split('media/')[1]}
+          downloadUrl={`${baseUrl}/api/download/${
+            (data?.result_docx).split('media/')[1]
+          }`}
         />
       </div>
       <div className="workspace-buttons-list">
@@ -143,7 +145,11 @@ function Workspace() {
         <>
           {console.log('pageContent', pageContent)}
           {!actionsLoading ? (
-            <FileCmp Icon={MusicSvg} downloadUrl={fileURL} fileTxt={fileURL} />
+            <FileCmp
+              Icon={MusicSvg}
+              downloadUrl={`${baseUrl}/api/download/` + fileURL}
+              fileTxt={fileURL}
+            />
           ) : (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Spin />

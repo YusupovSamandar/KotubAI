@@ -64,6 +64,7 @@ function LayoutSidebar() {
                 key={item.id}
                 label={item.project_name}
                 path={`/${item.id}`}
+                itemId={item.id}
               />
             ))
           )}

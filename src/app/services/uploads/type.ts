@@ -34,3 +34,11 @@ export interface IHistoryState {
 export interface IHistory {
   result: IHistoryState[];
 }
+export interface IDeleteSpeechToText {
+  id: number;
+}
+
+export interface IPatchSpeechToText {
+  id: number;
+  project_name: string;
+}

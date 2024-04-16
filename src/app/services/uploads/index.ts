@@ -1,5 +1,11 @@
 import { api } from '../api';
-import { IHistory, ISpeechToTextRes, speechToTextGHistory } from './type';
+import {
+  IHistory,
+  ISpeechToTextRes,
+  speechToTextGHistory,
+  IDeleteSpeechToText,
+  IPatchSpeechToText,
+} from './type';
 
 export const uploadApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -7,6 +13,20 @@ export const uploadApi = api.injectEndpoints({
       query: (body) => ({
         url: 'api/speech-to-text?lang=' + body.get('lang'),
         method: 'POST',
+        body,
+      }),
+    }),
+    deleteSpeechToText: build.mutation<string, IDeleteSpeechToText>({
+      query: (body) => ({
+        url: '/api/speech-to-text/' + body.id,
+        method: 'DELETE',
+        body,
+      }),
+    }),
+    editSpeechToTextTitle: build.mutation<string, FormData>({
+      query: (body) => ({
+        url: '/api/speech-to-text/' + body.get('id'),
+        method: 'PATCH',
         body,
       }),
     }),
@@ -27,4 +47,6 @@ export const {
   useSpeechToTextMutation,
   useGetSpeechToTextMutation,
   useGetHistoryMutation,
+  useDeleteSpeechToTextMutation,
+  useEditSpeechToTextTitleMutation,
 } = uploadApi;

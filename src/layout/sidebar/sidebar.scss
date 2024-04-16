@@ -65,9 +65,17 @@
     margin-bottom: 12px;
   }
   &-item {
+    &:hover {
+      .ant-dropdown-trigger {
+        opacity: 0.5;
+      }
+    }
     margin-bottom: 16px;
     transition: 0.3s ease-in-out;
-
+    &-edit-options {
+      flex: 0 0 10%;
+      width: 100%;
+    }
     p {
       @include line-clamp1;
     }
@@ -83,14 +91,14 @@
 
     &-parent {
       height: 41px;
-
-      @include flex-between;
-      cursor: pointer;
+      @include flex;
       padding: 8px 6px 8px 8px;
       border-radius: 120px;
 
       &-left {
+        width: 100%;
         @include flex;
+        flex: 0 0 90%;
         column-gap: 8px;
         color: $sidebarColor;
         font-size: 16px;
@@ -171,4 +179,25 @@
       }
     }
   }
+}
+
+.ant-dropdown-trigger {
+  cursor: pointer;
+  opacity: 0;
+  &:hover {
+    opacity: 1 !important;
+  }
+}
+
+.edit-confirm-modal .ant-modal-content {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.edit-confirm-modal.ant-modal {
+  width: 100% !important;
+}
+
+.menu-item-parent-left-p[contentEditable='true']:focus {
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
 }

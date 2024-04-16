@@ -101,7 +101,7 @@
   }
   &-arrow,
   &-clear {
-    color: #19BDFF !important;
+    color: #19bdff !important;
   }
 }
 
@@ -211,21 +211,18 @@
   }
 }
 
+.ant-divider {
+  background-color: $dark_grey;
+}
+
 .ant-modal {
+  width: auto !important;
   &-wrap {
     backdrop-filter: blur(3px);
   }
-  &-content {
-    padding: 0 !important;
-  }
   &-header {
     border-bottom: 1px solid $dark_grey !important;
-    padding: 20px !important;
-    cursor: pointer !important;
-    &:hover {
-      background-color: $onyx !important;
-      border-bottom: 1px solid $primary !important;
-    }
+    padding: 20px 20px 8px 20px !important;
   }
   &-title {
     font-size: 16px !important;
@@ -240,9 +237,6 @@
         color: $red;
       }
     }
-  }
-  &-body {
-    padding: 20px !important;
   }
 
   .ant-input {

@@ -3,6 +3,14 @@ import { THEME_COLOR, isDarkTheme } from 'src/constants/storage';
 import { themeColors } from 'src/theme';
 import { IThemeColor } from 'src/theme/type';
 
+const isMobileFc = (): boolean => {
+  const userAgent = window.navigator.userAgent;
+  if (/mobile/i.test(userAgent)) return true;
+  return false;
+};
+
+const isMobile = isMobileFc();
+
 export interface ILayoutState {
   menuMode?: 'open' | 'close';
   darkMode: boolean;
@@ -12,10 +20,10 @@ export interface ILayoutState {
 }
 
 const initialState: ILayoutState = {
-  menuMode: 'open',
+  menuMode: isMobile ? 'close' : 'open',
   darkMode: isDarkTheme,
   colors: isDarkTheme ? themeColors.dark : themeColors.light,
-  collapsed: false,
+  collapsed: isMobile,
 };
 
 const layoutSlice = createSlice({

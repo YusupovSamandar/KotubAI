@@ -71,26 +71,6 @@ function LayoutHeader() {
             <p>{profile?.position === 'ceo' ? 'Project manager' : ''}</p>
           </div>
         </div>
-
-        <Link to="/notifications">
-          <div className="header-circle">
-            <NotificationBing size="20" color={colors.white} variant="Bold" />
-            <p></p>
-          </div>
-        </Link>
-
-        <Dropdown
-          menu={{ items }}
-          placement="bottomRight"
-          trigger={['click']}
-          arrow
-        >
-          <div className="header-circle">
-            <span />
-            <span />
-            <span />
-          </div>
-        </Dropdown>
       </div>
     </div>
   );

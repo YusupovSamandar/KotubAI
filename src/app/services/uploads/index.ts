@@ -1,16 +1,16 @@
 import { api } from '../api';
-import { IHistory, ISpeechToTextRes } from './type';
+import { IHistory, ISpeechToTextRes, speechToTextGHistory } from './type';
 
-export const authApi = api.injectEndpoints({
+export const uploadApi = api.injectEndpoints({
   endpoints: (build) => ({
     speechToText: build.mutation<ISpeechToTextRes, FormData>({
       query: (body) => ({
-        url: 'api/speech-to-text',
+        url: 'api/speech-to-text?lang=' + body.get('lang'),
         method: 'POST',
         body,
       }),
     }),
-    getSpeechToText: build.mutation<ISpeechToTextRes, string>({
+    getSpeechToText: build.mutation<speechToTextGHistory, string>({
       query: (id) => ({
         url: 'api/speech-to-text/' + id,
       }),
@@ -27,4 +27,4 @@ export const {
   useSpeechToTextMutation,
   useGetSpeechToTextMutation,
   useGetHistoryMutation,
-} = authApi;
+} = uploadApi;

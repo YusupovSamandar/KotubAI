@@ -8,16 +8,16 @@ import { Logo } from 'src/assets/svg';
 import MenuItem from './components/MenuItem';
 import './sidebar.scss';
 import { useGetHistoryMutation } from 'src/app/services/uploads';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Spin } from 'antd';
 
 function LayoutSidebar() {
-  const [historyData, setHistoryData] = useState([]);
   const [getHistory, { isLoading }] = useGetHistoryMutation();
   const navigate = useNavigate();
   const { colors, menuMode, collapsed } = useTypedSelector(
     (state) => state.layout
   );
+  const historyData = useTypedSelector((state) => state.userHistory);
   const dispatch = useAppDispatch();
   const toggleCollapsed = () => {
     if (menuMode === 'close') {
@@ -26,11 +26,7 @@ function LayoutSidebar() {
   };
 
   useEffect(() => {
-    getHistory()
-      .unwrap()
-      .then((res) => {
-        setHistoryData(res.result);
-      });
+    getHistory().unwrap();
   }, []);
 
   const mode = collapsed ? 'close' : 'open';
@@ -64,7 +60,11 @@ function LayoutSidebar() {
             </div>
           ) : (
             historyData.map((item) => (
-              <MenuItem key={item.id} label={item.name} path={`/${item.id}`} />
+              <MenuItem
+                key={item.id}
+                label={item.project_name}
+                path={`/${item.id}`}
+              />
             ))
           )}
           {}

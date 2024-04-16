@@ -1,6 +1,7 @@
 import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import auth from 'src/app/slices/authSlice';
+import userHistory from 'src/app/slices/historySlice';
 import layout from 'src/app/slices/layoutSlice';
 import { api } from './services/api';
 import { rtkQueryErrorLogger } from './services/api/middlewares';
@@ -12,6 +13,7 @@ export const createStore = (
     reducer: {
       [api.reducerPath]: api.reducer,
       auth,
+      userHistory,
       layout,
     },
     middleware: (getDefaultMiddleware) =>
@@ -28,4 +30,3 @@ export type RootState = ReturnType<typeof store.getState>;
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const getRootState = () => store.getState();
-

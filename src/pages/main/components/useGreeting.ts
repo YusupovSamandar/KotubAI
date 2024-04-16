@@ -1,6 +1,9 @@
 import type { UploadFile } from 'antd';
 import { Form } from 'antd';
-import { useSpeechToTextMutation } from 'src/app/services/uploads';
+import {
+  useSpeechToTextMutation,
+  useGetHistoryMutation,
+} from 'src/app/services/uploads';
 import { useNavigate } from 'react-router-dom';
 interface IForm {
   name: string;
@@ -11,7 +14,9 @@ interface IForm {
 
 export default function useGreeting(actionType) {
   const navigate = useNavigate();
-  const [send, { isLoading }] = useSpeechToTextMutation();
+  const [send, { isLoading, error: sTTError }] = useSpeechToTextMutation();
+  const [updateHistory, { isLoading: isloadingHistory }] =
+    useGetHistoryMutation();
   const onFinish = async (value: IForm) => {
     if (
       (value.youtube_link && value.audio_file?.[0]) ||
@@ -49,11 +54,10 @@ export default function useGreeting(actionType) {
     if (value.youtube_link) {
       formData.append('youtube_link', value.youtube_link);
     } else {
-      formData.append('audio_file', value.audio_file[0].originFileObj);
+      formData.append('input_file', value.audio_file[0].originFileObj);
     }
-
     const data = await send(formData).unwrap();
-
+    await updateHistory().unwrap();
     navigate(`/${data.id}`);
   };
 
@@ -70,5 +74,6 @@ export default function useGreeting(actionType) {
     onFinish,
     isLoading,
     normFile,
+    sTTError,
   };
 }

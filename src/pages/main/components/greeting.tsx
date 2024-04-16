@@ -1,17 +1,37 @@
-import { Button, Col, Form, Input, Row, Select, Upload } from 'antd';
+import { Button, Col, Form, Input, Row, Select, Upload, message } from 'antd';
 import { Music } from 'iconsax-react';
 import './../styles.scss';
 import fileLanguageOptions from './upload_data';
 import useGreeting from './useGreeting';
 import { uploadProps } from 'src/constants/form';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 const { Dragger } = Upload;
 
 const Greeting: React.FC<{
   actionType: string;
 }> = ({ actionType }) => {
-  const { form, onFinish, isLoading, normFile } = useGreeting(actionType);
+  const [messageApi, contextHolder] = message.useMessage();
+  const { form, onFinish, isLoading, normFile, sTTError } =
+    useGreeting(actionType);
+
+  useEffect(() => {
+    if (sTTError) {
+      if ('status' in sTTError) {
+        messageApi.open({
+          type: 'error',
+          duration: 5,
+          content: JSON.stringify(sTTError.data || sTTError.status),
+        });
+      } else {
+        messageApi.open({
+          type: 'error',
+          duration: 5,
+          content: JSON.stringify(sTTError.message),
+        });
+      }
+    }
+  }, [sTTError]);
 
   return (
     <div className="main-greeting">
@@ -65,6 +85,7 @@ const Greeting: React.FC<{
             </Dragger>
           </Form.Item>
           <div className="main-greeting-submit">
+            {contextHolder}
             <Button loading={isLoading} htmlType="submit" type="text">
               Submit
             </Button>

@@ -12,16 +12,6 @@ const TelegramLogin = () => {
         first_name: user.first_name,
         last_name: user.last_name,
       }).unwrap();
-      alert(
-        'Logged in as ' +
-          user.first_name +
-          ' ' +
-          user.last_name +
-          ' (' +
-          user.id +
-          (user.username ? ', @' + user.username : '') +
-          ')'
-      );
     };
 
     // Create the script element for Telegram login

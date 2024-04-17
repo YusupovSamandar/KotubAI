@@ -49,6 +49,8 @@ const authSlice = createSlice({
       .addMatcher(
         authApi.endpoints.loginTelegram.matchFulfilled,
         (state, action) => {
+          console.log(action.payload);
+
           state.token = action.payload.token.access;
           state.refreshToken = action.payload.token.refresh;
           state.isAuthenticated = true;

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   PROFILE,
   TOKEN,
+  REFRESH_TOKEN,
   profile,
   token,
   refreshToken,
@@ -56,6 +57,7 @@ const authSlice = createSlice({
           state.isAuthenticated = true;
 
           localStorage.setItem(TOKEN, action.payload.token.access);
+          localStorage.setItem(REFRESH_TOKEN, action.payload.token.refresh);
         }
       )
       .addMatcher(authApi.endpoints.confirm.matchFulfilled, (state, action) => {

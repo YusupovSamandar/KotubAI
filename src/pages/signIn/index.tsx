@@ -8,10 +8,6 @@ const SignInPage: React.FC = () => {
   const [isSignUpActive, setIsSignUpActive] = React.useState(false);
   const [login, { isLoading }] = useLoginMutation();
 
-  const handleTelegramResponse = (response) => {
-    console.log(response);
-  };
-
   const onSuccess = async (credentialResponse) => {
     const data = await login({
       token: credentialResponse.credential,

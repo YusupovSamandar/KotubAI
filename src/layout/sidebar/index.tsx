@@ -73,7 +73,7 @@ function LayoutSidebar() {
       </div>
       <div className="sidebar-footer">
         <Popconfirm
-          title="Tizimdan chiqishni tasdiqlaysiszmi?"
+          title="Do you confirm ?"
           onConfirm={() => {
             dispatch(logout());
             navigate('/');
@@ -83,7 +83,7 @@ function LayoutSidebar() {
         >
           <div className="sidebar-footer-button" onClick={() => {}}>
             <LogoutCurve size="24" color={colors.white} />{' '}
-            {!collapsed && 'Tizimdan chiqish'}
+            {!collapsed && 'sign out'}
           </div>
         </Popconfirm>
       </div>

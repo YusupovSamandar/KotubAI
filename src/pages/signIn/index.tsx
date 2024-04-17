@@ -64,6 +64,7 @@ const SignInPage: React.FC = () => {
                   console.log('Login Failed');
                 }}
               />
+              <br />
               <TelegramLoginBtn />
             </div>
             <span>or use your account</span>

@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.scss';
 import { GoogleLogin } from '@react-oauth/google';
 import { useLoginMutation } from 'src/app/services/auth';
+import TelegramLoginBtn from './telegramLogin';
 
 const SignInPage: React.FC = () => {
   const [isSignUpActive, setIsSignUpActive] = React.useState(false);
@@ -63,14 +64,7 @@ const SignInPage: React.FC = () => {
                   console.log('Login Failed');
                 }}
               />
-              {/* <script
-                async
-                src="https://telegram.org/js/telegram-widget.js?22"
-                data-telegram-login="Kotibaibot"
-                data-size="large"
-                data-onauth="onTelegramAuth(user)"
-                data-request-access="write"
-              ></script> */}
+              <TelegramLoginBtn />
             </div>
             <span>or use your account</span>
             <input type="email" placeholder="Email" />

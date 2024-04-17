@@ -1,5 +1,13 @@
 import { api } from '../api';
-import { IConfirm, IConfirmRes, ILogin, ILoginRes, IProfile } from './type';
+import {
+  IConfirm,
+  IConfirmRes,
+  ILogin,
+  ILoginRes,
+  ILoginTelegramRes,
+  IProfile,
+  ILoginTelegram,
+} from './type';
 
 export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -8,6 +16,13 @@ export const authApi = api.injectEndpoints({
     login: build.mutation<ILoginRes, ILogin>({
       query: (body) => ({
         url: 'api/auth/oauth2',
+        method: 'POST',
+        body,
+      }),
+    }),
+    loginTelegram: build.mutation<ILoginTelegramRes, ILoginTelegram>({
+      query: (body) => ({
+        url: 'api/auth/telegram',
         method: 'POST',
         body,
       }),
@@ -28,5 +43,9 @@ export const authApi = api.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useConfirmMutation, useGetProfileMutation } =
-  authApi;
+export const {
+  useLoginMutation,
+  useConfirmMutation,
+  useGetProfileMutation,
+  useLoginTelegramMutation,
+} = authApi;

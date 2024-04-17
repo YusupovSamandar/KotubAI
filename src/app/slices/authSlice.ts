@@ -46,6 +46,16 @@ const authSlice = createSlice({
 
         localStorage.setItem(TOKEN, action.payload.token.access);
       })
+      .addMatcher(
+        authApi.endpoints.loginTelegram.matchFulfilled,
+        (state, action) => {
+          state.token = action.payload.token.access;
+          state.refreshToken = action.payload.token.refresh;
+          state.isAuthenticated = true;
+
+          localStorage.setItem(TOKEN, action.payload.token.access);
+        }
+      )
       .addMatcher(authApi.endpoints.confirm.matchFulfilled, (state, action) => {
         state.token = action.payload.tokens.access;
         state.isAuthenticated = true;

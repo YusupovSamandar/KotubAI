@@ -7,9 +7,20 @@ export interface ILogin {
   type: string;
   user_id: string;
 }
+export interface ILoginTelegram {
+  first_name: string;
+  last_name: string;
+  telegram_id: string;
+}
 export interface ILoginRes {
   email: string;
   full_name: string;
+  token: {
+    access: string;
+    refresh: string;
+  };
+}
+export interface ILoginTelegramRes {
   token: {
     access: string;
     refresh: string;

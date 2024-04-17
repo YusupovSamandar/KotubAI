@@ -1,9 +1,17 @@
 import { useEffect } from 'react';
+import { useLoginTelegramMutation } from 'src/app/services/auth';
 
 const TelegramLogin = () => {
+  const [loginTelegram, { isLoading }] = useLoginTelegramMutation();
+
   useEffect(() => {
     // Function to handle the authentication response from Telegram
-    window.onTelegramAuth = (user) => {
+    window.onTelegramAuth = async (user) => {
+      await loginTelegram({
+        telegram_id: user.id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+      }).unwrap();
       alert(
         'Logged in as ' +
           user.first_name +

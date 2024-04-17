@@ -36,18 +36,18 @@ export default function useGreeting(actionType) {
       ]);
       return;
     }
-    if (
-      value.audio_file?.[0] &&
-      value.audio_file[0].originFileObj.size / 1024 / 1024 > 10
-    ) {
-      form.setFields([
-        {
-          name: 'audio_file',
-          errors: ['file too big'],
-        },
-      ]);
-      return;
-    }
+    // if (
+    //   value.audio_file?.[0] &&
+    //   value.audio_file[0].originFileObj.size / 1024 / 1024 > 200
+    // ) {
+    //   form.setFields([
+    //     {
+    //       name: 'audio_file',
+    //       errors: ['file too big'],
+    //     },
+    //   ]);
+    //   return;
+    // }
     const formData = new FormData();
     formData.append('project_name', value.name);
     formData.append('lang', value.lang);

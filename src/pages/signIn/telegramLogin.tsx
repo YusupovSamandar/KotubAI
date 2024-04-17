@@ -30,7 +30,9 @@ const TelegramLogin = () => {
 
     // Clean up the script when the component unmounts
     return () => {
-      document.body.removeChild(script);
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, []);
 

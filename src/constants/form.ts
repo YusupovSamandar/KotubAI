@@ -21,17 +21,16 @@ export const uploadProps: UploadProps = {
   accept: 'audio/*, video/mp4',
   name: 'file',
   beforeUpload: (file) => {
-    return;
-    // new Promise((resolve, reject) => {
-    //   // alert('You can only upload images');
-    //   const isLt5M = file.size / 1024 / 1024 <= 10;
-    //   if (!isLt5M) {
-    //     // alert('Image must smaller than 5MB!');
-    //     resolve(true);
-    //   } else {
-    //     reject(false);
-    //   }
-    // });
+    return new Promise((resolve, reject) => {
+      // alert('You can only upload images');
+      const isLt5M = file.size / 1024 / 1024 <= 10;
+      // if (!isLt5M) {
+      //   // alert('Image must smaller than 5MB!');
+      //   resolve(true);
+      // } else {
+      reject(false);
+      // }
+    });
   },
   multiple: false,
   maxCount: 1,

@@ -1,18 +1,13 @@
 import { Dropdown, MenuProps } from 'antd';
-import {
-  ArrowDown2,
-  NotificationBing,
-  TextalignJustifyleft,
-  User,
-} from 'iconsax-react';
-import { Link } from 'react-router-dom';
+import { ArrowDown2, User } from 'iconsax-react';
 import { useAppDispatch, useTypedSelector } from 'src/app/store';
-import FilterSearch from 'src/components/filter/FilterSearch';
+import { changeLanguage } from 'src/app/slices/languageSlice';
 import './header.scss';
 import { changeMenuMode } from 'src/app/slices/layoutSlice';
 import { OpenBarSvg } from 'src/assets/svg';
 
 function LayoutHeader() {
+  const currentLang = useTypedSelector((state) => state.language);
   const { colors, menuMode } = useTypedSelector((state) => state.layout);
   const { profile } = useTypedSelector((state) => state.auth);
   const dispatch = useAppDispatch();
@@ -20,33 +15,37 @@ function LayoutHeader() {
     {
       key: '1',
       label: 'Oʻzbekcha',
+      onClick: () => {
+        dispatch(changeLanguage('uz'));
+      },
     },
     {
       key: '2',
       label: 'Русский',
+      onClick: () => {
+        dispatch(changeLanguage('ru'));
+      },
     },
     {
       key: '3',
-      label: 'Кирилча',
+      label: 'English',
+      onClick: () => {
+        dispatch(changeLanguage('en'));
+      },
     },
   ];
-  const items: MenuProps['items'] = [
-    {
-      key: '2',
-      label: (
-        <Dropdown
-          trigger={['click']}
-          menu={{ items: item2 }}
-          placement="bottomCenter"
-        >
+  const LanguageDropdown = () => {
+    return (
+      <Dropdown trigger={['click']} menu={{ items: item2 }} placement="bottom">
+        <a onClick={(e) => e.preventDefault()}>
           <div className="selectbtn">
-            <h2>Language</h2>
+            <h2>{currentLang}</h2>
             <ArrowDown2 size="16" color={colors.white} />
           </div>
-        </Dropdown>
-      ),
-    },
-  ];
+        </a>
+      </Dropdown>
+    );
+  };
 
   return (
     <div className="header">
@@ -62,6 +61,7 @@ function LayoutHeader() {
       <div className="header__right">
         <div className="header__user">
           <div className="header__user-icon">
+            <LanguageDropdown />
             <User size="18" color="#fff" variant="Broken" />
           </div>
           <div className="flex">

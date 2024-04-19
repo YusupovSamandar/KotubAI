@@ -17,6 +17,7 @@ function LayoutSidebar() {
   const { colors, menuMode, collapsed } = useTypedSelector(
     (state) => state.layout
   );
+  const lang = useTypedSelector((state) => state.language);
   const historyData = useTypedSelector((state) => state.userHistory);
   const dispatch = useAppDispatch();
   const toggleCollapsed = () => {
@@ -83,7 +84,11 @@ function LayoutSidebar() {
         >
           <div className="sidebar-footer-button" onClick={() => {}}>
             <LogoutCurve size="24" color={colors.white} />{' '}
-            {!collapsed && 'sign out'}
+            {!collapsed && lang === 'uz'
+              ? 'Chiqish'
+              : lang === 'ru'
+              ? 'Выйти'
+              : 'Logout'}
           </div>
         </Popconfirm>
       </div>

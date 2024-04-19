@@ -62,7 +62,6 @@
       padding: 10px;
       border-radius: 50%;
       @include flex-center;
-      border: 1px solid $onyx;
     }
     img {
       width: 48px;
@@ -116,13 +115,13 @@
 }
 .selectbtn {
   gap: 8px;
-  width: 100px;
   display: flex;
+  margin: 0 16px;
   align-items: center;
   justify-content: space-between;
-
+  cursor: pointer;
   h2 {
-    flex-grow: 1;
+    // flex-grow: 1;
     color: $white;
     font-size: 14px;
     font-weight: 400;

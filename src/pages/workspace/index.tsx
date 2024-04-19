@@ -18,13 +18,16 @@ import { CopyIcon, MusicSvg } from 'src/assets/svg/dashboard_svg';
 import BtnGroup from './components/btnGroup';
 import FileCmp from './components/fileCmp';
 import './styles.scss';
+import { useTypedSelector } from 'src/app/store';
 import useWorkspace from './useWorkspace';
+import { workspaceLanguageData } from './languageData';
 const { Paragraph } = Typography;
 const { TextArea } = Input;
 
 function Workspace() {
   const { id } = useParams();
   const [activeBtn, setActiveBtn] = useState(null);
+  const lang = useTypedSelector((state) => state.language);
   const [data, setData] = useState<ISpeechToTextRes>(null);
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -88,9 +91,14 @@ function Workspace() {
           ))}
         </Flex>
         <Modal
-          okText="Proceed"
+          okText={workspaceLanguageData[lang].modal.confirms.ok}
+          cancelText={workspaceLanguageData[lang].modal.confirms.cancel}
           centered
-          title={executeFC === 4 ? 'Ask Away' : 'Choose Language'}
+          title={
+            executeFC === 4
+              ? workspaceLanguageData[lang].modal.askQuestion.label
+              : workspaceLanguageData[lang].modal.summarize.language
+          }
           open={isModalOpen}
           onOk={() => {
             (async function () {
@@ -143,7 +151,6 @@ function Workspace() {
       </div>
       {!pageContent ? (
         <>
-          {console.log('pageContent', pageContent)}
           {!actionsLoading ? (
             <FileCmp
               Icon={MusicSvg}

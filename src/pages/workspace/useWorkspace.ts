@@ -11,13 +11,16 @@ import {
   TranslationOutlined,
 } from '@ant-design/icons';
 import { IBtnLangList } from './types';
+import { useTypedSelector } from 'src/app/store';
 import { useState } from 'react';
+import { workspaceLanguageData } from './languageData';
 export default function useWorkspace() {
   const [pageContent, setPageContent] = useState<string>(' ');
   const [fileURL, setFileURL] = useState<string>(null);
   const [activeLangBtn, setActiveLangBtn] = useState<string>('en-US');
   const [activeArticleType, setActiveArticleType] = useState<string>('article');
 
+  const lang = useTypedSelector((state) => state.language);
   const [postSTTSummary, { isLoading: isLoadingSTTSummary }] =
     useSTTSummaryMutation();
   const [postSTTArticle, { isLoading: isLoadingSTTArticle }] =
@@ -29,28 +32,28 @@ export default function useWorkspace() {
 
   const articleTypes: IBtnLangList[] = [
     {
-      label: 'Article',
+      label: workspaceLanguageData[lang].modal.article.types.article,
       id: 'article',
       onclickFC: async () => {
         setActiveArticleType('article');
       },
     },
     {
-      label: 'News',
+      label: workspaceLanguageData[lang].modal.article.types.news,
       id: 'news',
       onclickFC: async () => {
         setActiveArticleType('news');
       },
     },
     {
-      label: 'Reportage',
+      label: workspaceLanguageData[lang].modal.article.types.reportage,
       id: 'reportage',
       onclickFC: async () => {
         setActiveArticleType('reportage');
       },
     },
     {
-      label: 'Interview',
+      label: workspaceLanguageData[lang].modal.article.types.interview,
       id: 'interwiew',
       onclickFC: async () => {
         setActiveArticleType('interwiew');
@@ -61,7 +64,7 @@ export default function useWorkspace() {
   const actionsList = [
     {
       Icon: FileDoneOutlined,
-      label: 'summarize',
+      label: workspaceLanguageData[lang].summarize,
       content: 'txt',
       id: 1,
       onclickFC: async (pageObj, lang) => {
@@ -74,7 +77,7 @@ export default function useWorkspace() {
     },
     {
       Icon: EditOutlined,
-      label: 'Create Article',
+      label: workspaceLanguageData[lang].article,
       content: 'txt',
       id: 2,
       onclickFC: async (pageObj, lang, type?) => {
@@ -88,7 +91,7 @@ export default function useWorkspace() {
     },
     {
       Icon: TranslationOutlined,
-      label: 'Translate',
+      label: workspaceLanguageData[lang].translate,
       content: 'txt',
       id: 3,
       onclickFC: async (pageObj, lang) => {
@@ -102,7 +105,7 @@ export default function useWorkspace() {
     },
     {
       Icon: MessageOutlined,
-      label: 'Ask Question',
+      label: workspaceLanguageData[lang].askQuestion,
       content: 'asdsd',
       id: 4,
       onclickFC: async (pageObj, question) => {

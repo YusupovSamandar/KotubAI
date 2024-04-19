@@ -5,6 +5,8 @@ import fileLanguageOptions from './upload_data';
 import useGreeting from './useGreeting';
 import { uploadProps } from 'src/constants/form';
 import { useEffect } from 'react';
+import { useTypedSelector } from 'src/app/store';
+import { greetingLang } from './data';
 
 const { Dragger } = Upload;
 
@@ -14,6 +16,7 @@ const Greeting: React.FC<{
   const [messageApi, contextHolder] = message.useMessage();
   const { form, onFinish, isLoading, normFile, sTTError } =
     useGreeting(actionType);
+  const lang = useTypedSelector((state) => state.language);
 
   useEffect(() => {
     if (sTTError) {
@@ -35,7 +38,9 @@ const Greeting: React.FC<{
 
   return (
     <div className="main-greeting">
-      <div className="main-greeting-header">Ovozni tekstga o'zgartirish</div>
+      <div className="main-greeting-header">
+        {greetingLang[lang].mainHeader}
+      </div>
       <div className="main-greeting-form">
         <Form form={form} onFinish={onFinish}>
           <Row gutter={[20, 34]}>
@@ -45,21 +50,29 @@ const Greeting: React.FC<{
                 name="name"
                 // label="Project Name"
                 rules={[
-                  { required: true, message: 'Project name is required!' },
+                  {
+                    required: true,
+                    message: greetingLang[lang].projectNameWarning,
+                  },
                 ]}
               >
-                <Input placeholder="Project Name" />
+                <Input placeholder={greetingLang[lang].projectName} />
               </Form.Item>
             </Col>
             <Col xs={24} md={12} xl={12}>
               <Form.Item
                 name="lang"
-                rules={[{ required: true, message: 'language is required!' }]}
+                rules={[
+                  {
+                    required: true,
+                    message: greetingLang[lang].languageWarning,
+                  },
+                ]}
               >
                 <Select
                   className="main-greeting-form-select"
                   showSearch
-                  placeholder="tilni tanlang"
+                  placeholder={greetingLang[lang].language}
                   optionFilterProp="children"
                   options={fileLanguageOptions}
                 />
@@ -67,7 +80,7 @@ const Greeting: React.FC<{
             </Col>
             <Col xs={24}>
               <Form.Item name="youtube_link">
-                <Input placeholder="Youtube link Joylash" />
+                <Input placeholder={greetingLang[lang].youtubeLink} />
               </Form.Item>
             </Col>
             <Col xs={24}></Col>
@@ -81,13 +94,13 @@ const Greeting: React.FC<{
               <p className="ant-upload-drag-icon">
                 <Music size="45" color="#fff" />
               </p>
-              <p className="ant-upload-text">Audio fayl yuklash</p>
+              <p className="ant-upload-text">{greetingLang[lang].fileUpload}</p>
             </Dragger>
           </Form.Item>
           <div className="main-greeting-submit">
             {contextHolder}
             <Button loading={isLoading} htmlType="submit" type="text">
-              Submit
+              {greetingLang[lang].submit}
             </Button>
           </div>
         </Form>

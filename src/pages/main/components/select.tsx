@@ -1,25 +1,28 @@
 import React from 'react';
 import { Select, Space } from 'antd';
+import { useTypedSelector } from 'src/app/store';
+import { en, ru, uz } from './data';
 
 const CustomSelect: React.FC<{
   optionsValue: string;
   setActionType: (value: string) => void;
-}> = ({ optionsValue, setActionType }) => (
-  // <Space wrap>
-  <Select
-    defaultValue="s-t-t"
-    value={optionsValue}
-    style={{ width: 217 }}
-    onChange={(value) => {
-      setActionType(value);
-    }}
-    options={[
-      { value: 's-t-t', label: 'Speech to text' },
-      { value: 't-t-s', label: 'Text to speech' },
-      { value: 'smr', label: 'Website summary' },
-    ]}
-  />
-  // </Space>
-);
+}> = ({ optionsValue, setActionType }) => {
+  const lang = useTypedSelector((state) => state.language);
+
+  const optionsDt = lang === 'uz' ? uz : lang === 'ru' ? ru : en;
+  return (
+    // <Space wrap>
+    <Select
+      defaultValue="s-t-t"
+      value={optionsValue}
+      style={{ width: 217 }}
+      onChange={(value) => {
+        setActionType(value);
+      }}
+      options={optionsDt}
+    />
+    // </Space>
+  );
+};
 
 export default CustomSelect;

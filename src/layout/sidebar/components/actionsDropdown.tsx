@@ -1,5 +1,6 @@
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { useTypedSelector } from 'src/app/store';
 import { Dropdown, Space, Modal } from 'antd';
 import {
   useDeleteSpeechToTextMutation,
@@ -7,6 +8,7 @@ import {
 } from 'src/app/services/uploads';
 import { red } from '@ant-design/colors';
 import type { MenuProps } from 'antd';
+import { confirmData } from './data';
 
 const ActionsDropdown = ({
   itemId,
@@ -17,19 +19,20 @@ const ActionsDropdown = ({
 }) => {
   const navigate = useNavigate();
   const [deleteSpeechToText, { isLoading }] = useDeleteSpeechToTextMutation();
+  const lang = useTypedSelector((state) => state.language);
   const [updateHistory] = useGetHistoryMutation();
 
   const items: MenuProps['items'] = [
     {
       icon: <DeleteOutlined />,
-      label: 'Delete',
+      label: lang === 'en' ? 'delete' : lang === 'ru' ? 'удалить' : 'o`chirish',
       key: 'delete',
       onClick: () => {
         Modal.confirm({
           className: 'edit-confirm-modal',
           centered: true,
-          title: 'Delete File?',
-          content: 'This will delete the file permanently.',
+          title: confirmData[lang].title,
+          content: confirmData[lang].content,
           footer: (_, { OkBtn, CancelBtn }) => (
             <>
               <CancelBtn />
@@ -46,7 +49,8 @@ const ActionsDropdown = ({
     },
     {
       icon: <EditOutlined />,
-      label: 'Edit',
+      label:
+        lang === 'en' ? 'Edit' : lang === 'ru' ? 'редактировать' : 'tahrirlash',
       key: 'edit',
       onClick: () => {
         editClick();

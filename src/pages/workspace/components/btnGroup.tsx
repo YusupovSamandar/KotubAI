@@ -1,6 +1,7 @@
 import { Button } from 'antd';
 import { IBtnLangList } from './../types';
-
+import { useTypedSelector } from 'src/app/store';
+import { workspaceLanguageData } from '../languageData';
 function btnGroup({
   btns,
   activeLangBtn,
@@ -14,6 +15,7 @@ function btnGroup({
   activeArticleType: string;
   articleTypes: IBtnLangList[];
 }) {
+  const lang = useTypedSelector((state) => state.language);
   return (
     <div>
       <div className="btn-group-underline btn-lang-group">
@@ -35,7 +37,9 @@ function btnGroup({
       {activeActionId === 2 && (
         <div>
           <div className="ant-modal-header">
-            <div className="ant-modal-title">Choose Article Type</div>
+            <div className="ant-modal-title">
+              {workspaceLanguageData[lang].modal.article.type}
+            </div>
           </div>
           <div className="btn-article-group btn-group-underline">
             {articleTypes.map((btn) => (

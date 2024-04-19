@@ -2,6 +2,7 @@ import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import auth from 'src/app/slices/authSlice';
 import userHistory from 'src/app/slices/historySlice';
+import language from 'src/app/slices/languageSlice';
 import layout from 'src/app/slices/layoutSlice';
 import { api } from './services/api';
 import { rtkQueryErrorLogger } from './services/api/middlewares';
@@ -15,6 +16,7 @@ export const createStore = (
       auth,
       userHistory,
       layout,
+      language,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(api.middleware, rtkQueryErrorLogger),

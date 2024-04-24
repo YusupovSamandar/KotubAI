@@ -6,6 +6,7 @@ import { IThemeColor } from 'src/theme/type';
 const isMobileFc = (): boolean => {
   const userAgent = window.navigator.userAgent;
   if (/mobile/i.test(userAgent)) return true;
+  if (window.innerWidth < 800) return true;
   return false;
 };
 

@@ -19,6 +19,7 @@ export interface ILayoutState {
   screenMode?: 'enter' | 'exit';
   collapsed?: boolean;
   isMobile: boolean;
+  deviceType?: 'telegram' | 'default';
 }
 
 const initialState: ILayoutState = {
@@ -27,6 +28,7 @@ const initialState: ILayoutState = {
   colors: isDarkTheme ? themeColors.dark : themeColors.light,
   collapsed: isMobile,
   isMobile,
+  deviceType: null,
 };
 
 const layoutSlice = createSlice({
@@ -44,6 +46,12 @@ const layoutSlice = createSlice({
     },
     changeCollapsed: (state, action: PayloadAction<boolean>) => {
       state.collapsed = action.payload;
+    },
+    changeIsTelegramWebApp: (
+      state,
+      action: PayloadAction<ILayoutState['deviceType']>
+    ) => {
+      state.deviceType = action.payload;
     },
     changeTheme: (state, action: PayloadAction<string | undefined>) => {
       if (action.payload === 'light') state.darkMode = false;
@@ -79,6 +87,7 @@ export const {
   changeCollapsed,
   changeTheme,
   changeScreenMode,
+  changeIsTelegramWebApp,
 } = layoutSlice.actions;
 
 export default layoutSlice.reducer;

@@ -9,7 +9,6 @@ import { Logo } from 'src/assets/svg';
 import MenuItem from './components/MenuItem';
 import './sidebar.scss';
 import { CloseOutlined } from '@ant-design/icons';
-import { red } from '@ant-design/colors';
 import { useGetHistoryMutation } from 'src/app/services/uploads';
 import { useEffect } from 'react';
 import { Spin } from 'antd';
@@ -18,9 +17,8 @@ import MobileDrawer from './components/MobileDrawer';
 function LayoutSidebar() {
   const [getHistory, { isLoading }] = useGetHistoryMutation();
   const navigate = useNavigate();
-  const { colors, menuMode, collapsed, isMobile } = useTypedSelector(
-    (state) => state.layout
-  );
+  const { colors, menuMode, collapsed, isMobile, deviceType } =
+    useTypedSelector((state) => state.layout);
   const lang = useTypedSelector((state) => state.language);
   const historyData = useTypedSelector((state) => state.userHistory);
   const dispatch = useAppDispatch();
@@ -92,26 +90,28 @@ function LayoutSidebar() {
           {}
         </div>
       </div>
-      <div className="sidebar-footer">
-        <Popconfirm
-          title="Do you confirm ?"
-          onConfirm={() => {
-            dispatch(logout());
-            navigate('/');
-          }}
-          okText="Ha"
-          cancelText="Yo'q"
-        >
-          <div className="sidebar-footer-button" onClick={() => {}}>
-            <LogoutCurve size="24" color={colors.white} />{' '}
-            {!collapsed && lang === 'uz'
-              ? 'Chiqish'
-              : lang === 'ru'
-              ? 'Выйти'
-              : 'Logout'}
-          </div>
-        </Popconfirm>
-      </div>
+      {deviceType !== 'telegram' && (
+        <div className="sidebar-footer">
+          <Popconfirm
+            title="Do you confirm ?"
+            onConfirm={() => {
+              dispatch(logout());
+              navigate('/');
+            }}
+            okText="Ha"
+            cancelText="Yo'q"
+          >
+            <div className="sidebar-footer-button" onClick={() => {}}>
+              <LogoutCurve size="24" color={colors.white} />{' '}
+              {!collapsed && lang === 'uz'
+                ? 'Chiqish'
+                : lang === 'ru'
+                ? 'Выйти'
+                : 'Logout'}
+            </div>
+          </Popconfirm>
+        </div>
+      )}
     </div>
   );
 }

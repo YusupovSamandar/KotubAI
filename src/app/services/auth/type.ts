@@ -10,7 +10,7 @@ export interface ILogin {
 export interface ILoginTelegram {
   first_name: string;
   last_name: string;
-  telegram_id: string;
+  telegram_id: number;
 }
 export interface ILoginRes {
   email: string;

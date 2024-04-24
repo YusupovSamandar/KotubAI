@@ -29,10 +29,11 @@ const SignInPage: React.FC = () => {
       />
 
       <div
-        className={`singn-in-container container ${
-          isSignUpActive ? 'right-panel-active' : ''
-        }`}
+        className={`singn-in-container ${
+          isMobile ? 'singn-in-container-mobile' : ''
+        } container ${isSignUpActive ? 'right-panel-active' : ''}`}
         id="singn-in-container"
+        style={{ width: '100%' }}
       >
         {!isMobile && (
           <div className="form-container sign-up-container">

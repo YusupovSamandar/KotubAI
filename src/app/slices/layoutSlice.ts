@@ -52,6 +52,9 @@ const layoutSlice = createSlice({
       action: PayloadAction<ILayoutState['deviceType']>
     ) => {
       state.deviceType = action.payload;
+      if (action.payload === 'telegram') {
+        state.isMobile = true;
+      }
     },
     changeTheme: (state, action: PayloadAction<string | undefined>) => {
       if (action.payload === 'light') state.darkMode = false;

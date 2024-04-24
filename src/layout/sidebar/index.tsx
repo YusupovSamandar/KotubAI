@@ -2,7 +2,6 @@ import { Popconfirm, Button } from 'antd';
 import { LogoutCurve } from 'iconsax-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from 'src/app/slices/authSlice';
-import { changeCollapsed } from 'src/app/slices/layoutSlice';
 import { changeMenuMode } from 'src/app/slices/layoutSlice';
 import { useAppDispatch, useTypedSelector } from 'src/app/store';
 import { Logo } from 'src/assets/svg';
@@ -17,16 +16,12 @@ import MobileDrawer from './components/MobileDrawer';
 function LayoutSidebar() {
   const [getHistory, { isLoading }] = useGetHistoryMutation();
   const navigate = useNavigate();
-  const { colors, menuMode, collapsed, isMobile, deviceType } =
-    useTypedSelector((state) => state.layout);
+  const { colors, collapsed, isMobile, deviceType } = useTypedSelector(
+    (state) => state.layout
+  );
   const lang = useTypedSelector((state) => state.language);
   const historyData = useTypedSelector((state) => state.userHistory);
   const dispatch = useAppDispatch();
-  const toggleCollapsed = () => {
-    if (menuMode === 'close') {
-      dispatch(changeCollapsed(false));
-    }
-  };
 
   useEffect(() => {
     getHistory().unwrap();
@@ -35,7 +30,7 @@ function LayoutSidebar() {
   const mode = collapsed ? 'close' : 'open';
 
   return (
-    <div className={`sidebar sidebar-${mode}`} onMouseEnter={toggleCollapsed}>
+    <div className={`sidebar sidebar-${mode}`}>
       <div className="sidebar-top">
         <div className={`sidebar-title ${isMobile && 'sidebar-title-mobile'}`}>
           {!collapsed && (

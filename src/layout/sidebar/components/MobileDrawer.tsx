@@ -1,19 +1,13 @@
 import React from 'react';
-import { Button, Drawer } from 'antd';
-import { useAppDispatch, useTypedSelector } from 'src/app/store';
-import { changeMenuMode } from 'src/app/slices/layoutSlice';
+import { Drawer } from 'antd';
+import { useTypedSelector } from 'src/app/store';
 
 interface MobileDrawerProps {
   children: React.ReactNode;
 }
 
 const MobileDrawer: React.FC<MobileDrawerProps> = ({ children }) => {
-  const dispatch = useAppDispatch();
   const { collapsed } = useTypedSelector((state) => state.layout);
-
-  const onClose = () => {
-    dispatch(changeMenuMode());
-  };
 
   return (
     <>

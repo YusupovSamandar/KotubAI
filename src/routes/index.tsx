@@ -26,13 +26,16 @@ function RoutElements() {
         dispatch(changeIsTelegramWebApp('default'));
         return;
       } else {
-        dispatch(changeIsTelegramWebApp('telegram'));
+        loginWithTelegram({
+          first_name: userData.first_name,
+          last_name: userData.last_name,
+          telegram_id: userData.id,
+        })
+          .unwrap()
+          .then(() => {
+            dispatch(changeIsTelegramWebApp('telegram'));
+          });
       }
-      loginWithTelegram({
-        first_name: userData.first_name,
-        last_name: userData.last_name,
-        telegram_id: userData.id,
-      });
       // Proceed with the authentication process using userData
     } else {
       console.log('Telegram object not available');

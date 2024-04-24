@@ -18,7 +18,7 @@ function RoutElements() {
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       const userData = window.Telegram.WebApp.initDataUnsafe.user;
-      console.log('Telegram user data:', userData);
+      alert('Telegram user data: ' + JSON.stringify(userData));
       if (!userData) {
         return;
       }

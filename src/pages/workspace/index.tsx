@@ -8,6 +8,8 @@ import {
   Spin,
   Typography,
   message,
+  Col,
+  Row,
 } from 'antd';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -69,27 +71,36 @@ function Workspace() {
         />
       </div>
       <div className="workspace-buttons-list">
-        <Flex gap="large" wrap="wrap">
+        <Row justify={'center'} gutter={[20, 20]}>
           {actionsList.map((action) => (
-            <Button
-              key={action.id}
-              disabled={actionsLoading}
-              className={action.id === activeBtn ? 'active' : ''}
-              type={action.id === activeBtn ? 'primary' : 'default'}
-              shape="round"
-              onClick={() => {
-                setIsModalOpen(true);
-                setExecuteFC(action.id);
-                // await action.onclickFC(data);
-                setActiveBtn(action.id);
-              }}
-              icon={<action.Icon />}
-              size={'large'}
+            <Col
+              style={{ textAlign: 'center' }}
+              xs={24}
+              sm={12}
+              md={6}
+              lg={6}
+              xl={6}
             >
-              {action.label}
-            </Button>
+              <Button
+                key={action.id}
+                disabled={actionsLoading}
+                className={action.id === activeBtn ? 'active' : ''}
+                type={action.id === activeBtn ? 'primary' : 'default'}
+                shape="round"
+                onClick={() => {
+                  setIsModalOpen(true);
+                  setExecuteFC(action.id);
+                  // await action.onclickFC(data);
+                  setActiveBtn(action.id);
+                }}
+                icon={<action.Icon />}
+                size={'large'}
+              >
+                {action.label}
+              </Button>
+            </Col>
           ))}
-        </Flex>
+        </Row>
         <Modal
           okText={workspaceLanguageData[lang].modal.confirms.ok}
           cancelText={workspaceLanguageData[lang].modal.confirms.cancel}
@@ -127,7 +138,8 @@ function Workspace() {
             <>
               <TextArea
                 style={{
-                  minWidth: '600px',
+                  minWidth: '300px',
+                  width: '600px',
                   margin: '10px 0',
                   padding: '10px 20px',
                 }}
@@ -181,7 +193,7 @@ function Workspace() {
                 paragraph={{ rows: 4 }}
               />
             )}
-            {!actionsLoading && (
+            {!actionsLoading && pageContent.length > 1 && (
               <div style={{ textAlign: 'right' }}>
                 {contextHolder}
                 <Button

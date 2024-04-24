@@ -2,6 +2,7 @@ import { Button } from 'antd';
 import { IBtnLangList } from './../types';
 import { useTypedSelector } from 'src/app/store';
 import { workspaceLanguageData } from '../languageData';
+import { Col, Row } from 'antd';
 function btnGroup({
   btns,
   activeLangBtn,
@@ -41,21 +42,26 @@ function btnGroup({
               {workspaceLanguageData[lang].modal.article.type}
             </div>
           </div>
-          <div className="btn-article-group btn-group-underline">
+          <Row
+            gutter={[20, 20]}
+            className="btn-article-group btn-group-underline"
+          >
             {articleTypes.map((btn) => (
-              <Button
-                key={btn.id}
-                className={btn.id === activeArticleType ? 'active' : ''}
-                type={btn.id === activeArticleType ? 'primary' : 'default'}
-                shape="round"
-                onClick={btn.onclickFC}
-                size={'large'}
-                style={{ width: '100%' }} // Add this line
-              >
-                {btn.label}
-              </Button>
+              <Col xs={12} sm={12} md={12} lg={12} xl={6}>
+                <Button
+                  key={btn.id}
+                  className={btn.id === activeArticleType ? 'active' : ''}
+                  type={btn.id === activeArticleType ? 'primary' : 'default'}
+                  shape="round"
+                  onClick={btn.onclickFC}
+                  size={'large'}
+                  style={{ width: '100%', minWidth: '150px' }} // Add this line
+                >
+                  {btn.label}
+                </Button>
+              </Col>
             ))}
-          </div>
+          </Row>
         </div>
       )}
       <br />

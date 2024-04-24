@@ -17,6 +17,7 @@ export interface ILayoutState {
   colors: IThemeColor;
   screenMode?: 'enter' | 'exit';
   collapsed?: boolean;
+  isMobile: boolean;
 }
 
 const initialState: ILayoutState = {
@@ -24,6 +25,7 @@ const initialState: ILayoutState = {
   darkMode: isDarkTheme,
   colors: isDarkTheme ? themeColors.dark : themeColors.light,
   collapsed: isMobile,
+  isMobile,
 };
 
 const layoutSlice = createSlice({

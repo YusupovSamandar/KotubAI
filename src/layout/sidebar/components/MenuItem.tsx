@@ -1,9 +1,10 @@
 import { ArrowUp2, Minus } from 'iconsax-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTypedSelector } from 'src/app/store';
+import { useAppDispatch, useTypedSelector } from 'src/app/store';
 import { findSubKey } from 'src/layout/utill';
 import ActionsDropdown from './actionsDropdown';
+import { changeMenuMode } from 'src/app/slices/layoutSlice';
 import { useEditSpeechToTextTitleMutation } from 'src/app/services/uploads';
 
 interface IMenuItem {
@@ -15,6 +16,7 @@ interface IMenuItem {
 }
 
 function MenuItem({ path, label, subKey, children, itemId }: IMenuItem) {
+  const dispatch = useAppDispatch();
   const sendChangeTitle = () => {
     setIsEditable(false);
     const FormDTt = new FormData();
@@ -33,7 +35,9 @@ function MenuItem({ path, label, subKey, children, itemId }: IMenuItem) {
       sendChangeTitle(); // Optionally save on Enter
     }
   };
-  const { colors, collapsed } = useTypedSelector((state) => state.layout);
+  const { colors, collapsed, isMobile } = useTypedSelector(
+    (state) => state.layout
+  );
   const parentPath = path?.split('/')?.[1];
   const location = useLocation();
   const active =
@@ -78,7 +82,13 @@ function MenuItem({ path, label, subKey, children, itemId }: IMenuItem) {
         </div>
       ) : (
         <div className="menu-item-parent">
-          <Link style={{ width: '100%' }} to={path || '/'}>
+          <Link
+            onClick={() => {
+              isMobile && dispatch(changeMenuMode());
+            }}
+            style={{ width: '100%' }}
+            to={path || '/'}
+          >
             <div className="menu-item-parent-left">
               -
               {!collapsed && (

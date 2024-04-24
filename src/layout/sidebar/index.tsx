@@ -1,20 +1,24 @@
-import { Popconfirm } from 'antd';
-import { Chart1, LogoutCurve } from 'iconsax-react';
+import { Popconfirm, Button } from 'antd';
+import { LogoutCurve } from 'iconsax-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from 'src/app/slices/authSlice';
 import { changeCollapsed } from 'src/app/slices/layoutSlice';
+import { changeMenuMode } from 'src/app/slices/layoutSlice';
 import { useAppDispatch, useTypedSelector } from 'src/app/store';
 import { Logo } from 'src/assets/svg';
 import MenuItem from './components/MenuItem';
 import './sidebar.scss';
+import { CloseOutlined } from '@ant-design/icons';
+import { red } from '@ant-design/colors';
 import { useGetHistoryMutation } from 'src/app/services/uploads';
 import { useEffect } from 'react';
 import { Spin } from 'antd';
+import MobileDrawer from './components/MobileDrawer';
 
 function LayoutSidebar() {
   const [getHistory, { isLoading }] = useGetHistoryMutation();
   const navigate = useNavigate();
-  const { colors, menuMode, collapsed } = useTypedSelector(
+  const { colors, menuMode, collapsed, isMobile } = useTypedSelector(
     (state) => state.layout
   );
   const lang = useTypedSelector((state) => state.language);
@@ -31,14 +35,30 @@ function LayoutSidebar() {
   }, []);
 
   const mode = collapsed ? 'close' : 'open';
+
   return (
     <div className={`sidebar sidebar-${mode}`} onMouseEnter={toggleCollapsed}>
       <div className="sidebar-top">
-        <div className="sidebar-title">
+        <div className={`sidebar-title ${isMobile && 'sidebar-title-mobile'}`}>
           {!collapsed && (
-            <Link to="/" className="sidebar-title-logo">
-              <Logo />
-            </Link>
+            <div className="sidebar-logo-bar">
+              <Link
+                onClick={() => {
+                  isMobile && dispatch(changeMenuMode());
+                }}
+                to="/"
+                className="sidebar-title-logo"
+              >
+                <Logo />
+              </Link>
+              {isMobile && (
+                <Button
+                  className="mobile-drawer-close"
+                  onClick={() => dispatch(changeMenuMode())}
+                  icon={<CloseOutlined style={{ fontSize: '20px' }} />}
+                ></Button>
+              )}
+            </div>
           )}
         </div>
         <div
@@ -96,4 +116,13 @@ function LayoutSidebar() {
   );
 }
 
-export default LayoutSidebar;
+export default function LayoutSidebarWithMobile() {
+  const { isMobile } = useTypedSelector((state) => state.layout);
+  return isMobile ? (
+    <MobileDrawer>
+      <LayoutSidebar />
+    </MobileDrawer>
+  ) : (
+    <LayoutSidebar />
+  );
+}

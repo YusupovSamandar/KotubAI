@@ -34,10 +34,17 @@
     margin-top: 53px;
     background: radial-gradient(circle at top left, #32383e, transparent 10%),
       radial-gradient(circle at top right, #32383e, transparent 10%), #15171c;
-    min-width: 50%;
-    max-width: 812px;
+    min-width: 790px;
     padding: 30px;
     border-radius: 30px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .workspace {
+    &-results {
+      min-width: 100%;
+    }
   }
 }
 
@@ -69,6 +76,7 @@
 
 .btn-lang-group {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px 0 0 0 !important;
   gap: 20px;
@@ -77,10 +85,4 @@
 .btn-group-underline {
   // border-bottom: 1px solid $dark_grey;
   padding: 20px 0;
-}
-
-.btn-article-group {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
 }

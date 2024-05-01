@@ -14,7 +14,7 @@ const historySlice = createSlice({
       .addMatcher(
         uploadApi.endpoints.getHistory.matchFulfilled,
         (state, action) => {
-          return action.payload.result;
+          return action.payload.results;
         }
       );
   },

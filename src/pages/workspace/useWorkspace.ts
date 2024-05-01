@@ -72,7 +72,7 @@ export default function useWorkspace() {
           id: pageObj.id,
           lang: lang,
         }).unwrap();
-        setPageContent(res.result);
+        setPageContent(res.detail);
       },
     },
     {
@@ -86,7 +86,7 @@ export default function useWorkspace() {
           lang: lang,
           type: type,
         }).unwrap();
-        setPageContent(res.result);
+        setPageContent(res.detail);
       },
     },
     {
@@ -99,7 +99,7 @@ export default function useWorkspace() {
           id: pageObj.id,
           lang: lang,
         }).unwrap();
-        setFileURL(res.result.split('media/')[1]);
+        setFileURL(res.detail.split('media/')[1]);
         setPageContent(null);
       },
     },
@@ -111,8 +111,9 @@ export default function useWorkspace() {
       onclickFC: async (pageObj, question) => {
         const FormDT = new FormData();
         FormDT.append('question', question);
+        FormDT.append('id', pageObj.id);
         const res = await postSTTQuestion(FormDT).unwrap();
-        setPageContent(res.result);
+        setPageContent(res.detail);
       },
     },
   ];
@@ -148,5 +149,6 @@ export default function useWorkspace() {
     activeArticleType,
     fileURL,
     isLoadingSTTTranslate,
+    setPageContent,
   };
 }

@@ -1,7 +1,5 @@
-import { CloudDownloadOutlined } from '@ant-design/icons';
 import {
   Button,
-  Flex,
   Input,
   Modal,
   Skeleton,
@@ -45,6 +43,7 @@ function Workspace() {
     activeArticleType,
     articleTypes,
     fileURL,
+    setPageContent,
   } = useWorkspace();
 
   const [getWorkspaceContent, { isLoading }] = useGetSpeechToTextMutation();
@@ -53,7 +52,8 @@ function Workspace() {
     getWorkspaceContent(id)
       .unwrap()
       .then((res) => {
-        setData(res.result);
+        setData(res);
+        setPageContent(res.result_text);
       });
   }, []);
   if (isLoading || !data) {
@@ -74,6 +74,7 @@ function Workspace() {
         <Row justify={'center'} gutter={[20, 20]}>
           {actionsList.map((action) => (
             <Col
+              key={action.id}
               style={{ textAlign: 'center' }}
               xs={24}
               sm={12}

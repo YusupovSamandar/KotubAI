@@ -8,11 +8,11 @@ export interface ISpeechToText {
 
 export interface ISpeechToTextRes {
   id: number;
-  user: number;
-  name: string;
+  project_name: string;
   youtube_link: string;
-  audio_file: string;
+  input_file: string;
   result_docx: string;
+  result_text: string;
   lang: string;
 }
 
@@ -32,7 +32,7 @@ export interface IHistoryState {
   updatedAt: Date;
 }
 export interface IHistory {
-  result: IHistoryState[];
+  results: IHistoryState[];
 }
 export interface IDeleteSpeechToText {
   id: number;

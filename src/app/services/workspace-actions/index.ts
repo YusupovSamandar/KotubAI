@@ -3,29 +3,30 @@ import { ISpeechToTextSummary, ISpeechToTextArticle, IQuestion } from './type';
 
 export const workSpaceActionsApi = api.injectEndpoints({
   endpoints: (build) => ({
-    sTTSummary: build.mutation<{ result: string }, ISpeechToTextSummary>({
+    sTTSummary: build.mutation<{ detail: string }, ISpeechToTextSummary>({
       query: (body) => ({
-        url: `/api/speech-to-text/${body.id}/summary?lang=` + body.lang,
+        url: `/speech-to-text/${body.id}/summary`,
         method: 'POST',
+        body,
       }),
     }),
-    sTTArticle: build.mutation<{ result: string }, ISpeechToTextArticle>({
+    sTTArticle: build.mutation<{ detail: string }, ISpeechToTextArticle>({
       query: (body) => ({
-        url: `/api/speech-to-text/${body.id}/article`,
-        params: { type: body.type, lang: body.lang },
+        url: `/speech-to-text/${body.id}/article`,
         method: 'POST',
+        body,
       }),
     }),
-    sTTTranslate: build.mutation<{ result: string }, ISpeechToTextSummary>({
+    sTTTranslate: build.mutation<{ detail: string }, ISpeechToTextSummary>({
       query: (body) => ({
-        url: `/api/speech-to-text/${body.id}/translate`,
-        params: { lang: body.lang },
+        url: `/speech-to-text/${body.id}/translate-document`,
         method: 'POST',
+        body,
       }),
     }),
-    sTTQuestion: build.mutation<{ result: string }, FormData>({
+    sTTQuestion: build.mutation<{ detail: string }, FormData>({
       query: (body) => ({
-        url: `/api/ask-question`,
+        url: `/speech-to-text/${body.get('id')}/ask-question`,
         method: 'POST',
         body,
       }),

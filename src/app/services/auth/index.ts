@@ -15,14 +15,14 @@ export const authApi = api.injectEndpoints({
     //User login endpoint
     login: build.mutation<ILoginRes, ILogin>({
       query: (body) => ({
-        url: 'api/auth/oauth2',
+        url: 'auth/oauth2',
         method: 'POST',
         body,
       }),
     }),
     loginTelegram: build.mutation<ILoginTelegramRes, ILoginTelegram>({
       query: (body) => ({
-        url: 'api/auth/telegram',
+        url: 'auth/telegram',
         method: 'POST',
         body,
       }),
@@ -30,7 +30,7 @@ export const authApi = api.injectEndpoints({
     //User confirm endpoint
     confirm: build.mutation<IConfirmRes, IConfirm>({
       query: (body) => ({
-        url: '/users/profile/phone-verify',
+        url: '/profile/phone-verify',
         method: 'POST',
         body,
       }),

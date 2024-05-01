@@ -52,12 +52,12 @@ const authSlice = createSlice({
         (state, action) => {
           console.log(action.payload);
 
-          state.token = action.payload.token.access;
-          state.refreshToken = action.payload.token.refresh;
+          state.token = action.payload.tokens.access;
+          state.refreshToken = action.payload.tokens.refresh;
           state.isAuthenticated = true;
 
-          localStorage.setItem(TOKEN, action.payload.token.access);
-          localStorage.setItem(REFRESH_TOKEN, action.payload.token.refresh);
+          localStorage.setItem(TOKEN, action.payload.tokens.access);
+          localStorage.setItem(REFRESH_TOKEN, action.payload.tokens.refresh);
         }
       )
       .addMatcher(authApi.endpoints.confirm.matchFulfilled, (state, action) => {

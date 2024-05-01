@@ -21,7 +21,7 @@ export interface ILoginRes {
   };
 }
 export interface ILoginTelegramRes {
-  token: {
+  tokens: {
     access: string;
     refresh: string;
   };

@@ -47,11 +47,11 @@ const SignInPage: React.FC = () => {
                   }}
                 /> */}
               </div>
-              <span>or use your email for registration</span>
+              {/* <span>or use your email for registration</span>
               <input type="text" placeholder="Name" />
               <input type="email" placeholder="Email" />
               <input type="password" placeholder="Password" />
-              <button>Sign Up</button>
+              <button>Sign Up</button> */}
             </form>
           </div>
         )}
@@ -62,20 +62,20 @@ const SignInPage: React.FC = () => {
           <form action="#">
             <h1>Sign in</h1>
             <div className="social-container">
-              <GoogleLogin
+              {/* <GoogleLogin
                 onSuccess={onSuccess}
                 onError={() => {
                   console.log('Login Failed');
                 }}
-              />
+              /> */}
               <br />
               <TelegramLoginBtn />
             </div>
-            <span>or use your account</span>
+            {/* <span>or use your account</span>
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
+            <button>Sign In</button> */}
           </form>
         </div>
         {!isMobile && (

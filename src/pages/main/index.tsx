@@ -7,10 +7,10 @@ export default function Main() {
   );
   return (
     <div className="main-page">
-      <Select
+      {/* <Select
         optionsValue={actionType}
         setActionType={setActionType as Dispatch<SetStateAction<string>>}
-      />
+      /> */}
       <Greeting actionType={actionType} />
     </div>
   );

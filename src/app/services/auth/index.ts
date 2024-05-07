@@ -7,6 +7,7 @@ import {
   ILoginTelegramRes,
   IProfile,
   ILoginTelegram,
+  IVerify,
 } from './type';
 
 export const authApi = api.injectEndpoints({
@@ -35,6 +36,14 @@ export const authApi = api.injectEndpoints({
         body,
       }),
     }),
+    //User confirm endpoint
+    verifyToken: build.mutation<IVerify, IVerify>({
+      query: (body) => ({
+        url: 'auth/token/verify',
+        method: 'POST',
+        body,
+      }),
+    }),
 
     //Get profile info endpoint
     getProfile: build.mutation<IProfile, void>({
@@ -47,5 +56,6 @@ export const {
   useLoginMutation,
   useConfirmMutation,
   useGetProfileMutation,
+  useVerifyTokenMutation,
   useLoginTelegramMutation,
 } = authApi;

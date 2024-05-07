@@ -40,12 +40,12 @@ const SignInPage: React.FC = () => {
             <form action="#">
               <h1>Create Account</h1>
               <div className="social-container">
-                <GoogleLogin
+                {/* <GoogleLogin
                   onSuccess={onSuccess}
                   onError={() => {
                     console.log('Login Failed');
                   }}
-                />
+                /> */}
               </div>
               <span>or use your email for registration</span>
               <input type="text" placeholder="Name" />

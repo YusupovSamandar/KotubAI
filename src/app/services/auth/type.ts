@@ -54,3 +54,8 @@ export interface IProfile {
   position: PositionAttributes;
   main_store: number;
 }
+
+//Verify Types
+export interface IVerify {
+  token: string;
+}

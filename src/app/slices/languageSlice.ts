@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type ILanguage = 'en' | 'uz' | 'ru';
-const initialState: ILanguage = 'en'; // Explicitly stating that initialState is of type ILanguage
+const initialState: ILanguage = 'uz'; // Explicitly stating that initialState is of type ILanguage
 
 const languageSlice = createSlice({
   name: 'languageInterface',

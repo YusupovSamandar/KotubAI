@@ -64,10 +64,8 @@ function Workspace() {
       <div style={{ margin: '47px 0 100px 0' }}>
         <FileCmp
           Icon={MusicSvg}
-          fileTxt={(data?.result_docx).split('media/')[1]}
-          downloadUrl={`${baseUrl}/api/download/${
-            (data?.result_docx).split('media/')[1]
-          }`}
+          fileTxt={data?.file_name}
+          downloadUrl={data?.result_docx}
         />
       </div>
       <div className="workspace-buttons-list">
@@ -199,9 +197,11 @@ function Workspace() {
                 {contextHolder}
                 <Button
                   onClick={() => {
-                    messageApi.open({
-                      type: 'success',
-                      content: 'copied to clipboard',
+                    navigator.clipboard.writeText(pageContent).then(() => {
+                      messageApi.open({
+                        type: 'success',
+                        content: 'copied to clipboard',
+                      });
                     });
                   }}
                   style={{ border: 'none', background: 'none' }}

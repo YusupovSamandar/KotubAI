@@ -66,8 +66,8 @@
     &-button {
       width: 100%;
       border-radius: 8px;
-      background: #2e2f34;
-
+      // background: #2e2f34;
+      background: linear-gradient(to left, rgba(46, 47, 52, 0), #2e2f34);
       padding: 8px;
 
       color: #fff;
@@ -81,7 +81,7 @@
 
       transition: 0.3s;
       &:hover {
-        background: #4d4f57;
+        background: linear-gradient(to left, rgb(46, 47, 52), #2e2f34);
       }
     }
   }

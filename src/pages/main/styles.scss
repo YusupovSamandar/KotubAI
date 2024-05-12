@@ -4,6 +4,7 @@
   max-width: 640px;
   flex-shrink: 0;
   border-radius: 32px;
+  overflow: hidden;
   background: radial-gradient(circle at top left, #32383e, transparent 20%),
     radial-gradient(circle at top right, #32383e, transparent 20%), #1c1e23;
   // background-blend-mode: multiply;

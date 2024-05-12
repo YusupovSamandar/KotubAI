@@ -101,14 +101,14 @@ function LayoutSidebar() {
           {}
         </div>
       </div>
-      {deviceType !== 'telegram' && (
-        <div className="sidebar-footer">
-          <div className="user-balance-container">
-            <p>{userBalanceDisplay[lang].title}</p>
-            <p>{userBalanceDisplay[lang].time}</p>
-            <PaymentModal />
-          </div>
-          <br />
+      <div className="sidebar-footer">
+        <div className="user-balance-container">
+          <p>{userBalanceDisplay[lang].title}</p>
+          <p>{userBalanceDisplay[lang].time}</p>
+          <PaymentModal />
+        </div>
+        <br />
+        {deviceType !== 'telegram' && (
           <Popconfirm
             title="Do you confirm ?"
             onConfirm={() => {
@@ -119,7 +119,7 @@ function LayoutSidebar() {
             cancelText="Yo'q"
           >
             <div className="sidebar-footer-button" onClick={() => {}}>
-              <LogoutCurve size="24" color={colors.white} />{' '}
+              <LogoutCurve variant="Bold" size="24" color={colors.white} />{' '}
               {!collapsed && lang === 'uz'
                 ? 'Chiqish'
                 : lang === 'ru'
@@ -127,8 +127,8 @@ function LayoutSidebar() {
                 : 'Logout'}
             </div>
           </Popconfirm>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

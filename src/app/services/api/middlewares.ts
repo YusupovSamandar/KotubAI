@@ -31,7 +31,8 @@ export const rtkQueryErrorLogger: Middleware =
         });
       }
 
-      const status = action.payload?.originalStatus;
+      const status = action.payload?.status;
+      console.log('status', status);
 
       if (status === 500) {
         message.warning(
@@ -39,7 +40,6 @@ export const rtkQueryErrorLogger: Middleware =
         );
       } else if (status === 401 || status === 403) {
         dispatch(logout());
-        window.location.href = '/auth/signin';
         message.warning('Iltimos avval tizimga kiring!');
       }
     }

@@ -45,3 +45,11 @@ export interface ISourceForm extends Omit<ISource, 'is_expense'> {
 export interface ISourceRes extends Omit<IBaseRes<ISource>, 'category'> {
   category: ICategoryRes;
 }
+
+export interface IGeneratePaymentlink {
+  order_id: number;
+  amount: number;
+}
+export interface IGeneratePaymentlinkRes {
+  pay_link: string;
+}

@@ -12,6 +12,22 @@ import { useGetHistoryMutation } from 'src/app/services/uploads';
 import { useEffect } from 'react';
 import { Spin } from 'antd';
 import MobileDrawer from './components/MobileDrawer';
+import PaymentModal from './paymentModal';
+
+const userBalanceDisplay = {
+  en: {
+    title: 'Remaining Time:',
+    time: '10 hours 15 minutes',
+  },
+  uz: {
+    title: 'Qolgan Vaqt :',
+    time: '10 soat 15 daqiqa',
+  },
+  ru: {
+    title: 'Оставшееся время:',
+    time: '10 часов 15 минут',
+  },
+};
 
 function LayoutSidebar() {
   const [getHistory, { isLoading }] = useGetHistoryMutation();
@@ -87,6 +103,12 @@ function LayoutSidebar() {
       </div>
       {deviceType !== 'telegram' && (
         <div className="sidebar-footer">
+          <div className="user-balance-container">
+            <p>{userBalanceDisplay[lang].title}</p>
+            <p>{userBalanceDisplay[lang].time}</p>
+            <PaymentModal />
+          </div>
+          <br />
           <Popconfirm
             title="Do you confirm ?"
             onConfirm={() => {

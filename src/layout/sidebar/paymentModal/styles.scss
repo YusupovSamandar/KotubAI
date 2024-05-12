@@ -1,0 +1,45 @@
+@import 'src/styles/variables.scss';
+
+.payment-modal {
+  text-align: center;
+  color: #fff;
+  .ant-modal-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    // @include main-gradient-bg;
+    background-color: #14213d;
+    color: #fff;
+    padding: 30px 50px 20px;
+  }
+  &-title h2 {
+    text-align: center;
+    color: #fff;
+  }
+  .price-container {
+    & > div {
+      height: 100%;
+      padding: 30px 70px;
+      background-color: #29354e;
+      border-radius: 8px;
+      color: #fff;
+    }
+    h1 {
+      line-height: 1;
+      margin: 10px;
+      font-size: 2.5rem;
+    }
+    button {
+      padding-left: 20px;
+      padding-right: 20px;
+      height: 40px;
+      margin: 10px 0px;
+      background-color: #fca311;
+      color: #fff;
+      &:hover {
+        background-color: #c57a00 !important;
+        color: #fff !important;
+      }
+      //   padding: 0px;
+    }
+  }
+}

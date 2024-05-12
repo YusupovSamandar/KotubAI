@@ -42,6 +42,11 @@ $font-primary: 'Poppins', sans-serif;
   align-items: center;
 }
 
+@mixin main-gradient-bg {
+  background: radial-gradient(circle at top left, #32383e, transparent 20%),
+    radial-gradient(circle at top right, #32383e, transparent 20%), #1c1e23;
+}
+
 @mixin flex-between {
   display: flex;
   justify-content: space-between;

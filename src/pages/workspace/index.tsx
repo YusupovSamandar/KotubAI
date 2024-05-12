@@ -27,6 +27,7 @@ const { TextArea } = Input;
 function Workspace() {
   const { id } = useParams();
   const [activeBtn, setActiveBtn] = useState(null);
+  const { isMobile } = useTypedSelector((state) => state.layout);
   const lang = useTypedSelector((state) => state.language);
   const [data, setData] = useState<ISpeechToTextRes>(null);
   const [messageApi, contextHolder] = message.useMessage();
@@ -61,7 +62,7 @@ function Workspace() {
   }
   return (
     <div className="workspace">
-      <div style={{ margin: '47px 0 100px 0' }}>
+      <div style={{ margin: isMobile ? '0px 0 30px 0' : '47px 0 100px 0' }}>
         <FileCmp
           Icon={MusicSvg}
           fileTxt={data?.file_name}

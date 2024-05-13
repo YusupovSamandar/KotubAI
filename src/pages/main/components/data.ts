@@ -14,6 +14,32 @@ export interface IEachLang {
   uz: IEachGreetingLang;
 }
 
+interface IPayment {
+  success: string;
+  failed: string;
+}
+
+interface IPaymentLang {
+  en: IPayment;
+  ru: IPayment;
+  uz: IPayment;
+}
+
+export const paymentLangData: IPaymentLang = {
+  en: {
+    success: ' has been added to your account',
+    failed: 'Payment failed',
+  },
+  ru: {
+    success: ' добавлен на ваш счет',
+    failed: 'Ошибка оплаты',
+  },
+  uz: {
+    success: ' hisobingizga qo`shildi',
+    failed: 'To`lovda xatolik',
+  },
+};
+
 export const en = [
   { value: 's-t-t', label: 'Speech to text' },
   { value: 't-t-s', label: 'Text to speech' },

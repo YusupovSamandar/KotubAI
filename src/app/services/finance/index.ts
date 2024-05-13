@@ -1,26 +1,18 @@
-import { api } from '../api';
-import { IBaseDataRes, IBaseEdit } from '../type';
+import { api, paymentApi } from '../api';
 import {
-  ICash,
-  ICashRes,
-  IGeneratePaymentlink,
-  IGeneratePaymentlinkRes,
-  ISource,
-  ISourceRes,
+  IGenerateOrderId,
+  IGenerateOrderIdRes,
+  IGeneratePaymentClicklink,
+  IGeneratePaymentClicklinkRes,
+  IGeneratePaymentPaymelink,
+  IGeneratePaymentPaymelinkRes,
 } from './type';
 
-export const financeApi = api.injectEndpoints({
+export const ordersApi = api.injectEndpoints({
   endpoints: (build) => ({
-    //////// Cash ////////
-    //Get cash endpoint
-
-    //Add source endpoint/payments/pay-link/
-    generatePaymentlink: build.mutation<
-      IGeneratePaymentlinkRes,
-      IGeneratePaymentlink
-    >({
+    generateOrderId: build.mutation<IGenerateOrderIdRes, IGenerateOrderId>({
       query: (body) => ({
-        url: 'payments/pay-link/',
+        url: 'order-payment',
         method: 'POST',
         body,
       }),
@@ -28,4 +20,35 @@ export const financeApi = api.injectEndpoints({
   }),
 });
 
-export const { useGeneratePaymentlinkMutation } = financeApi;
+export const financeApi = paymentApi.injectEndpoints({
+  endpoints: (build) => ({
+    //endpoint/payments/pay-link/
+    generateClickPaymentlink: build.mutation<
+      IGeneratePaymentClicklinkRes,
+      IGeneratePaymentClicklink
+    >({
+      query: (body) => ({
+        url: 'click/pay-link/',
+        method: 'POST',
+        body,
+      }),
+    }),
+    generatePaymePaymentlink: build.mutation<
+      IGeneratePaymentPaymelinkRes,
+      IGeneratePaymentPaymelink
+    >({
+      query: (body) => ({
+        url: 'payme/pay-link/',
+        method: 'POST',
+        body,
+      }),
+    }),
+  }),
+});
+
+export const {
+  useGenerateClickPaymentlinkMutation,
+  useGeneratePaymePaymentlinkMutation,
+} = financeApi;
+
+export const { useGenerateOrderIdMutation } = ordersApi;

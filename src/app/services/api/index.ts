@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
-import { apiTagTypes, baseUrl } from './const';
+import { apiTagTypes, baseUrl, paymentUrl } from './const';
 import { RootState } from 'src/app/store';
 
 // Create our baseQuery instance
@@ -14,8 +14,20 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+const paymentQuery = fetchBaseQuery({
+  baseUrl: paymentUrl,
+  prepareHeaders: (headers, { getState }) => {
+    // By default, if we have a token in the store, let's use that for authenticated requests
+    const token = (getState() as RootState).auth.token;
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
+const basePaymentQueryWithRetry = retry(paymentQuery, { maxRetries: 0 });
 
 /**
  * Create a base API to inject endpoints into elsewhere.
@@ -24,6 +36,7 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
  * and to ensure that the file injecting the endpoints is loaded
  */
 export const api = createApi({
+  reducerPath: 'api',
   /**
    * `reducerPath` is optional and will not be required by most users.
    * This is useful if you have multiple API definitions,
@@ -46,6 +59,12 @@ export const api = createApi({
    * which is why no endpoints are shown below.
    * If you want all endpoints defined in the same file, they could be included here instead
    */
+  endpoints: () => ({}),
+});
+export const paymentApi = createApi({
+  reducerPath: 'paymentApi',
+  baseQuery: basePaymentQueryWithRetry,
+  tagTypes: apiTagTypes,
   endpoints: () => ({}),
 });
 

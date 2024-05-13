@@ -126,14 +126,14 @@ export default function useWorkspace() {
       },
     },
     {
-      label: 'Russian',
+      label: 'Русский',
       id: 'ru-RU',
       onclickFC: async () => {
         setActiveLangBtn('ru-RU');
       },
     },
     {
-      label: 'Uzbek',
+      label: "O'zbek",
       id: 'uz-UZ',
       onclickFC: async () => {
         setActiveLangBtn('uz-UZ');

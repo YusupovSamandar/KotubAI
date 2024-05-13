@@ -46,10 +46,26 @@ export interface ISourceRes extends Omit<IBaseRes<ISource>, 'category'> {
   category: ICategoryRes;
 }
 
-export interface IGeneratePaymentlink {
+export interface IGeneratePaymentClicklink {
   order_id: number;
-  amount: number;
+  card_type: 'uzcard' | 'humo';
 }
-export interface IGeneratePaymentlinkRes {
+export interface IGeneratePaymentClicklinkRes {
   pay_link: string;
+}
+
+export interface IGenerateOrderId {
+  amount: number;
+  type: 'click' | 'payme';
+}
+
+export interface IGenerateOrderIdRes {
+  id: number;
+  amount: number;
+  type: 'click' | 'payme';
+}
+export interface IGeneratePaymentPaymelinkRes
+  extends IGeneratePaymentClicklinkRes {}
+export interface IGeneratePaymentPaymelink {
+  order_id: number;
 }

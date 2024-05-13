@@ -4,7 +4,7 @@ import auth from 'src/app/slices/authSlice';
 import userHistory from 'src/app/slices/historySlice';
 import language from 'src/app/slices/languageSlice';
 import layout from 'src/app/slices/layoutSlice';
-import { api } from './services/api';
+import { api, paymentApi } from './services/api';
 import { rtkQueryErrorLogger } from './services/api/middlewares';
 
 export const createStore = (
@@ -13,13 +13,18 @@ export const createStore = (
   configureStore({
     reducer: {
       [api.reducerPath]: api.reducer,
+      [paymentApi.reducerPath]: paymentApi.reducer,
       auth,
       userHistory,
       layout,
       language,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(api.middleware, rtkQueryErrorLogger),
+      getDefaultMiddleware().concat(
+        api.middleware,
+        paymentApi.middleware,
+        rtkQueryErrorLogger
+      ),
     ...options,
   });
 

@@ -49,7 +49,7 @@ const Greeting: React.FC<{
 
   return (
     <div className="main-greeting">
-      <HeavyLoadSpinner isLoading={true}>
+      <HeavyLoadSpinner isLoading={isLoading}>
         <div className="main-greeting-header">
           {greetingLang[lang].mainHeader}
         </div>

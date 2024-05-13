@@ -3,6 +3,7 @@ import { Button, Col, Modal, Row } from 'antd';
 import './styles.scss';
 import { paymentLangData, paymentsPlans } from './langData';
 import { useTypedSelector } from 'src/app/store';
+import BuyModal from './buyModal';
 const PaymentModal: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const currentLang = useTypedSelector((state) => state.language);
@@ -41,9 +42,10 @@ const PaymentModal: React.FC = () => {
                   <p>
                     {plan.hours} {paymentLangData[currentLang].buyDescription}{' '}
                   </p>
-                  <Button type="primary">
-                    {paymentLangData[currentLang].buy}
-                  </Button>
+                  <BuyModal
+                    amount={plan.amountInNumber}
+                    btnTxt={paymentLangData[currentLang].buy}
+                  />
                 </div>
               </Col>
             ))}

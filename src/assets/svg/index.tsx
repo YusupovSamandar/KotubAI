@@ -268,8 +268,8 @@ export const Logo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="91"
-    height="45"
-    viewBox="0 0 91 45"
+    height="30"
+    viewBox="0 0 91 30"
     fill="none"
   >
     <path

@@ -1,13 +1,14 @@
 import { Popconfirm, Button } from 'antd';
-import { LogoutCurve } from 'iconsax-react';
+import { AddSquare, LogoutCurve } from 'iconsax-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { red } from '@ant-design/colors';
 import { logout } from 'src/app/slices/authSlice';
 import { changeMenuMode } from 'src/app/slices/layoutSlice';
 import { useAppDispatch, useTypedSelector } from 'src/app/store';
 import { Logo } from 'src/assets/svg';
 import MenuItem from './components/MenuItem';
 import './sidebar.scss';
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import { useGetHistoryMutation } from 'src/app/services/uploads';
 import { useEffect } from 'react';
 import { Spin } from 'antd';
@@ -60,12 +61,19 @@ function LayoutSidebar() {
               >
                 <Logo />
               </Link>
-              {isMobile && (
+              {isMobile ? (
                 <Button
                   className="mobile-drawer-close"
                   onClick={() => dispatch(changeMenuMode())}
                   icon={<CloseOutlined style={{ fontSize: '20px' }} />}
                 ></Button>
+              ) : (
+                <Link to="/">
+                  <Button
+                    className="add-new-workspace"
+                    icon={<AddSquare size="24" color="#52edac" />}
+                  />
+                </Link>
               )}
             </div>
           )}

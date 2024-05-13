@@ -31,13 +31,19 @@
         width: 120px;
       }
     }
+    .sidebar-logo-bar {
+      @include flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding-right: 15px;
+    }
+
+    .add-new-workspace {
+      background-color: transparent;
+      border: none;
+    }
     &-mobile {
-      .sidebar-logo-bar {
-        @include flex;
-        width: 100%;
-        justify-content: space-between;
-        padding-right: 15px;
-      }
       .mobile-drawer-close {
         border: none;
         background-color: transparent;
@@ -93,7 +99,7 @@
 
 .menu {
   padding: 20px 15px 24px;
-  height: calc(100vh - 299px);
+  height: calc(100vh - 310px);
   position: relative;
   @include scroll-none;
   overflow-x: hidden;

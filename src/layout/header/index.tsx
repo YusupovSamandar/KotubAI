@@ -68,7 +68,6 @@ function LayoutHeader() {
             <h3>
               {profile?.first_name} {profile?.last_name}
             </h3>
-            <p>{profile?.position === 'ceo' ? 'Project manager' : ''}</p>
           </div>
         </div>
       </div>

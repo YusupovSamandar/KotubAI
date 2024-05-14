@@ -42,17 +42,13 @@ export interface IConfirmRes {
 
 //Profile Types
 export interface IProfile {
-  id: number;
-  company: ICompanyRes;
-  last_login: string;
   first_name: string;
   last_name: string;
-  is_staff: boolean;
-  date_joined: string;
-  phone: string;
-  avatar: string;
-  position: PositionAttributes;
-  main_store: number;
+  lang: string;
+  credit_sums: string;
+  credit_seconds: string;
+  used_sums: string;
+  used_seconds: string;
 }
 
 //Verify Types

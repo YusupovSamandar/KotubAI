@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  PROFILE,
   TOKEN,
   REFRESH_TOKEN,
-  profile,
   token,
   refreshToken,
 } from 'src/constants/storage';
@@ -21,7 +19,7 @@ const initialState: IAuthState = {
   token: token || '',
   refreshToken: refreshToken || '',
   isAuthenticated: refreshToken ? true : false,
-  profile: profile ? JSON.parse(profile) : undefined,
+  profile: undefined,
 };
 
 const authSlice = createSlice({
@@ -58,6 +56,12 @@ const authSlice = createSlice({
 
           localStorage.setItem(TOKEN, action.payload.tokens.access);
           localStorage.setItem(REFRESH_TOKEN, action.payload.tokens.refresh);
+        }
+      )
+      .addMatcher(
+        authApi.endpoints.getProfile.matchFulfilled,
+        (state, action) => {
+          state.profile = action.payload;
         }
       )
       .addMatcher(authApi.endpoints.confirm.matchFulfilled, (state, action) => {

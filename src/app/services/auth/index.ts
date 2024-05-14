@@ -47,7 +47,7 @@ export const authApi = api.injectEndpoints({
 
     //Get profile info endpoint
     getProfile: build.mutation<IProfile, void>({
-      query: () => ({ url: '/users/profile' }),
+      query: () => ({ url: 'auth/profile' }),
     }),
   }),
 });

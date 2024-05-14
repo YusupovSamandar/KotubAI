@@ -19,7 +19,7 @@ import { useGetProfileMutation } from 'src/app/services/auth';
 const formatTime = (seconds: number) => {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
-  const secondsLeft = seconds % 60;
+  const secondsLeft = (seconds % 60).toString().slice(0, 2);
   return `${hours}:${minutes}:${secondsLeft}`;
 };
 

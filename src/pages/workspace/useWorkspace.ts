@@ -4,6 +4,7 @@ import {
   useSTTTranslateMutation,
   useSTTQuestionMutation,
 } from 'src/app/services/workspace-actions';
+import { baseUrl } from 'src/app/services/api/const';
 import {
   EditOutlined,
   FileDoneOutlined,
@@ -99,7 +100,7 @@ export default function useWorkspace() {
           id: pageObj.id,
           lang: lang,
         }).unwrap();
-        setFileURL(res.detail.split('media/')[1]);
+        setFileURL(baseUrl + '/' + res.detail);
         setPageContent(null);
       },
     },

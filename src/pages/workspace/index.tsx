@@ -164,11 +164,7 @@ function Workspace() {
       {!pageContent ? (
         <>
           {!actionsLoading ? (
-            <FileCmp
-              Icon={MusicSvg}
-              downloadUrl={`${baseUrl}/api/download/` + fileURL}
-              fileTxt={fileURL}
-            />
+            <FileCmp Icon={MusicSvg} downloadUrl={fileURL} fileTxt={fileURL} />
           ) : (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Spin />

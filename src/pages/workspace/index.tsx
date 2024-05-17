@@ -22,7 +22,6 @@ import { useTypedSelector } from 'src/app/store';
 import useWorkspace from './useWorkspace';
 import { workspaceLanguageData } from './languageData';
 import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
-import { Text } from 'iconsax-react';
 const { Paragraph } = Typography;
 const { TextArea } = Input;
 
@@ -63,7 +62,7 @@ function Workspace() {
         }
       });
   }, []);
-  if (isLoading || !data) {
+  if (isLoading && !data) {
     return;
   }
   return (
@@ -101,7 +100,7 @@ function Workspace() {
                   icon={<FileTextOutlined />}
                   size={'large'}
                 >
-                  Transcript
+                  {workspaceLanguageData[lang].transcript}
                 </Button>
               </div>
               {actionsList.map((action) => (

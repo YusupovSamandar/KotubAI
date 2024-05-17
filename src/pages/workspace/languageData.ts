@@ -1,4 +1,5 @@
 interface IPerWorkspaceLanguageData {
+  transcript: string;
   summarize: string;
   uploadNewFileTxt: string;
   pageOnLoad: string;
@@ -39,6 +40,7 @@ interface IWorkspaceLanguageData {
 
 export const workspaceLanguageData: IWorkspaceLanguageData = {
   en: {
+    transcript: 'Transcript',
     summarize: 'Summarize',
     article: 'Article',
     translate: 'Translate',
@@ -72,6 +74,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     pageOnLoad: 'File not complete yet, please check later',
   },
   ru: {
+    transcript: 'Транскрипт',
     summarize: 'Суммировать',
     article: 'Статья',
     translate: 'Перевести',
@@ -105,6 +108,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     pageOnLoad: 'Файл еще не завершен, пожалуйста, проверьте позже',
   },
   uz: {
+    transcript: 'Transkript',
     summarize: 'Xulosa qilish',
     article: 'Maqola',
     translate: 'Tarjima',

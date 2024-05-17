@@ -50,12 +50,12 @@ function LayoutHeader() {
   return (
     <div className="header">
       <div className="header-left">
-        <div
+        {/* <div
           className={`header-mode header-mode-${menuMode}`}
           onClick={() => dispatch(changeMenuMode())}
         >
           <OpenBarSvg />
-        </div>
+        </div> */}
       </div>
 
       <div className="header__right">

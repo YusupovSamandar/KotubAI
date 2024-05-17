@@ -8,7 +8,9 @@ import { OpenBarSvg } from 'src/assets/svg';
 
 function LayoutHeader() {
   const currentLang = useTypedSelector((state) => state.language);
-  const { colors, menuMode } = useTypedSelector((state) => state.layout);
+  const { colors, menuMode, isMobile } = useTypedSelector(
+    (state) => state.layout
+  );
   const { profile } = useTypedSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const item2: MenuProps['items'] = [
@@ -50,12 +52,14 @@ function LayoutHeader() {
   return (
     <div className="header">
       <div className="header-left">
-        {/* <div
-          className={`header-mode header-mode-${menuMode}`}
-          onClick={() => dispatch(changeMenuMode())}
-        >
-          <OpenBarSvg />
-        </div> */}
+        {isMobile && (
+          <div
+            className={`header-mode header-mode-${menuMode}`}
+            onClick={() => dispatch(changeMenuMode())}
+          >
+            <OpenBarSvg />
+          </div>
+        )}
       </div>
 
       <div className="header__right">

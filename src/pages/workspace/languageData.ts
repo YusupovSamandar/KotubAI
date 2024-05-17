@@ -1,5 +1,7 @@
 interface IPerWorkspaceLanguageData {
   summarize: string;
+  uploadNewFileTxt: string;
+  pageOnLoad: string;
   article: string;
   translate: string;
   askQuestion: string;
@@ -66,6 +68,8 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
         cancel: 'Cancel',
       },
     },
+    uploadNewFileTxt: 'Upload New File',
+    pageOnLoad: 'File not complete yet, please check later',
   },
   ru: {
     summarize: 'Суммировать',
@@ -97,6 +101,8 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
         cancel: 'Отмена',
       },
     },
+    uploadNewFileTxt: 'Загрузить новый файл',
+    pageOnLoad: 'Файл еще не завершен, пожалуйста, проверьте позже',
   },
   uz: {
     summarize: 'Xulosa qilish',
@@ -128,5 +134,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
         cancel: 'Bekor qilish',
       },
     },
+    uploadNewFileTxt: 'Yangi fayl yuklash',
+    pageOnLoad: 'Fayl hali tugallanmagan, keyinroq tekshiring',
   },
 };

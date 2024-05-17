@@ -69,22 +69,22 @@ export const MusicSvg = () => (
       d="M9 37C12.866 37 16 33.8677 16 30.0035C16 26.1395 12.866 23.007 9 23.007C5.134 23.007 2 26.1395 2 30.0035C2 33.8677 5.134 37 9 37Z"
       stroke="white"
       strokeWidth="3"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M30 33.5018C33.8659 33.5018 37 30.3695 37 26.5053C37 22.6413 33.8659 19.5088 30 19.5088C26.1341 19.5088 23 22.6413 23 26.5053C23 30.3695 26.1341 33.5018 30 33.5018Z"
       stroke="white"
       strokeWidth="3"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M16 29.9859V14.4014C15.9984 11.9201 16.8764 9.51836 18.4784 7.62272C20.0801 5.72707 22.3021 4.4601 24.75 4.04656L37 2V26.4876"
       stroke="white"
       strokeWidth="3"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -147,7 +147,7 @@ export const CopyIcon = () => (
       d="M16 4C18.2091 4 20 5.79086 20 8V18C20 20.2091 18.2091 22 16 22H8C5.79086 22 4 20.2091 4 18V8C4 5.79086 5.79086 4 8 4M16 4C16 5.10457 15.1046 6 14 6H10C8.89543 6 8 5.10457 8 4M16 4C16 2.89543 15.1046 2 14 2H10C8.89543 2 8 2.89543 8 4"
       stroke="#19BDFF"
       strokeWidth="1.5"
-      stroke-linejoin="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

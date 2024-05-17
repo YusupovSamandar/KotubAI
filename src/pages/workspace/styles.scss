@@ -24,10 +24,18 @@
       background-size: cover;
     }
   }
-  &-buttons-list button {
-    min-width: 173px;
-    &:not(.active) {
-      background-color: transparent;
+  &-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    button {
+      min-width: 173px;
+      &:not(.active) {
+        background-color: transparent;
+      }
     }
   }
   &-results {
@@ -37,6 +45,27 @@
     min-width: 790px;
     padding: 30px;
     border-radius: 30px;
+  }
+  &-load-wrapper {
+    position: relative;
+    min-height: calc(100vh - 108px);
+  }
+  .create-btn-worspace-mobile {
+    border: none;
+    color: #52edac;
+    background-color: transparent;
+    border: 2px solid #1b2c2a;
+    margin-bottom: 10px;
+    &:hover {
+      background-color: #1b2c2a !important;
+      border: 2px solid #1b2c2a !important;
+    }
+  }
+}
+
+.main-loading-wrapper {
+  .ant-spin-text {
+    font-size: 2rem;
   }
 }
 

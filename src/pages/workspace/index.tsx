@@ -68,7 +68,7 @@ function Workspace() {
   return (
     <div className="main-loading-wrapper">
       <HeavyLoadSpinner
-        txt="File not complete yet, please check later"
+        txt={workspaceLanguageData[lang].pageOnLoad}
         isLoading={!data && !isLoading}
       >
         <div className="workspace-load-wrapper">

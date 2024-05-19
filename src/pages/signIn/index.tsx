@@ -89,7 +89,12 @@ const SignInPage: React.FC = () => {
                 </div>
               </div>
               <br />
-              <div style={{ pointerEvents: isChecked ? 'auto' : 'none' }}>
+              <div
+                style={{
+                  pointerEvents: isChecked ? 'auto' : 'none',
+                  opacity: isChecked ? '1' : '0.5',
+                }}
+              >
                 <TelegramLoginBtn />
               </div>
             </div>

@@ -88,7 +88,8 @@ const SignInPage: React.FC = () => {
                   o'qib chiqdim va roziman
                 </div>
               </div>
-              <div aria-disabled>
+              <br />
+              <div style={{ pointerEvents: isChecked ? 'auto' : 'none' }}>
                 <TelegramLoginBtn />
               </div>
             </div>

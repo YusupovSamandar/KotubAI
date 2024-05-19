@@ -40,6 +40,11 @@
     align-items: start;
     text-align: left;
     gap: 10px;
+    .ant-checkbox-wrapper-checked {
+      .ant-checkbox-inner {
+        background-color: #42d0ff;
+      }
+    }
     .ant-checkbox-inner {
       background-color: unset;
     }

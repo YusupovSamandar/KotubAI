@@ -17,6 +17,8 @@ function RoutElements() {
     <div className="root">
       <GoogleOAuthProvider clientId={clientId}>
         <Routes>
+          <Route path="/aferta" element={<Aferta />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           {deviceType && (
             <Route
               path="/"
@@ -39,8 +41,6 @@ function RoutElements() {
                     <Route path="signin" element={<SignInPage />} />
                   </Route>
                   <Route path="*" element={<SignInPage />} />
-                  <Route path="/aferta" element={<Aferta />} />
-                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 </>
               )}
               <Route />

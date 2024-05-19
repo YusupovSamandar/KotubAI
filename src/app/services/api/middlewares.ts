@@ -2,7 +2,6 @@ import type { Middleware } from '@reduxjs/toolkit';
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { message } from 'antd';
 import { logout } from 'src/app/slices/authSlice';
-import { getRootState } from 'src/app/store';
 import { updateNegativeCellColor } from 'src/utils';
 
 /**
@@ -41,6 +40,9 @@ export const rtkQueryErrorLogger: Middleware =
       } else if (status === 401 || status === 403) {
         dispatch(logout());
         message.warning('Iltimos avval tizimga kiring!');
+      } else if (status === 404) {
+        message.warning('Sahifa topilmadi');
+        window.location.href = '/404';
       }
     }
 

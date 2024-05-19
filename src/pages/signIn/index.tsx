@@ -4,10 +4,13 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useLoginMutation } from 'src/app/services/auth';
 import TelegramLoginBtn from './telegramLogin';
 import { useTypedSelector } from 'src/app/store';
+import { afertaData } from './afertaData';
+import { Checkbox } from 'antd';
 
 const SignInPage: React.FC = () => {
   const { isMobile } = useTypedSelector((state) => state.layout);
   const [isSignUpActive, setIsSignUpActive] = React.useState(false);
+  const [isChecked, setIsChecked] = React.useState(false);
   const [login, { isLoading }] = useLoginMutation();
 
   const onSuccess = async (credentialResponse) => {
@@ -68,9 +71,28 @@ const SignInPage: React.FC = () => {
                   console.log('Login Failed');
                 }}
               /> */}
-              <br />
-              <TelegramLoginBtn />
+              <div className="privacy-policy">
+                <Checkbox
+                  onChange={() => setIsChecked(!isChecked)}
+                  checked={isChecked}
+                ></Checkbox>
+                <div>
+                  Men{' '}
+                  <a href="/aferta" target="_blank">
+                    Ommaviy Oferta{' '}
+                  </a>{' '}
+                  va{' '}
+                  <a href="/privacy-policy" target="_blank">
+                    Maxfiylik siyosatini{' '}
+                  </a>
+                  o'qib chiqdim va roziman
+                </div>
+              </div>
+              <div aria-disabled>
+                <TelegramLoginBtn />
+              </div>
             </div>
+            <div className="aferta-container"></div>
             {/* <span>or use your account</span>
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />

@@ -5,6 +5,7 @@ import Main from 'src/pages/main';
 import SignInPage from 'src/pages/signIn';
 import Workspace from 'src/pages/workspace';
 import useRoutes from './useRoutes';
+import { Aferta, PrivacyPolicy } from 'src/pages/signIn/aferta';
 
 const clientId = import.meta.env.VITE_OAuthClientId;
 
@@ -29,6 +30,7 @@ function RoutElements() {
                     // render={() => <Workspace />}
                     element={<Workspace key={location.pathname} />}
                   />
+                  <Route path="/404" element={<Main />} />
                 </>
               ) : (
                 <>
@@ -37,6 +39,8 @@ function RoutElements() {
                     <Route path="signin" element={<SignInPage />} />
                   </Route>
                   <Route path="*" element={<SignInPage />} />
+                  <Route path="/aferta" element={<Aferta />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 </>
               )}
               <Route />

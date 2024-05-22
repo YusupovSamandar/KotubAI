@@ -4,14 +4,15 @@ import { GoogleLogin } from '@react-oauth/google';
 import { useLoginMutation } from 'src/app/services/auth';
 import TelegramLoginBtn from './telegramLogin';
 import { useTypedSelector } from 'src/app/store';
-import { afertaData } from './afertaData';
 import { Checkbox } from 'antd';
+import { signInLangData } from './langData';
 
 const SignInPage: React.FC = () => {
   const { isMobile } = useTypedSelector((state) => state.layout);
   const [isSignUpActive, setIsSignUpActive] = React.useState(false);
   const [isChecked, setIsChecked] = React.useState(false);
   const [login, { isLoading }] = useLoginMutation();
+  const currLang = useTypedSelector((state) => state.language);
 
   const onSuccess = async (credentialResponse) => {
     const data = await login({
@@ -41,7 +42,7 @@ const SignInPage: React.FC = () => {
         {!isMobile && (
           <div className="form-container sign-up-container">
             <form action="#">
-              <h1>Create Account</h1>
+              <h1>{signInLangData[currLang].createAccount}</h1>
               <div className="social-container">
                 {/* <GoogleLogin
                   onSuccess={onSuccess}
@@ -63,7 +64,7 @@ const SignInPage: React.FC = () => {
           style={{ width: isMobile ? '100%' : '50%' }}
         >
           <form action="#">
-            <h1>Sign in</h1>
+            <h1>{signInLangData[currLang].signIn}</h1>
             <div className="social-container">
               {/* <GoogleLogin
                 onSuccess={onSuccess}
@@ -76,17 +77,11 @@ const SignInPage: React.FC = () => {
                   onChange={() => setIsChecked(!isChecked)}
                   checked={isChecked}
                 ></Checkbox>
-                <div>
-                  Men{' '}
-                  <a href="/aferta" target="_blank">
-                    Ommaviy Oferta{' '}
-                  </a>{' '}
-                  va{' '}
-                  <a href="/privacy-policy" target="_blank">
-                    Maxfiylik siyosatini{' '}
-                  </a>
-                  o'qib chiqdim va roziman
-                </div>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: signInLangData[currLang].privacyPolicy,
+                  }}
+                ></div>
               </div>
               <br />
               <div
@@ -110,31 +105,29 @@ const SignInPage: React.FC = () => {
           <div className="overlay-container">
             <div className="overlay">
               <div className="overlay-panel overlay-left">
-                <h1>Welcome Back!</h1>
-                <p>
-                  To keep connected with us please login with your personal info
-                </p>
+                <h1>{signInLangData[currLang].welcomeBack}</h1>
+                <p>{signInLangData[currLang].toKeepConnected}</p>
                 <button
                   onClick={() => {
                     setIsSignUpActive(false);
                   }}
                   className="ghost"
-                  id="signIn"
+                  id={signInLangData[currLang].signIn}
                 >
-                  Sign In
+                  {signInLangData[currLang].signIn}
                 </button>
               </div>
               <div className="overlay-panel overlay-right">
-                <h1>Hello, Friend!</h1>
-                <p>Enter your personal details and start journey with us</p>
+                <h1>{signInLangData[currLang].helloFriend}</h1>
+                <p>{signInLangData[currLang].enterYourPersonalDetails}</p>
                 <button
                   onClick={() => {
                     setIsSignUpActive(true);
                   }}
                   className="ghost"
-                  id="signUp"
+                  id={signInLangData[currLang].signUp}
                 >
-                  Sign Up
+                  {signInLangData[currLang].signUp}
                 </button>
               </div>
             </div>

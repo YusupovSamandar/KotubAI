@@ -1,20 +1,30 @@
 import { Button, Typography } from 'antd';
 import { CloudDownloadOutlined } from '@ant-design/icons';
-
+import FileLogo from 'src/assets/img/fileLogo.png';
 const { Title, Paragraph } = Typography;
 
-function fileCmp({ Icon, fileTxt, downloadUrl }) {
+function fileCmp({
+  fileTxt,
+  downloadUrl,
+  size,
+}: {
+  fileTxt: string;
+  downloadUrl: string;
+  size?: string;
+}) {
   return (
     <div className="workspace-file">
       <div className="workspace-file-header">
-        <Icon />
+        <img src={FileLogo} width={39} alt="" />
       </div>
       <div className="workspace-file-desc">
         <Typography>
           <Title level={4} style={{ margin: 0 }}>
             {fileTxt?.substring(0, 10) || 'No file'}...
           </Title>
-          <Paragraph style={{ color: '#A6AAAF' }}>file size 100mb</Paragraph>
+          {size && (
+            <Paragraph style={{ color: '#A6AAAF' }}>file: {size}</Paragraph>
+          )}
         </Typography>
       </div>
       <div>

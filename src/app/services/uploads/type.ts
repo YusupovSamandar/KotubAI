@@ -12,6 +12,7 @@ export interface ISpeechToTextRes {
   youtube_link: string;
   input_file: string;
   result_docx: string;
+  file_size: string;
   file_name: string;
   result_text: string;
   lang: string;

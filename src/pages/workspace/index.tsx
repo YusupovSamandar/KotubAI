@@ -77,9 +77,9 @@ function Workspace() {
               style={{ margin: isMobile ? '0px 0 30px 0' : '47px 0 100px 0' }}
             >
               <FileCmp
-                Icon={MusicSvg}
                 fileTxt={data?.file_name}
                 downloadUrl={data?.result_docx}
+                size={data?.file_size}
               />
             </div>
             <div className="workspace-buttons">
@@ -129,11 +129,7 @@ function Workspace() {
               (!pageContent ? (
                 <>
                   {!actionsLoading ? (
-                    <FileCmp
-                      Icon={MusicSvg}
-                      downloadUrl={fileURL}
-                      fileTxt={fileURL}
-                    />
+                    <FileCmp downloadUrl={fileURL} fileTxt={fileURL} />
                   ) : (
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                       <Spin />

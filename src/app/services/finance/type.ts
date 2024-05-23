@@ -69,3 +69,7 @@ export interface IGeneratePaymentPaymelinkRes
 export interface IGeneratePaymentPaymelink {
   order_id: number;
 }
+
+export interface ICheckPaymentStatusRes {
+  status: 'paid' | 'pending' | 'created' | 'cancel';
+}

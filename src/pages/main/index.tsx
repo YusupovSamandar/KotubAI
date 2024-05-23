@@ -5,20 +5,31 @@ import { useSearchParams } from 'react-router-dom';
 import { message } from 'antd';
 import { paymentLangData } from './components/data';
 import { useTypedSelector } from 'src/app/store';
+import { useCheckPaymentStatusMutation } from 'src/app/services/finance';
 
 export default function Main() {
   const currLang = useTypedSelector((state) => state.language);
+  const [checkStatus] = useCheckPaymentStatusMutation();
   const [searchParams] = useSearchParams();
   useEffect(() => {
-    if (searchParams.get('paymentStatus') === '200') {
-      const amount = searchParams.get('amount');
-      message.open({
-        type: 'success',
-        content: `${amount} ${paymentLangData[currLang].success}`,
-        duration: 5,
-      });
-    } else if (searchParams.get('paymentStatus') === '400') {
-      message.error(paymentLangData[currLang].failed);
+    if (searchParams.get('transaction')) {
+      checkStatus(searchParams.get('transaction'))
+        .unwrap()
+        .then((res) => {
+          if (res.status === 'paid') {
+            message.open({
+              type: 'success',
+              content: paymentLangData[currLang].success,
+              duration: 5,
+            });
+          } else {
+            message.open({
+              type: 'error',
+              content: paymentLangData[currLang].failed,
+              duration: 5,
+            });
+          }
+        });
     }
   }, []);
   const [actionType, setActionType] = useState<'s-t-t' | 'smr' | 't-t-s'>(

@@ -1,5 +1,6 @@
 import { api, paymentApi } from '../api';
 import {
+  ICheckPaymentStatusRes,
   IGenerateOrderId,
   IGenerateOrderIdRes,
   IGeneratePaymentClicklink,
@@ -43,12 +44,19 @@ export const financeApi = paymentApi.injectEndpoints({
         body,
       }),
     }),
+    checkPaymentStatus: build.mutation<ICheckPaymentStatusRes, string>({
+      query: (body) => ({
+        url: 'payment/status-check',
+        params: { transaction_id: body },
+      }),
+    }),
   }),
 });
 
 export const {
   useGenerateClickPaymentlinkMutation,
   useGeneratePaymePaymentlinkMutation,
+  useCheckPaymentStatusMutation,
 } = financeApi;
 
 export const { useGenerateOrderIdMutation } = ordersApi;

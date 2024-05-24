@@ -20,15 +20,12 @@ jobs:
       - run: npm ci --legacy-peer-deps
       - run: npm run build
 
-      - name: rsync deployments
-        uses: easingthemes/ssh-deploy@main
-        with:
-          REMOTE_PORT: 22
-          ARGS: '-rlgoDzvc -i'
-          SSH_CMD_ARGS: '-o StrictHostKeyChecking=no'
+      - name: Deploy dist directory
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SSH_IP_ADDRESS }}
-          REMOTE_USER: root
-          TARGET: /var/www/kotibai/frontend
-        run: rsync -rlgoDzv --delete dist/ root@${{ secrets.SSH_IP_ADDRESS }}:/var/www/kotibai/frontend
+          SSH_CMD_ARGS: '-o StrictHostKeyChecking=no'
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          rsync -rlgoDzv --delete -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" dist/ root@${{ secrets.SSH_IP_ADDRESS }}:/var/www/kotibai/frontend

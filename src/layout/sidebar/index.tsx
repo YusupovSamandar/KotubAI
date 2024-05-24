@@ -1,59 +1,34 @@
-import { Popconfirm, Button } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
+import { Button, Popconfirm, Spin } from 'antd';
 import { AddSquare, LogoutCurve } from 'iconsax-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { logout } from 'src/app/slices/authSlice';
 import { changeMenuMode } from 'src/app/slices/layoutSlice';
-import { useAppDispatch, useTypedSelector } from 'src/app/store';
+import { useTypedSelector } from 'src/app/store';
 import { Logo } from 'src/assets/svg';
 import MenuItem from './components/MenuItem';
-import './sidebar.scss';
-import { CloseOutlined } from '@ant-design/icons';
-import { useGetHistoryMutation } from 'src/app/services/uploads';
-import { useEffect } from 'react';
-import { Spin } from 'antd';
 import MobileDrawer from './components/MobileDrawer';
+import { sidebarLangData } from './langData';
 import PaymentModal from './paymentModal';
-import { useGetProfileMutation } from 'src/app/services/auth';
-
-const formatTime = (seconds: number) => {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const secondsLeft = (seconds % 60).toString().slice(0, 2);
-  return `${hours}:${minutes}:${secondsLeft}`;
-};
+import './sidebar.scss';
+import useSidebar from '../useSidebar';
 
 function LayoutSidebar() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const [getHistory, { isLoading }] = useGetHistoryMutation();
-  const [getProfile, { isLoading: isProfileLoading }] = useGetProfileMutation();
-  const { colors, collapsed, isMobile, deviceType } = useTypedSelector(
-    (state) => state.layout
-  );
-  const lang = useTypedSelector((state) => state.language);
-  const historyData = useTypedSelector((state) => state.userHistory);
-  const profileDetails = useTypedSelector((state) => state.auth.profile);
-  const userBalanceDisplay = {
-    en: {
-      title: 'Remaining Time:',
-      time: formatTime(Number(profileDetails?.credit_seconds)),
-    },
-    uz: {
-      title: 'Qolgan Vaqt :',
-      time: formatTime(Number(profileDetails?.credit_seconds)),
-    },
-    ru: {
-      title: 'Оставшееся время:',
-      time: formatTime(Number(profileDetails?.credit_seconds)),
-    },
-  };
-
-  useEffect(() => {
-    getHistory().unwrap();
-    getProfile().unwrap();
-  }, []);
-
-  const mode = collapsed ? 'close' : 'open';
+  const {
+    colors,
+    collapsed,
+    isMobile,
+    deviceType,
+    lang,
+    historyData,
+    profileDetails,
+    isProfileLoading,
+    isLoading,
+    userBalanceDisplay,
+    navigate,
+    dispatch,
+    mode,
+  } = useSidebar();
 
   return (
     <div className={`sidebar sidebar-${mode}`}>
@@ -129,13 +104,13 @@ function LayoutSidebar() {
         <br />
         {deviceType !== 'telegram' && (
           <Popconfirm
-            title="Do you confirm ?"
+            title={sidebarLangData[lang].popupConfirmTitle}
             onConfirm={() => {
               dispatch(logout());
               navigate('/');
             }}
-            okText="Ha"
-            cancelText="Yo'q"
+            okText={sidebarLangData[lang].confirm}
+            cancelText={sidebarLangData[lang].cancel}
           >
             <div className="sidebar-footer-button" onClick={() => {}}>
               <LogoutCurve variant="Bold" size="24" color={colors.white} />{' '}

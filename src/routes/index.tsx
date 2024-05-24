@@ -17,7 +17,7 @@ function RoutElements() {
     <div className="root">
       <GoogleOAuthProvider clientId={clientId}>
         <Routes>
-          <Route path="/aferta" element={<Aferta />} />
+          <Route path="/oferta" element={<Aferta />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           {deviceType && (
             <Route

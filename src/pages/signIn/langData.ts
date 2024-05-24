@@ -19,7 +19,7 @@ export const signInLangData: ISignInLangData = {
   en: {
     signIn: 'Sign In',
     privacyPolicy: `I have read and agree to the 
-                  <a href="/aferta" target="_blank">
+                  <a href="/oferta" target="_blank">
                     Public Offering 
                   </a> 
                   and 
@@ -39,7 +39,7 @@ export const signInLangData: ISignInLangData = {
   ru: {
     signIn: 'Войти',
     privacyPolicy: `Я прочитал и согласен с 
-                  <a href="/aferta" target="_blank">
+                  <a href="/oferta" target="_blank">
                     публичной офертой 
                   </a> 
                   и 
@@ -59,7 +59,7 @@ export const signInLangData: ISignInLangData = {
   uz: {
     signIn: 'Kirish',
     privacyPolicy: `Men 
-                  <a href="/aferta" target="_blank">
+                  <a href="/oferta" target="_blank">
                     Ommaviy Oferta 
                   </a> 
                   va 

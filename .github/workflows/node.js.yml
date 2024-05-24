@@ -5,7 +5,7 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
 
   workflow_dispatch:
 
@@ -20,16 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: npm ci --legacy-peer-deps
-      - run: npm i --legacy-peer-deps
+      - run: npm ci
       - run: npm run build
 
       - name: rsync deployments
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rltgoDzvO --delete"
+          ARGS: '-rltgoDzvO --delete'
           REMOTE_HOST: ${{ secrets.SSH_IP_ADDRESS }}
           REMOTE_USER: root
-          TARGET: /var/www/kotibai/frontend/dist
-
+          TARGET: /var/www/kotibai/frontend

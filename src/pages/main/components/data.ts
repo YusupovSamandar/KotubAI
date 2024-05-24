@@ -36,7 +36,7 @@ export const paymentLangData: IPaymentLang = {
   },
   uz: {
     success: ' hisobingizga qo`shildi',
-    failed: 'To`lovda xatolik',
+    failed: 'To`lov bekor qilindi',
   },
 };
 

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { kotibLanguage, KOTIB_LANGUAGE } from 'src/constants/storage';
-type ILanguage = 'en' | 'uz' | 'ru';
+import { ILanguage } from 'src/app/services/type';
 const initialState: ILanguage = kotibLanguage; // Explicitly stating that initialState is of type ILanguage
 const languageSlice = createSlice({
   name: 'languageInterface',

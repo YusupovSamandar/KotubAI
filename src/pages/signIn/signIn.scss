@@ -1,0 +1,72 @@
+@import 'src/styles/variables.scss';
+.tgme_widget_login_button {
+  padding: 26px 107px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14px;
+}
+.sign-in-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background: url('src/assets/img/Mountain Wireframe_02 1.png') #0a213c 50% /
+    cover no-repeat;
+  padding: 28px 40px;
+  &-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-language-select,
+  &-language-select.ant-select:hover {
+    font-family: 'Unbounded', sans-serif;
+    border: none !important;
+    .ant-select-selector,
+    .ant-select-selector:hover {
+      border: none !important;
+    }
+  }
+  .sign-in-container-body {
+    width: 95%;
+    align-items: center;
+    justify-content: space-between;
+    &-form {
+      font-family: 'Unbounded', sans-serif;
+      text-align: center;
+      &-p {
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      a {
+        color: #f7a210;
+      }
+    }
+    img {
+      width: 80%;
+    }
+  }
+  .sign-in-container-footer {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sign-in-container {
+    text-align: center;
+  }
+  .tgme_widget_login_button {
+    padding: 26px 63px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+  }
+  .sign-in-container-footer {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}

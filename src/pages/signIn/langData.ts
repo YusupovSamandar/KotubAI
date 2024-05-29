@@ -7,6 +7,7 @@ interface ISignInData {
   welcomeBack: string;
   toKeepConnected: string;
   createAccount: string;
+  allRightsReserved: string;
 }
 
 interface ISignInLangData {
@@ -35,10 +36,11 @@ export const signInLangData: ISignInLangData = {
     toKeepConnected:
       'To keep connected with us please login with your personal info',
     createAccount: 'Create Account',
+    allRightsReserved: 'KOTIB.AI @ 2024. All rights reserved.',
   },
   ru: {
     signIn: 'Войти',
-    privacyPolicy: `Я прочитал и согласен с 
+    privacyPolicy: `Нажимая кнопку “Войти” вы соглашаетесь с 
                   <a href="/oferta" target="_blank">
                     публичной офертой 
                   </a> 
@@ -55,6 +57,7 @@ export const signInLangData: ISignInLangData = {
     toKeepConnected:
       'Чтобы оставаться на связи с нами, войдите, используя свои личные данные',
     createAccount: 'Создать аккаунт',
+    allRightsReserved: 'KOTIB.AI @ 2024. Все права защищены.',
   },
   uz: {
     signIn: 'Kirish',
@@ -75,5 +78,6 @@ export const signInLangData: ISignInLangData = {
     toKeepConnected:
       "Biz bilan bog'liq qolish uchun, iltimos, shaxsiy ma'lumotlaringizni kiriting",
     createAccount: 'Hisob yaratish',
+    allRightsReserved: 'KOTIB.AI @ 2024. Barcha huquqlar himoyalangan.',
   },
 };

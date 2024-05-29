@@ -39,3 +39,4 @@ export interface IBaseDeleteRes {
 
 export type PositionAttributes = 'user' | 'ceo';
 export type CurrencyAttributes = 'usd' | 'uzs';
+export type ILanguage = 'en' | 'uz' | 'ru';

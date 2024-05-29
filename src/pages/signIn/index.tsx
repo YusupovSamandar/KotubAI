@@ -1,141 +1,64 @@
-import React from 'react';
-import './styles.scss';
-import { GoogleLogin } from '@react-oauth/google';
-import { useLoginMutation } from 'src/app/services/auth';
-import TelegramLoginBtn from './telegramLogin';
+import { Col, Row, Select } from 'antd';
+import './signIn.scss';
+import AqchaGif from 'src/assets/img/aqcha.gif';
+import { FullLogo } from 'src/assets/svg/dashboard_svg';
 import { useTypedSelector } from 'src/app/store';
-import { Checkbox } from 'antd';
+import React from 'react';
+import { useLoginMutation } from 'src/app/services/auth';
 import { signInLangData } from './langData';
+import TelegramLoginBtn from './telegramLogin';
+import { changeLanguage } from 'src/app/slices/languageSlice';
+import { useDispatch } from 'react-redux';
+import { ILanguage } from 'src/app/services/type';
 
-const SignInPage: React.FC = () => {
+function SignIn() {
+  const dispatch = useDispatch();
   const { isMobile } = useTypedSelector((state) => state.layout);
-  const [isSignUpActive, setIsSignUpActive] = React.useState(false);
-  const [isChecked, setIsChecked] = React.useState(false);
   const [login, { isLoading }] = useLoginMutation();
   const currLang = useTypedSelector((state) => state.language);
-
-  const onSuccess = async (credentialResponse) => {
-    const data = await login({
-      token: credentialResponse.credential,
-      type: 'google',
-      user_id: null,
-    }).unwrap();
-    localStorage.setItem('KOTUB_TOKEN', data.token.access);
-    localStorage.setItem('KOTUB_REFRESH_TOKEN', data.token.refresh);
-  };
   return (
-    <>
-      <link
-        rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-        crossOrigin="anonymous"
-      />
-
-      <div
-        className={`singn-in-container ${
-          isMobile ? 'singn-in-container-mobile' : ''
-        } container ${isSignUpActive ? 'right-panel-active' : ''}`}
-        id="singn-in-container"
-        style={{ width: '100%' }}
-      >
-        {!isMobile && (
-          <div className="form-container sign-up-container">
-            <form action="#">
-              <h1>{signInLangData[currLang].createAccount}</h1>
-              <div className="social-container">
-                {/* <GoogleLogin
-                  onSuccess={onSuccess}
-                  onError={() => {
-                    console.log('Login Failed');
-                  }}
-                /> */}
-              </div>
-              {/* <span>or use your email for registration</span>
-              <input type="text" placeholder="Name" />
-              <input type="email" placeholder="Email" />
-              <input type="password" placeholder="Password" />
-              <button>Sign Up</button> */}
-            </form>
-          </div>
-        )}
-        <div
-          className="form-container sign-in-container"
-          style={{ width: isMobile ? '100%' : '50%' }}
-        >
-          <form action="#">
-            <h1>{signInLangData[currLang].signIn}</h1>
-            <div className="social-container">
-              {/* <GoogleLogin
-                onSuccess={onSuccess}
-                onError={() => {
-                  console.log('Login Failed');
-                }}
-              /> */}
-              <div className="privacy-policy">
-                <Checkbox
-                  onChange={() => setIsChecked(!isChecked)}
-                  checked={isChecked}
-                ></Checkbox>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: signInLangData[currLang].privacyPolicy,
-                  }}
-                ></div>
-              </div>
-              <br />
-              <div
-                style={{
-                  pointerEvents: isChecked ? 'auto' : 'none',
-                  opacity: isChecked ? '1' : '0.5',
-                }}
-              >
-                <TelegramLoginBtn />
-              </div>
-            </div>
-            <div className="aferta-container"></div>
-            {/* <span>or use your account</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <a href="#">Forgot your password?</a>
-            <button>Sign In</button> */}
-          </form>
-        </div>
-        {!isMobile && (
-          <div className="overlay-container">
-            <div className="overlay">
-              <div className="overlay-panel overlay-left">
-                <h1>{signInLangData[currLang].welcomeBack}</h1>
-                <p>{signInLangData[currLang].toKeepConnected}</p>
-                <button
-                  onClick={() => {
-                    setIsSignUpActive(false);
-                  }}
-                  className="ghost"
-                  id={signInLangData[currLang].signIn}
-                >
-                  {signInLangData[currLang].signIn}
-                </button>
-              </div>
-              <div className="overlay-panel overlay-right">
-                <h1>{signInLangData[currLang].helloFriend}</h1>
-                <p>{signInLangData[currLang].enterYourPersonalDetails}</p>
-                <button
-                  onClick={() => {
-                    setIsSignUpActive(true);
-                  }}
-                  className="ghost"
-                  id={signInLangData[currLang].signUp}
-                >
-                  {signInLangData[currLang].signUp}
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+    <div className="sign-in-container">
+      <div className="sign-in-container-header">
+        <FullLogo />
+        <Select
+          className="sign-in-container-language-select"
+          defaultValue="uz"
+          onChange={(value: ILanguage) => {
+            dispatch(changeLanguage(value));
+          }}
+          options={[
+            { value: 'uz', label: 'Uzb' },
+            { value: 'ru', label: 'Рус' },
+            { value: 'en', label: 'Eng' },
+          ]}
+        />
       </div>
-    </>
+      <Row className="sign-in-container-body">
+        <Col sm={24} md={24} lg={12}>
+          <img src={AqchaGif} alt="" />
+        </Col>
+        <Col sm={24} md={24} lg={12}>
+          <div className="sign-in-container-body-form">
+            <h1>{signInLangData[currLang].signIn}</h1>
+            <br />
+            <br />
+            <TelegramLoginBtn />
+            <br />
+            <br />
+            <div
+              className="sign-in-container-body-form-p"
+              dangerouslySetInnerHTML={{
+                __html: signInLangData[currLang].privacyPolicy,
+              }}
+            />
+          </div>
+        </Col>
+      </Row>
+      <div className="sign-in-container-footer">
+        {signInLangData[currLang].allRightsReserved}
+      </div>
+    </div>
   );
-};
+}
 
-export default SignInPage;
+export default SignIn;

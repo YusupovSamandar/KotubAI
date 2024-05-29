@@ -22,7 +22,7 @@ jobs:
 
       - name: Deploy dist directory
         env:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY || '' }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_CMD_ARGS: '-o StrictHostKeyChecking=no'
         run: |
           mkdir -p ~/.ssh

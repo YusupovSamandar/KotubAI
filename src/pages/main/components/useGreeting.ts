@@ -50,6 +50,7 @@ export default function useGreeting(actionType) {
     // }
     const formData = new FormData();
     formData.append('project_name', value.name);
+    formData.append('token', localStorage.getItem('FCMtoken'));
     formData.append('lang', value.lang);
     if (value.youtube_link) {
       formData.append('youtube_link', value.youtube_link);

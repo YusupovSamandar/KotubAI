@@ -18,7 +18,7 @@ export interface IAuthState {
 const initialState: IAuthState = {
   token: token || '',
   refreshToken: refreshToken || '',
-  isAuthenticated: refreshToken ? true : false,
+  isAuthenticated: true,
   profile: undefined,
 };
 

@@ -6,6 +6,7 @@ import language from 'src/app/slices/languageSlice';
 import layout from 'src/app/slices/layoutSlice';
 import { api, paymentApi } from './services/api';
 import { rtkQueryErrorLogger } from './services/api/middlewares';
+import notifySlice from './slices/notifySlice';
 
 export const createStore = (
   options?: ConfigureStoreOptions['preloadedState'] | undefined
@@ -15,6 +16,7 @@ export const createStore = (
       [api.reducerPath]: api.reducer,
       [paymentApi.reducerPath]: paymentApi.reducer,
       auth,
+      notifySlice,
       userHistory,
       layout,
       language,

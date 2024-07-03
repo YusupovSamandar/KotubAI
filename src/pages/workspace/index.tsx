@@ -27,6 +27,7 @@ const { TextArea } = Input;
 
 function Workspace() {
   const { id } = useParams();
+  const { id: notifyID } = useTypedSelector((state) => state.notifySlice);
   const [activeBtn, setActiveBtn] = useState(null);
   const { isMobile } = useTypedSelector((state) => state.layout);
   const lang = useTypedSelector((state) => state.language);
@@ -51,6 +52,19 @@ function Workspace() {
   } = useWorkspace();
 
   const [getWorkspaceContent, { isLoading }] = useGetSpeechToTextMutation();
+
+  useEffect(() => {
+    if (notifyID === id) {
+      getWorkspaceContent(id)
+        .unwrap()
+        .then((res) => {
+          if (res.result_text && res.result_docx) {
+            setData(res);
+            setPageContent(res.result_text);
+          }
+        });
+    }
+  }, [notifyID]);
 
   useEffect(() => {
     getWorkspaceContent(id)

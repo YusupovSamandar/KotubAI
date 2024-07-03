@@ -6,6 +6,7 @@ import SignInPage from 'src/pages/signIn';
 import Workspace from 'src/pages/workspace';
 import useRoutes from './useRoutes';
 import { Aferta, PrivacyPolicy } from 'src/pages/signIn/aferta';
+import VideoPlayerWorskpace from 'src/pages/videoplayer';
 
 const clientId = import.meta.env.VITE_OAuthClientId;
 
@@ -19,6 +20,7 @@ function RoutElements() {
         <Routes>
           <Route path="/oferta" element={<Aferta />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/video-player" element={<VideoPlayerWorskpace />} />
           {deviceType && (
             <Route
               path="/"
@@ -32,6 +34,7 @@ function RoutElements() {
                     // render={() => <Workspace />}
                     element={<Workspace key={location.pathname} />}
                   />
+
                   <Route path="/404" element={<Main />} />
                 </>
               ) : (

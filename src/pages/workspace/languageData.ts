@@ -71,7 +71,8 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
       },
     },
     uploadNewFileTxt: 'Upload New File',
-    pageOnLoad: 'File not complete yet, please check later',
+    pageOnLoad:
+      'You will receive a notification in Telegram when the file is ready',
   },
   ru: {
     transcript: 'Транскрипт',
@@ -105,7 +106,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
       },
     },
     uploadNewFileTxt: 'Загрузить новый файл',
-    pageOnLoad: 'Файл еще не завершен, пожалуйста, проверьте позже',
+    pageOnLoad: 'Вы получите уведомление в Telegram, когда файл будет готов',
   },
   uz: {
     transcript: 'Transkript',
@@ -139,6 +140,6 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
       },
     },
     uploadNewFileTxt: 'Yangi fayl yuklash',
-    pageOnLoad: 'Fayl hali tugallanmagan, keyinroq tekshiring',
+    pageOnLoad: "Fayl tayyor bo'lganda sizga Telegram orqali xabar beriladi",
   },
 };

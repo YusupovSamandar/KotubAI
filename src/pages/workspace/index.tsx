@@ -22,6 +22,8 @@ import { useTypedSelector } from 'src/app/store';
 import useWorkspace from './useWorkspace';
 import { workspaceLanguageData } from './languageData';
 import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
+import Title from 'antd/es/typography/Title';
+import { useGetProfileMutation } from 'src/app/services/auth';
 const { Paragraph } = Typography;
 const { TextArea } = Input;
 
@@ -52,6 +54,7 @@ function Workspace() {
   } = useWorkspace();
 
   const [getWorkspaceContent, { isLoading }] = useGetSpeechToTextMutation();
+  const [getProfile] = useGetProfileMutation();
 
   useEffect(() => {
     if (notifyID === id) {
@@ -161,12 +164,17 @@ function Workspace() {
                         </Paragraph>
                       ))
                     ) : (
-                      <Skeleton
-                        className="custom-skeleton"
-                        active
-                        title={false}
-                        paragraph={{ rows: 4 }}
-                      />
+                      <div>
+                        <Title style={{ textAlign: 'center' }} level={5}>
+                          {workspaceLanguageData[lang].contentLoading}
+                        </Title>
+                        <Skeleton
+                          className="custom-skeleton"
+                          active
+                          title={false}
+                          paragraph={{ rows: 4 }}
+                        />
+                      </div>
                     )}
                     {!actionsLoading && pageContent.length > 1 && (
                       <div style={{ textAlign: 'right' }}>
@@ -229,6 +237,7 @@ function Workspace() {
             setIsTranscriptActive(false);
             setActiveBtn(executeFC);
             setActionsLoading(false);
+            getProfile().unwrap();
           })();
         }}
         onCancel={() => {

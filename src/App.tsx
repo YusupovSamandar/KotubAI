@@ -20,11 +20,16 @@ function App() {
     );
   });
   useEffect(() => {
-    requestPermission();
+    const handleUserInteraction = () => {
+      requestPermission();
+      window.removeEventListener('click', handleUserInteraction);
+    };
+
+    window.addEventListener('click', handleUserInteraction);
+
     async function requestPermission() {
       //requesting permission using Notification API
       const permission = await Notification.requestPermission();
-
       if (permission === 'granted') {
         const token = await getToken(messaging, {
           vapidKey: VITE_APP_VAPID_KEY,
@@ -35,9 +40,12 @@ function App() {
         console.log('Token generated : ', token);
       } else if (permission === 'denied') {
         //notifications are blocked
-        alert('You denied for the notification');
+        console.log('You denied for the notification');
       }
     }
+    return () => {
+      window.removeEventListener('click', handleUserInteraction);
+    };
   }, []);
   return (
     <LanguageProvider>

@@ -18,17 +18,22 @@ import { useEffect } from 'react';
 import { useTypedSelector } from 'src/app/store';
 import { greetingLang } from './data';
 import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
+import { useSearchParams } from 'react-router-dom';
+import { IServices } from 'src/app/services/type';
+import { DocumentSvg } from 'src/assets/svg/dashboard_svg';
 
 const { Dragger } = Upload;
 
 const Greeting: React.FC<{
   actionType: string;
 }> = ({ actionType }) => {
+  const [searchParams] = useSearchParams();
+
   const [messageApi, contextHolder] = message.useMessage();
   const { form, onFinish, isLoading, normFile, sTTError } =
     useGreeting(actionType);
   const lang = useTypedSelector((state) => state.language);
-
+  const selectedServiceType = searchParams.get('service') as IServices;
   useEffect(() => {
     if (sTTError) {
       if ('status' in sTTError) {
@@ -51,7 +56,7 @@ const Greeting: React.FC<{
     <div className="main-greeting">
       <HeavyLoadSpinner isLoading={isLoading}>
         <div className="main-greeting-header">
-          {greetingLang[lang].mainHeader}
+          {greetingLang[lang].mainHeader[selectedServiceType]}
         </div>
         <div className="main-greeting-form">
           <Form form={form} onFinish={onFinish}>
@@ -104,10 +109,16 @@ const Greeting: React.FC<{
             >
               <Dragger {...uploadProps}>
                 <p className="ant-upload-drag-icon">
-                  <Music size="45" color="#fff" />
+                  {selectedServiceType !== 'transcript' ? (
+                    <DocumentSvg />
+                  ) : (
+                    <Music size="45" color="#fff" />
+                  )}
                 </p>
                 <p className="ant-upload-text">
-                  {greetingLang[lang].fileUpload}
+                  {selectedServiceType !== 'transcript'
+                    ? greetingLang[lang].docxUpload
+                    : greetingLang[lang].fileUpload}
                 </p>
               </Dragger>
             </Form.Item>

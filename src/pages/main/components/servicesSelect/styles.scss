@@ -1,0 +1,23 @@
+.services {
+  max-width: 640px;
+  border-radius: 32px;
+  margin: 52px auto;
+  background: #1c1e23;
+  padding: 15px 0;
+  color: #fff;
+  &-title {
+    border-bottom: 1px solid #26272f;
+    text-align: center;
+    padding: 15px;
+  }
+  &-container {
+    margin: 22px 45px !important;
+    &-item {
+      cursor: pointer;
+      padding: 25px 80px;
+      border-radius: 9.778px;
+      border: 1.5px solid #3f3f3f;
+      text-align: center;
+    }
+  }
+}

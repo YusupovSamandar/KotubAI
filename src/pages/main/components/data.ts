@@ -1,11 +1,17 @@
 export interface IEachGreetingLang {
-  mainHeader: string;
+  mainHeader: {
+    transcript: string;
+    summary: string;
+    translate: string;
+    article: string;
+  };
   projectName: string;
   projectNameWarning: string;
   language: string;
   languageWarning: string;
   youtubeLink: string;
   fileUpload: string;
+  docxUpload: string;
   submit: string;
 }
 export interface IEachLang {
@@ -58,7 +64,12 @@ export const ru = [
 
 export const greetingLang: IEachLang = {
   en: {
-    mainHeader: 'Convert speech to text',
+    mainHeader: {
+      transcript: 'Convert speech to text',
+      summary: 'Summarize from audio',
+      translate: 'Translate document',
+      article: 'Generate article',
+    },
     projectName: 'Project Name',
     projectNameWarning: 'Project name is required!',
     languageWarning: 'Language is required!',
@@ -66,9 +77,15 @@ export const greetingLang: IEachLang = {
     youtubeLink: 'Youtube link',
     fileUpload: 'Upload audio file',
     submit: 'Submit',
+    docxUpload: 'Upload docx file',
   },
   uz: {
-    mainHeader: "Ovozni tekstga o'zgartirish",
+    mainHeader: {
+      transcript: 'Nutqni matnga o`zgartirish',
+      summary: 'Fayldan kerakli xulosalar chiqarish',
+      translate: 'Fayl tarjima qilish',
+      article: 'Berilgan mavzuda maqola yozish',
+    },
     projectName: 'Loyiha nomi',
     projectNameWarning: 'Loyiha nomi kerak!',
     languageWarning: 'Tilni tanlang!',
@@ -76,9 +93,15 @@ export const greetingLang: IEachLang = {
     youtubeLink: 'Youtube link joylash',
     fileUpload: 'Audio faylni yuklash',
     submit: "Jo'natish",
+    docxUpload: 'Doc fayl yuklash',
   },
   ru: {
-    mainHeader: 'Преобразовать речь в текст',
+    mainHeader: {
+      article: 'Сгенерировать статью',
+      transcript: 'Преобразовать речь в текст',
+      summary: 'Суммировать из аудио',
+      translate: 'Перевести документ',
+    },
     projectName: 'Название проекта',
     projectNameWarning: 'Название проекта обязательно!',
     languageWarning: 'Выберите язык!',
@@ -86,5 +109,6 @@ export const greetingLang: IEachLang = {
     youtubeLink: 'Разместить ссылку на Youtube',
     fileUpload: 'Загрузить аудиофайл',
     submit: 'Отправить',
+    docxUpload: 'Загрузить docx файл',
   },
 };

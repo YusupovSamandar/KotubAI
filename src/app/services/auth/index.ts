@@ -45,6 +45,13 @@ export const authApi = api.injectEndpoints({
       }),
     }),
 
+    loginWithAdmin: build.mutation<ILoginTelegramRes, void | Partial<any>>({
+      query: () => ({
+        url: 'auth/get-token',
+        method: 'GET',
+      }),
+    }),
+
     //Get profile info endpoint
     getProfile: build.mutation<IProfile, void>({
       query: () => ({ url: 'auth/profile' }),
@@ -58,4 +65,5 @@ export const {
   useGetProfileMutation,
   useVerifyTokenMutation,
   useLoginTelegramMutation,
+  useLoginWithAdminMutation,
 } = authApi;

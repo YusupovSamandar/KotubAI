@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTypedSelector } from 'src/app/store';
 import { Dropdown, Space, Modal } from 'antd';
 import {
-  useDeleteSpeechToTextMutation,
+  useDeleteProjectMutation,
   useGetHistoryMutation,
 } from 'src/app/services/uploads';
 import { red } from '@ant-design/colors';
@@ -18,7 +18,7 @@ const ActionsDropdown = ({
   editClick: () => void;
 }) => {
   const navigate = useNavigate();
-  const [deleteSpeechToText, { isLoading }] = useDeleteSpeechToTextMutation();
+  const [deleteSpeechToText, { isLoading }] = useDeleteProjectMutation();
   const lang = useTypedSelector((state) => state.language);
   const [updateHistory] = useGetHistoryMutation();
 

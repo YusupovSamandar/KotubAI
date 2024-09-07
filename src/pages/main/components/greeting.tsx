@@ -18,8 +18,6 @@ import { useEffect } from 'react';
 import { useTypedSelector } from 'src/app/store';
 import { greetingLang } from './data';
 import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
-import { useSearchParams } from 'react-router-dom';
-import { IServices } from 'src/app/services/type';
 import { DocumentSvg } from 'src/assets/svg/dashboard_svg';
 
 const { Dragger } = Upload;
@@ -27,13 +25,10 @@ const { Dragger } = Upload;
 const Greeting: React.FC<{
   actionType: string;
 }> = ({ actionType }) => {
-  const [searchParams] = useSearchParams();
-
   const [messageApi, contextHolder] = message.useMessage();
-  const { form, onFinish, isLoading, normFile, sTTError } =
+  const { form, onFinish, isLoading, normFile, sTTError, selectedServiceType } =
     useGreeting(actionType);
   const lang = useTypedSelector((state) => state.language);
-  const selectedServiceType = searchParams.get('service') as IServices;
   useEffect(() => {
     if (sTTError) {
       if ('status' in sTTError) {
@@ -96,8 +91,14 @@ const Greeting: React.FC<{
                 </Form.Item>
               </Col>
               <Col xs={24}>
-                <Form.Item name="youtube_link">
-                  <Input placeholder={greetingLang[lang].youtubeLink} />
+                <Form.Item name="input_text">
+                  <Input
+                    placeholder={
+                      selectedServiceType === 'transcript'
+                        ? greetingLang[lang].youtubeLink
+                        : greetingLang[lang].input_text
+                    }
+                  />
                 </Form.Item>
               </Col>
               <Col xs={24}></Col>

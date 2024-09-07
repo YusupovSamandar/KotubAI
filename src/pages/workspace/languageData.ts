@@ -1,4 +1,5 @@
 interface IPerWorkspaceLanguageData {
+  yourFile: string;
   transcript: string;
   summarize: string;
   uploadNewFileTxt: string;
@@ -42,6 +43,7 @@ interface IWorkspaceLanguageData {
 export const workspaceLanguageData: IWorkspaceLanguageData = {
   en: {
     transcript: 'Transcript',
+    yourFile: 'Your File',
     summarize: 'Summarize',
     article: 'Article',
     translate: 'Translate',
@@ -79,6 +81,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
   ru: {
     transcript: 'Транскрипт',
     summarize: 'Суммировать',
+    yourFile: 'Ваш файл',
     article: 'Статья',
     translate: 'Перевести',
     askQuestion: 'Задать вопрос',
@@ -112,6 +115,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     contentLoading: 'Загрузка контента...',
   },
   uz: {
+    yourFile: 'Sizning faylingiz',
     transcript: 'Transkript',
     summarize: 'Xulosa qilish',
     article: 'Maqola',

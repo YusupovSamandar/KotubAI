@@ -47,7 +47,7 @@ function btnGroup({
             className="btn-article-group btn-group-underline"
           >
             {articleTypes.map((btn) => (
-              <Col xs={12} sm={12} md={12} lg={12} xl={6}>
+              <Col key={btn.id} xs={12} sm={12} md={12} lg={12} xl={6}>
                 <Button
                   key={btn.id}
                   className={btn.id === activeArticleType ? 'active' : ''}

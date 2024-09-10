@@ -84,7 +84,7 @@ function LayoutSidebar() {
             historyData.map((item) => (
               <MenuItem
                 key={item.id}
-                label={item.project_name}
+                label={item.name}
                 path={`/${item.id}`}
                 itemId={item.id}
               />

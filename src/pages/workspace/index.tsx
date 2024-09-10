@@ -6,15 +6,13 @@ import {
   Spin,
   Typography,
   message,
-  Col,
-  Row,
 } from 'antd';
 import { useEffect, useState } from 'react';
 import { FileTextOutlined } from '@ant-design/icons';
 import { Link, useParams } from 'react-router-dom';
-import { useGetSpeechToTextMutation } from 'src/app/services/uploads';
-import { ISpeechToTextRes } from 'src/app/services/uploads/type';
-import { CopyIcon, MusicSvg } from 'src/assets/svg/dashboard_svg';
+import { useGetProjectMutation } from 'src/app/services/uploads';
+import { IProject, outputTypes } from 'src/app/services/uploads/type';
+import { CopyIcon } from 'src/assets/svg/dashboard_svg';
 import BtnGroup from './components/btnGroup';
 import FileCmp from './components/fileCmp';
 import './styles.scss';
@@ -29,20 +27,21 @@ const { TextArea } = Input;
 
 function Workspace() {
   const { id } = useParams();
+  const [messageApi, contextHolder] = message.useMessage();
   const { id: notifyID } = useTypedSelector((state) => state.notifySlice);
-  const [activeBtn, setActiveBtn] = useState(null);
   const { isMobile } = useTypedSelector((state) => state.layout);
   const lang = useTypedSelector((state) => state.language);
-  const [data, setData] = useState<ISpeechToTextRes>(null);
-  const [messageApi, contextHolder] = message.useMessage();
+
+  const [activeBtn, setActiveBtn] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [actionsLoading, setActionsLoading] = useState(false);
   const [executeFC, setExecuteFC] = useState<number>(null);
   const [question, setQuestion] = useState<string>('');
-  const [showPageContent, setShowPageContent] = useState<boolean>(true);
-  const [isTranscriptActive, setIsTranscriptActive] = useState<boolean>(true);
 
+  const [contentType, setContentType] = useState<outputTypes>('text');
   const {
+    data,
+    setData,
     pageContent,
     actionsList,
     actionsLangList,
@@ -51,33 +50,48 @@ function Workspace() {
     articleTypes,
     fileURL,
     setPageContent,
+    setFileURL,
   } = useWorkspace();
 
-  const [getWorkspaceContent, { isLoading }] = useGetSpeechToTextMutation();
+  const [getWorkspaceContent, { isLoading }] = useGetProjectMutation();
   const [getProfile] = useGetProfileMutation();
+
+  const fetchPageData = () => {
+    getWorkspaceContent(id)
+      .unwrap()
+      .then((res) => {
+        setContentType(res.output_type);
+        setData(res);
+        const responseTxt =
+          res.action_type === 'stt'
+            ? res[res.action_type].output_text
+            : res[res.action_type][0].output_text;
+        const responseFile =
+          res.action_type === 'stt'
+            ? res[res.action_type].output_docx
+            : res[res.action_type][0].output_docx;
+        setPageContent(responseTxt);
+        setFileURL(responseFile);
+        if (res.action_type !== 'stt') {
+          setActiveBtn(
+            res.action_type === 'summary'
+              ? 1
+              : res.action_type === 'article'
+              ? 2
+              : 3
+          );
+        }
+      });
+  };
 
   useEffect(() => {
     if (notifyID === id) {
-      getWorkspaceContent(id)
-        .unwrap()
-        .then((res) => {
-          if (res.result_text && res.result_docx) {
-            setData(res);
-            setPageContent(res.result_text);
-          }
-        });
+      fetchPageData();
     }
   }, [notifyID]);
 
   useEffect(() => {
-    getWorkspaceContent(id)
-      .unwrap()
-      .then((res) => {
-        if (res.result_text && res.result_docx) {
-          setData(res);
-          setPageContent(res.result_text);
-        }
-      });
+    fetchPageData();
   }, []);
   if (isLoading && !data) {
     return;
@@ -86,7 +100,7 @@ function Workspace() {
     <div className="main-loading-wrapper">
       <HeavyLoadSpinner
         txt={workspaceLanguageData[lang].pageOnLoad}
-        isLoading={!data && !isLoading}
+        isLoading={!data?.[data?.action_type] && !isLoading}
       >
         <div className="workspace-load-wrapper">
           <div className="workspace">
@@ -94,31 +108,29 @@ function Workspace() {
               style={{ margin: isMobile ? '0px 0 30px 0' : '47px 0 100px 0' }}
             >
               <FileCmp
-                fileTxt={data?.file_name}
-                downloadUrl={data?.result_docx}
-                size={data?.file_size}
+                fileTxt={workspaceLanguageData[lang].yourFile}
+                downloadUrl={data?.input_file || '#'}
               />
             </div>
             <div className="workspace-buttons">
               <div className="workspace-buttons-item">
-                <Button
-                  disabled={actionsLoading}
-                  className={isTranscriptActive ? 'active' : ''}
-                  type={isTranscriptActive ? 'primary' : 'default'}
-                  shape="round"
-                  onClick={() => {
-                    setActiveBtn(null);
-                    setShowPageContent(!isTranscriptActive);
-                    setIsTranscriptActive((prev) => !prev);
-                    if (!isTranscriptActive) {
-                      setPageContent(data.result_text);
-                    }
-                  }}
-                  icon={<FileTextOutlined />}
-                  size={'large'}
-                >
-                  {workspaceLanguageData[lang].transcript}
-                </Button>
+                {data?.action_type === 'stt' && (
+                  <Button
+                    disabled={actionsLoading}
+                    className={!activeBtn ? 'active' : ''}
+                    type={!activeBtn ? 'primary' : 'default'}
+                    shape="round"
+                    onClick={() => {
+                      setActiveBtn(null);
+                      setPageContent(data.stt.output_text);
+                      setFileURL(data.stt.output_docx);
+                    }}
+                    icon={<FileTextOutlined />}
+                    size={'large'}
+                  >
+                    {workspaceLanguageData[lang].transcript}
+                  </Button>
+                )}
               </div>
               {actionsList.map((action) => (
                 <div className="workspace-buttons-item" key={action.id}>
@@ -142,63 +154,62 @@ function Workspace() {
                 </div>
               ))}
             </div>
-            {showPageContent &&
-              (!pageContent ? (
-                <>
+            {contentType === 'docx' ? (
+              <>
+                {!actionsLoading ? (
+                  <FileCmp downloadUrl={fileURL} fileTxt={fileURL} />
+                ) : (
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Spin />
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="workspace-results">
+                <Typography>
                   {!actionsLoading ? (
-                    <FileCmp downloadUrl={fileURL} fileTxt={fileURL} />
+                    pageContent?.split('\n').map((line, index) => (
+                      <Paragraph key={index} style={{ color: '#fff' }}>
+                        {line}
+                        <br />
+                      </Paragraph>
+                    ))
                   ) : (
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                      <Spin />
+                    <div>
+                      <Title style={{ textAlign: 'center' }} level={5}>
+                        {workspaceLanguageData[lang].contentLoading}
+                      </Title>
+                      <Skeleton
+                        className="custom-skeleton"
+                        active
+                        title={false}
+                        paragraph={{ rows: 4 }}
+                      />
                     </div>
                   )}
-                </>
-              ) : (
-                <div className="workspace-results">
-                  <Typography>
-                    {!actionsLoading ? (
-                      pageContent.split('\n').map((line, index) => (
-                        <Paragraph key={index} style={{ color: '#fff' }}>
-                          {line}
-                          <br />
-                        </Paragraph>
-                      ))
-                    ) : (
-                      <div>
-                        <Title style={{ textAlign: 'center' }} level={5}>
-                          {workspaceLanguageData[lang].contentLoading}
-                        </Title>
-                        <Skeleton
-                          className="custom-skeleton"
-                          active
-                          title={false}
-                          paragraph={{ rows: 4 }}
-                        />
-                      </div>
-                    )}
-                    {!actionsLoading && pageContent.length > 1 && (
-                      <div style={{ textAlign: 'right' }}>
-                        {contextHolder}
-                        <Button
-                          onClick={() => {
-                            navigator.clipboard
-                              .writeText(pageContent)
-                              .then(() => {
-                                messageApi.open({
-                                  type: 'success',
-                                  content: 'copied to clipboard',
-                                });
+                  {!actionsLoading && pageContent?.length > 1 && (
+                    <div style={{ textAlign: 'right' }}>
+                      {contextHolder}
+                      <Button
+                        onClick={() => {
+                          navigator.clipboard
+                            .writeText(pageContent)
+                            .then(() => {
+                              messageApi.open({
+                                type: 'success',
+                                content: 'copied to clipboard',
                               });
-                          }}
-                          style={{ border: 'none', background: 'none' }}
-                        >
-                          <CopyIcon />
-                        </Button>
-                      </div>
-                    )}
-                  </Typography>
-                </div>
-              ))}
+                            });
+                        }}
+                        style={{ border: 'none', background: 'none' }}
+                      >
+                        <CopyIcon />
+                      </Button>
+                    </div>
+                  )}
+                </Typography>
+              </div>
+            )}
             <br />
             <Link to="/">
               <Button type="primary" className="create-btn-worspace-mobile">
@@ -227,14 +238,31 @@ function Workspace() {
             const execObj = actionsList.find(
               (action) => action.id === executeFC
             );
-            if (executeFC === 1 || executeFC === 3) {
-              await execObj.onclickFC(data, activeLangBtn);
-            } else if (executeFC === 2) {
-              await execObj.onclickFC(data, activeLangBtn, activeArticleType);
-            } else if (executeFC === 4) {
-              await execObj.onclickFC(data, question);
+            if (execObj.service !== 'question') {
+              const existingServiceData = data[execObj.service].find(
+                (service) =>
+                  service.lang === activeLangBtn &&
+                  (!service.type || service.type === activeArticleType)
+              );
+              if (existingServiceData) {
+                setPageContent(existingServiceData.output_text);
+                setFileURL(existingServiceData.output_docx);
+                setActiveBtn(executeFC);
+                setActionsLoading(false);
+                return;
+              }
             }
-            setIsTranscriptActive(false);
+            if (executeFC === 1 || executeFC === 3) {
+              await execObj.onclickFC(data.id, activeLangBtn);
+            } else if (executeFC === 2) {
+              await execObj.onclickFC(
+                data.id,
+                activeLangBtn,
+                activeArticleType
+              );
+            } else if (executeFC === 4) {
+              await execObj.onclickFC(data.id, question);
+            }
             setActiveBtn(executeFC);
             setActionsLoading(false);
             getProfile().unwrap();
@@ -242,7 +270,6 @@ function Workspace() {
         }}
         onCancel={() => {
           setIsModalOpen(false);
-          // setActiveBtn(null);
         }}
       >
         {executeFC === 4 ? (

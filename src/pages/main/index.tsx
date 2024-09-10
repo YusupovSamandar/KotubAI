@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import Greeting from './components/greeting';
 import { useSearchParams } from 'react-router-dom';
 import { message } from 'antd';
-import { paymentLangData } from './components/data';
 import { useTypedSelector } from 'src/app/store';
 import { useCheckPaymentStatusMutation } from 'src/app/services/finance';
-import ServicesSelect from './components/servicesSelect';
 import { IServices } from 'src/app/services/type';
+import ServicesSelect from './components/servicesSelect';
+import { paymentLangData } from './components/data';
+import Greeting from './components/greeting';
 
 export default function Main() {
   const currLang = useTypedSelector((state) => state.language);

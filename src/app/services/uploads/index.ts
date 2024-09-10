@@ -1,51 +1,52 @@
 import { api } from '../api';
 import {
+  IHistory,
+  ISpeechToTextRes,
+  speechToTextGHistory,
   IDeleteSpeechToText,
-  ICreateProjectRes,
-  IHistoryRes,
-  IProject,
+  IPatchSpeechToText,
 } from './type';
 
 export const uploadApi = api.injectEndpoints({
   endpoints: (build) => ({
-    createProject: build.mutation<ICreateProjectRes, FormData>({
+    speechToText: build.mutation<ISpeechToTextRes, FormData>({
       query: (body) => ({
-        url: 'projects/',
+        url: 'speech-to-text/',
         method: 'POST',
         body,
       }),
     }),
-    deleteProject: build.mutation<string, IDeleteSpeechToText>({
+    deleteSpeechToText: build.mutation<string, IDeleteSpeechToText>({
       query: (body) => ({
-        url: 'projects/' + body.id + '/',
+        url: '/speech-to-text/' + body.id + '/',
         method: 'DELETE',
         body,
       }),
     }),
-    editProjectTitle: build.mutation<string, FormData>({
+    editSpeechToTextTitle: build.mutation<string, FormData>({
       query: (body) => ({
-        url: 'projects/' + body.get('id') + '/',
+        url: '/speech-to-text/' + body.get('id') + '/',
         method: 'PATCH',
         body,
       }),
     }),
-    getProject: build.mutation<IProject, string>({
+    getSpeechToText: build.mutation<ISpeechToTextRes, string>({
       query: (id) => ({
-        url: 'projects/' + id + '/',
+        url: 'speech-to-text/' + id + '/',
       }),
     }),
-    getHistory: build.mutation<IHistoryRes, void>({
-      query: () => ({
-        url: 'projects/',
+    getHistory: build.mutation<IHistory, void>({
+      query: (id) => ({
+        url: 'speech-to-text/history',
       }),
     }),
   }),
 });
 
 export const {
-  useCreateProjectMutation,
-  useGetProjectMutation,
+  useSpeechToTextMutation,
+  useGetSpeechToTextMutation,
   useGetHistoryMutation,
-  useDeleteProjectMutation,
-  useEditProjectTitleMutation,
+  useDeleteSpeechToTextMutation,
+  useEditSpeechToTextTitleMutation,
 } = uploadApi;

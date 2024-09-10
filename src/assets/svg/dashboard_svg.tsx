@@ -109,9 +109,9 @@ export const MusicBgSvg = () => (
         y2="3"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.608959" stopColor="#006AFB" />
-        <stop offset="1" stopColor="#5CA1FE" />
-        <stop offset="1" stopColor="#5CA1FE" />
+        <stop offset="0.608959" stop-color="#006AFB" />
+        <stop offset="1" stop-color="#5CA1FE" />
+        <stop offset="1" stop-color="#5CA1FE" />
       </linearGradient>
     </defs>
   </svg>
@@ -197,8 +197,8 @@ export const DocumentSvg = () => (
     <path
       d="M31.375 3.3V12.4C31.375 15.2719 33.7255 17.6 36.625 17.6H43.1875M13 28H34M13 41H23.5M28.916 2C30.4741 2 31.9517 2.68548 32.9492 3.87104L43.2832 16.1537C44.0694 17.0882 44.5 18.2662 44.5 19.4827V43.6C44.5 49.3438 39.799 54 34 54H13C7.20101 54 2.5 49.3438 2.5 43.6V12.4C2.5 6.65624 7.20101 2 13 2H28.916Z"
       stroke="white"
-      strokeWidth="4"
-      strokeLinecap="round"
+      stroke-width="4"
+      stroke-linecap="round"
     />
   </svg>
 );
@@ -251,9 +251,9 @@ export const TranscriptSvg = () => (
         y2="3.73885"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.608959" stopColor="#006AFB" />
-        <stop offset="1" stopColor="#5CA1FE" />
-        <stop offset="1" stopColor="#5CA1FE" />
+        <stop offset="0.608959" stop-color="#006AFB" />
+        <stop offset="1" stop-color="#5CA1FE" />
+        <stop offset="1" stop-color="#5CA1FE" />
       </linearGradient>
     </defs>
   </svg>
@@ -274,44 +274,44 @@ export const SummarySvg = () => (
     <path
       d="M20.4856 27.1705L23.5289 30.4393L31.87 23"
       stroke="white"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
     <path
       d="M20.4856 42.9513L23.5289 46.2201L31.87 38.7808"
       stroke="white"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
     <path
       d="M20.4856 58.7311L23.5289 61.9999L31.87 54.5605"
       stroke="white"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
     <path
       d="M64.2196 28.6357H39.0837"
       stroke="white"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
     <path
       d="M64.2196 44.416H39.0837"
       stroke="white"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
     <path
       d="M64.2196 60.1963H39.0837"
       stroke="white"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
     <defs>
       <linearGradient
@@ -322,9 +322,9 @@ export const SummarySvg = () => (
         y2="3.73885"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.608959" stopColor="#006AFB" />
-        <stop offset="1" stopColor="#5CA1FE" />
-        <stop offset="1" stopColor="#5CA1FE" />
+        <stop offset="0.608959" stop-color="#006AFB" />
+        <stop offset="1" stop-color="#5CA1FE" />
+        <stop offset="1" stop-color="#5CA1FE" />
       </linearGradient>
     </defs>
   </svg>
@@ -371,9 +371,9 @@ export const ArticleSvg = () => (
         y2="4.07235"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.608959" stopColor="#006AFB" />
-        <stop offset="1" stopColor="#5CA1FE" />
-        <stop offset="1" stopColor="#5CA1FE" />
+        <stop offset="0.608959" stop-color="#006AFB" />
+        <stop offset="1" stop-color="#5CA1FE" />
+        <stop offset="1" stop-color="#5CA1FE" />
       </linearGradient>
     </defs>
   </svg>
@@ -412,9 +412,9 @@ export const TranslateSvg = () => (
         y2="4.07235"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0.608959" stopColor="#006AFB" />
-        <stop offset="1" stopColor="#5CA1FE" />
-        <stop offset="1" stopColor="#5CA1FE" />
+        <stop offset="0.608959" stop-color="#006AFB" />
+        <stop offset="1" stop-color="#5CA1FE" />
+        <stop offset="1" stop-color="#5CA1FE" />
       </linearGradient>
     </defs>
   </svg>

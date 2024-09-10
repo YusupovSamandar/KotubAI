@@ -20,7 +20,7 @@ function fileCmp({
       <div className="workspace-file-desc">
         <Typography>
           <Title level={4} style={{ margin: 0 }}>
-            {fileTxt?.substring(0, 20) || 'No file'}
+            {fileTxt?.substring(0, 10) || 'No file'}...
           </Title>
           {size && (
             <Paragraph style={{ color: '#A6AAAF' }}>file: {size}</Paragraph>

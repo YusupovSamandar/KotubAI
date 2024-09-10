@@ -59,17 +59,6 @@ const authSlice = createSlice({
         }
       )
       .addMatcher(
-        authApi.endpoints.loginWithAdmin.matchFulfilled,
-        (state, action) => {
-          state.token = action.payload.tokens.access;
-          state.refreshToken = action.payload.tokens.refresh;
-          state.isAuthenticated = true;
-
-          localStorage.setItem(TOKEN, action.payload.tokens.access);
-          localStorage.setItem(REFRESH_TOKEN, action.payload.tokens.refresh);
-        }
-      )
-      .addMatcher(
         authApi.endpoints.getProfile.matchFulfilled,
         (state, action) => {
           state.profile = action.payload;

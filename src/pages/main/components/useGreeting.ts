@@ -1,32 +1,26 @@
 import type { UploadFile } from 'antd';
 import { Form } from 'antd';
 import {
-  useCreateProjectMutation,
+  useSpeechToTextMutation,
   useGetHistoryMutation,
 } from 'src/app/services/uploads';
 import { useNavigate } from 'react-router-dom';
-import { useSearchParams } from 'react-router-dom';
-import { IServices } from 'src/app/services/type';
-
 interface IForm {
   name: string;
-  input_text: string;
+  youtube_link: string;
   audio_file: UploadFile[];
   lang: string;
 }
 
 export default function useGreeting(actionType) {
-  const [searchParams] = useSearchParams();
-  const selectedServiceType = searchParams.get('service') as IServices;
   const navigate = useNavigate();
-  const [createProject, { isLoading, error: sTTError }] =
-    useCreateProjectMutation();
+  const [send, { isLoading, error: sTTError }] = useSpeechToTextMutation();
   const [updateHistory, { isLoading: isloadingHistory }] =
     useGetHistoryMutation();
   const onFinish = async (value: IForm) => {
     if (
-      (value.input_text && value.audio_file?.[0]) ||
-      (!value.input_text && !value.audio_file?.[0])
+      (value.youtube_link && value.audio_file?.[0]) ||
+      (!value.youtube_link && !value.audio_file?.[0])
     ) {
       form.setFields([
         {
@@ -36,7 +30,7 @@ export default function useGreeting(actionType) {
       ]);
       form.setFields([
         {
-          name: 'input_text',
+          name: 'youtube_link',
           errors: ['select only youtube link or audio file'],
         },
       ]);
@@ -55,19 +49,15 @@ export default function useGreeting(actionType) {
     //   return;
     // }
     const formData = new FormData();
-    formData.append('name', value.name);
+    formData.append('project_name', value.name);
+    formData.append('token', localStorage.getItem('FCMtoken'));
     formData.append('lang', value.lang);
-    formData.append(
-      'action_type',
-      selectedServiceType === 'transcript' ? 'stt' : selectedServiceType
-    );
-    formData.append('output_type', 'text');
-    if (value.input_text) {
-      formData.append('input_text', value.input_text);
+    if (value.youtube_link) {
+      formData.append('youtube_link', value.youtube_link);
     } else {
       formData.append('input_file', value.audio_file[0].originFileObj);
     }
-    const data = await createProject(formData).unwrap();
+    const data = await send(formData).unwrap();
     await updateHistory().unwrap();
     navigate(`/${data.id}`);
   };
@@ -86,6 +76,5 @@ export default function useGreeting(actionType) {
     isLoading,
     normFile,
     sTTError,
-    selectedServiceType,
   };
 }

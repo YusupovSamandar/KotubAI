@@ -53,5 +53,3 @@ export const uploadProps: UploadProps = {
     console.log('Dropped files', e.dataTransfer.files);
   },
 };
-
-export const uploadDocProps = {...uploadProps, accept: '.docx,'}

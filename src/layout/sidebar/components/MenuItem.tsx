@@ -5,7 +5,7 @@ import { useAppDispatch, useTypedSelector } from 'src/app/store';
 import { findSubKey } from 'src/layout/utill';
 import ActionsDropdown from './actionsDropdown';
 import { changeMenuMode } from 'src/app/slices/layoutSlice';
-import { useEditProjectTitleMutation } from 'src/app/services/uploads';
+import { useEditSpeechToTextTitleMutation } from 'src/app/services/uploads';
 
 interface IMenuItem {
   path?: string;
@@ -21,7 +21,7 @@ function MenuItem({ path, label, subKey, children, itemId }: IMenuItem) {
     setIsEditable(false);
     const FormDTt = new FormData();
     FormDTt.append('id', itemId.toString());
-    FormDTt.append('name', menuItemRef.current.innerText);
+    FormDTt.append('project_name', menuItemRef.current.innerText);
     updateTitle(FormDTt);
   };
   const menuItemRef = useRef(null);
@@ -44,7 +44,7 @@ function MenuItem({ path, label, subKey, children, itemId }: IMenuItem) {
     location.pathname === path ||
     location.pathname.split('/')[1] === parentPath ||
     findSubKey(location.pathname) === subKey;
-  const [updateTitle] = useEditProjectTitleMutation();
+  const [updateTitle] = useEditSpeechToTextTitleMutation();
 
   //Children section
   const [open, setOpen] = useState(active);

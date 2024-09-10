@@ -42,7 +42,7 @@ function ServicesSelect() {
       </Title>
       <Row gutter={[13, 13]} className="services-container">
         {allServices.map((service) => (
-          <Col sm={12} key={service.service}>
+          <Col sm={12}>
             <div
               onClick={() => {
                 handleMakeParams('service', service.service);

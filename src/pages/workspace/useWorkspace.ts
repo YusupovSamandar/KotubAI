@@ -1,31 +1,21 @@
 import {
+  useSTTSummaryMutation,
+  useSTTArticleMutation,
+  useSTTTranslateMutation,
+  useSTTQuestionMutation,
+} from 'src/app/services/workspace-actions';
+import { hostName } from 'src/app/services/api/const';
+import {
   EditOutlined,
   FileDoneOutlined,
   MessageOutlined,
   TranslationOutlined,
 } from '@ant-design/icons';
-import { useState } from 'react';
-import { actionTypes, IProject } from 'src/app/services/uploads/type';
-import {
-  useSTTArticleMutation,
-  useSTTQuestionMutation,
-  useSTTSummaryMutation,
-  useSTTTranslateMutation,
-} from 'src/app/services/workspace-actions';
-import { useTypedSelector } from 'src/app/store';
-import { workspaceLanguageData } from './languageData';
 import { IBtnLangList } from './types';
-interface IButtonGroup {
-  Icon: any;
-  label: string;
-  content: string;
-  id: number;
-  service: Exclude<actionTypes, 'stt'> | 'question';
-  onclickFC: (projectId: number, lang: string, type?: string) => void;
-}
-
+import { useTypedSelector } from 'src/app/store';
+import { useState } from 'react';
+import { workspaceLanguageData } from './languageData';
 export default function useWorkspace() {
-  const [data, setData] = useState<IProject | null>(null);
   const [pageContent, setPageContent] = useState<string>(' ');
   const [fileURL, setFileURL] = useState<string>(null);
   const [activeLangBtn, setActiveLangBtn] = useState<string>('en-US');
@@ -72,70 +62,59 @@ export default function useWorkspace() {
     },
   ];
 
-  const actionsList: IButtonGroup[] = [
+  const actionsList = [
     {
       Icon: FileDoneOutlined,
       label: workspaceLanguageData[lang].summarize,
-      service: 'summary',
       content: 'txt',
       id: 1,
-      onclickFC: async (projectId, lang) => {
+      onclickFC: async (pageObj, lang) => {
         const res = await postSTTSummary({
-          id: projectId,
+          id: pageObj.id,
           lang: lang,
         }).unwrap();
-        setData((prev) => ({ ...prev, summary: [...prev.summary, res] }));
-        setPageContent(res.output_text);
-        setFileURL(res.output_docx);
+        setPageContent(res.detail);
       },
     },
     {
       Icon: EditOutlined,
       label: workspaceLanguageData[lang].article,
       content: 'txt',
-      service: 'article',
       id: 2,
-      onclickFC: async (projectId, lang, type?) => {
+      onclickFC: async (pageObj, lang, type?) => {
         const res = await postSTTArticle({
-          id: projectId,
+          id: pageObj.id,
           lang: lang,
           type: type,
         }).unwrap();
-        setData((prev) => ({ ...prev, article: [...prev.article, res] }));
-        setPageContent(res.output_text);
-        setFileURL(res.output_docx);
+        setPageContent(res.detail);
       },
     },
     {
       Icon: TranslationOutlined,
       label: workspaceLanguageData[lang].translate,
       content: 'txt',
-      service: 'translate',
       id: 3,
-      onclickFC: async (projectId, lang) => {
+      onclickFC: async (pageObj, lang) => {
         const res = await postSTTTranslate({
-          id: projectId,
+          id: pageObj.id,
           lang: lang,
         }).unwrap();
-        setData((prev) => ({ ...prev, translate: [...prev.translate, res] }));
-        // setFileURL(hostName + '/' + res.detail);
-        setPageContent(res.output_text);
-        setFileURL(res.output_docx);
+        setFileURL(hostName + '/' + res.detail);
+        setPageContent(null);
       },
     },
     {
       Icon: MessageOutlined,
       label: workspaceLanguageData[lang].askQuestion,
       content: 'asdsd',
-      service: 'question',
       id: 4,
-      onclickFC: async (projectId, question) => {
+      onclickFC: async (pageObj, question) => {
         const FormDT = new FormData();
         FormDT.append('question', question);
-        FormDT.append('id', projectId + '');
+        FormDT.append('id', pageObj.id);
         const res = await postSTTQuestion(FormDT).unwrap();
-        setPageContent(res.output_text);
-        setFileURL(res.output_docx);
+        setPageContent(res.detail);
       },
     },
   ];
@@ -172,8 +151,5 @@ export default function useWorkspace() {
     fileURL,
     isLoadingSTTTranslate,
     setPageContent,
-    setFileURL,
-    setData,
-    data,
   };
 }

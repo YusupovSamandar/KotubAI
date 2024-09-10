@@ -1,33 +1,32 @@
 import { api } from '../api';
-import { IService, IServiceArticle } from '../uploads/type';
-import { ISpeechToTextSummary, ISpeechToTextArticle } from './type';
+import { ISpeechToTextSummary, ISpeechToTextArticle, IQuestion } from './type';
 
 export const workSpaceActionsApi = api.injectEndpoints({
   endpoints: (build) => ({
-    sTTSummary: build.mutation<IService, ISpeechToTextSummary>({
+    sTTSummary: build.mutation<{ detail: string }, ISpeechToTextSummary>({
       query: (body) => ({
-        url: `/projects/${body.id}/summary/`,
+        url: `/speech-to-text/${body.id}/summary`,
         method: 'POST',
         body,
       }),
     }),
-    sTTArticle: build.mutation<IServiceArticle, ISpeechToTextArticle>({
+    sTTArticle: build.mutation<{ detail: string }, ISpeechToTextArticle>({
       query: (body) => ({
-        url: `/projects/${body.id}/article/`,
+        url: `/speech-to-text/${body.id}/article`,
         method: 'POST',
         body,
       }),
     }),
-    sTTTranslate: build.mutation<IService, ISpeechToTextSummary>({
+    sTTTranslate: build.mutation<{ detail: string }, ISpeechToTextSummary>({
       query: (body) => ({
-        url: `/projects/${body.id}/translate/`,
+        url: `/speech-to-text/${body.id}/translate-document`,
         method: 'POST',
         body,
       }),
     }),
-    sTTQuestion: build.mutation<IService, FormData>({
+    sTTQuestion: build.mutation<{ detail: string }, FormData>({
       query: (body) => ({
-        url: `/projects/${body.get('id')}/ask-question/`,
+        url: `/speech-to-text/${body.get('id')}/ask-question`,
         method: 'POST',
         body,
       }),

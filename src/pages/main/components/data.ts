@@ -10,7 +10,6 @@ export interface IEachGreetingLang {
   language: string;
   languageWarning: string;
   youtubeLink: string;
-  input_text: string;
   fileUpload: string;
   docxUpload: string;
   submit: string;
@@ -71,7 +70,6 @@ export const greetingLang: IEachLang = {
       translate: 'Translate document',
       article: 'Generate article',
     },
-    input_text: 'Input text',
     projectName: 'Project Name',
     projectNameWarning: 'Project name is required!',
     languageWarning: 'Language is required!',
@@ -88,7 +86,6 @@ export const greetingLang: IEachLang = {
       translate: 'Fayl tarjima qilish',
       article: 'Berilgan mavzuda maqola yozish',
     },
-    input_text: 'Matn kiriting',
     projectName: 'Loyiha nomi',
     projectNameWarning: 'Loyiha nomi kerak!',
     languageWarning: 'Tilni tanlang!',
@@ -105,7 +102,6 @@ export const greetingLang: IEachLang = {
       summary: 'Суммировать из аудио',
       translate: 'Перевести документ',
     },
-    input_text: 'Введите текст',
     projectName: 'Название проекта',
     projectNameWarning: 'Название проекта обязательно!',
     languageWarning: 'Выберите язык!',

@@ -3,18 +3,6 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  "rules": {
-   "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-   ]
-},
   extends: [
     "airbnb",
     "airbnb/hooks",

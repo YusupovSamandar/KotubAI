@@ -1,40 +1,70 @@
 //Login Types
+export type actionTypes = 'stt' | 'summary' | 'article' | 'translate';
+export type outputTypes = 'text' | 'docx';
+export type articleTypes = 'article' | 'news' | 'interview' | 'reportage';
 export interface ISpeechToText {
   name: string;
-  youtube_link: string;
+  input_text: string;
   audio_file: string;
   lang: string;
 }
 
-export interface ISpeechToTextRes {
+export interface IService {
   id: number;
-  project_name: string;
-  youtube_link: string;
+  lang: 'uz-UZ' | 'en-US' | 'ru-RU';
+  input_text: string | null;
   input_file: string;
-  result_docx: string;
-  file_size: string;
+  output_docx: string;
   file_name: string;
-  result_text: string;
-  lang: string;
+  output_text: string;
+  user: number;
+  project: number;
+}
+
+export interface IServiceArticle extends IService {
+  type: articleTypes;
+}
+
+export interface IProject {
+  id: number;
+  name: string;
+  stt: IService;
+  user: number;
+  input_file: string;
+  input_text: string;
+  summary: IService[];
+  article: IServiceArticle[];
+  translate: IService[];
+  action_type: actionTypes;
+  output_type: outputTypes;
+}
+
+export interface ICreateProjectRes {
+  id: number;
+  name: string;
+  input_text: string;
+  output_type: string;
+  action_type: string;
 }
 
 export interface speechToTextGHistory {
-  result: ISpeechToTextRes;
+  result: ICreateProjectRes;
 }
 export interface IHistoryState {
   input_file: string;
-  project_name: string;
-  lang: string;
-  status: string;
+  name: string;
+  action_type: actionTypes;
+  output_type: 'text' | 'docx';
   createdAt: Date;
-  youtube_link: string;
-  result_docx: string;
-  user_id: number;
+  user: number;
   id: number;
   updatedAt: Date;
 }
-export interface IHistory {
-  results: IHistoryState[];
+export interface IHistoryRes {
+  results: {
+    id: number;
+    name: string;
+  }[];
 }
 export interface IDeleteSpeechToText {
   id: number;

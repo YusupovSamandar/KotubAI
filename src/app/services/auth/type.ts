@@ -11,6 +11,7 @@ export interface ILoginTelegram {
   first_name: string;
   last_name: string;
   telegram_id: number;
+  device_token: string;
 }
 export interface ILoginRes {
   email: string;

@@ -39,38 +39,44 @@ function btnGroup({
         ))}
       </div>
       <br />
-
-      <div className="btn-group-underline btn-lang-group">
-        <Button
-          className={isfileType ? 'active' : ''}
-          type={isfileType ? 'primary' : 'default'}
-          shape="round"
-          onClick={() => {
-            setContentType('text');
-            setisFileType(true);
-          }}
-          size={'large'}
-        >
-          <Flex align="center" gap={10}>
-            <TextSvg />
-            <span>Matn</span>
-          </Flex>
-        </Button>
-        <Button
-          className={!isfileType ? 'active' : ''}
-          type={!isfileType ? 'primary' : 'default'}
-          shape="round"
-          onClick={() => {
-            setContentType('docx');
-            setisFileType(false);
-          }}
-          size={'large'}
-        >
-          <Flex align="center" gap={10}>
-            <DocxSvg />
-            <span>Doc file</span>
-          </Flex>
-        </Button>
+      <div>
+        <div className="ant-modal-header">
+          <div className="ant-modal-title">
+            {workspaceLanguageData[lang].modal.article.type}
+          </div>
+        </div>
+        <div className="btn-group-underline btn-lang-group">
+          <Button
+            className={isfileType ? 'active' : ''}
+            type={isfileType ? 'primary' : 'default'}
+            shape="round"
+            onClick={() => {
+              setContentType('text');
+              setisFileType(true);
+            }}
+            size={'large'}
+          >
+            <Flex align="center" gap={10}>
+              <TextSvg />
+              <span>Matn</span>
+            </Flex>
+          </Button>
+          <Button
+            className={!isfileType ? 'active' : ''}
+            type={!isfileType ? 'primary' : 'default'}
+            shape="round"
+            onClick={() => {
+              setContentType('docx');
+              setisFileType(false);
+            }}
+            size={'large'}
+          >
+            <Flex align="center" gap={10}>
+              <DocxSvg />
+              <span>Doc file</span>
+            </Flex>
+          </Button>
+        </div>
       </div>
       <br />
 

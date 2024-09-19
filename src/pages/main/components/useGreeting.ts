@@ -67,7 +67,6 @@ export default function useGreeting(actionType) {
     } else {
       formData.append('input_file', value.audio_file[0].originFileObj);
     }
-
     const data = await createProject(formData).unwrap();
     await updateHistory().unwrap();
     navigate(`/${data.id}`);

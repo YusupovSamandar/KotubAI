@@ -56,24 +56,42 @@ function Workspace() {
   const [getWorkspaceContent, { isLoading }] = useGetProjectMutation();
   const [getProfile] = useGetProfileMutation();
 
-  useEffect(() => {
-    if (notifyID === id) {
-      getWorkspaceContent(id)
-        .unwrap()
-        .then((res) => {
-          setContentType(res.output_type);
-          setData(res);
-        });
-    }
-  }, [notifyID]);
-
-  useEffect(() => {
+  const fetchPageData = () => {
     getWorkspaceContent(id)
       .unwrap()
       .then((res) => {
         setContentType(res.output_type);
         setData(res);
+        const responseTxt =
+          res.action_type === 'stt'
+            ? res[res.action_type].output_text
+            : res[res.action_type][0].output_text;
+        const responseFile =
+          res.action_type === 'stt'
+            ? res[res.action_type].output_docx
+            : res[res.action_type][0].output_docx;
+        setPageContent(responseTxt);
+        setFileURL(responseFile);
+        if (res.action_type !== 'stt') {
+          setActiveBtn(
+            res.action_type === 'summary'
+              ? 1
+              : res.action_type === 'article'
+              ? 2
+              : 3
+          );
+        }
       });
+  };
+
+  useEffect(() => {
+    if (notifyID === id) {
+      fetchPageData();
+    }
+  }, [notifyID]);
+
+  useEffect(() => {
+    fetchPageData();
   }, []);
   if (isLoading && !data) {
     return;
@@ -82,7 +100,7 @@ function Workspace() {
     <div className="main-loading-wrapper">
       <HeavyLoadSpinner
         txt={workspaceLanguageData[lang].pageOnLoad}
-        isLoading={!data && !isLoading}
+        isLoading={!data?.[data?.action_type] && !isLoading}
       >
         <div className="workspace-load-wrapper">
           <div className="workspace">
@@ -229,6 +247,7 @@ function Workspace() {
               if (existingServiceData) {
                 setPageContent(existingServiceData.output_text);
                 setFileURL(existingServiceData.output_docx);
+                setActiveBtn(executeFC);
                 setActionsLoading(false);
                 return;
               }

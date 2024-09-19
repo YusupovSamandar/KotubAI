@@ -13,7 +13,7 @@ import { Music } from 'iconsax-react';
 import './../styles.scss';
 import fileLanguageOptions from './upload_data';
 import useGreeting from './useGreeting';
-import { uploadProps } from 'src/constants/form';
+import { uploadProps, uploadDocProps } from 'src/constants/form';
 import { useEffect } from 'react';
 import { useTypedSelector } from 'src/app/store';
 import { greetingLang } from './data';
@@ -46,6 +46,9 @@ const Greeting: React.FC<{
       }
     }
   }, [sTTError]);
+
+  const fileUploadProps =
+    selectedServiceType === 'transcript' ? uploadProps : uploadDocProps;
 
   return (
     <div className="main-greeting">
@@ -108,7 +111,7 @@ const Greeting: React.FC<{
               valuePropName="fileList"
               getValueFromEvent={normFile}
             >
-              <Dragger {...uploadProps}>
+              <Dragger {...fileUploadProps}>
                 <p className="ant-upload-drag-icon">
                   {selectedServiceType !== 'transcript' ? (
                     <DocumentSvg />

@@ -80,6 +80,8 @@ function Workspace() {
               ? 2
               : 3
           );
+        } else {
+          setContentType('docx');
         }
       });
   };

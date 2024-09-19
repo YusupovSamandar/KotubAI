@@ -56,6 +56,7 @@ export default function useGreeting(actionType) {
     // }
     const formData = new FormData();
     formData.append('name', value.name);
+    formData.append('article_type', 'article');
     formData.append('lang', value.lang);
     formData.append(
       'action_type',

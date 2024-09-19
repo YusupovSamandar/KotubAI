@@ -15,7 +15,7 @@ export const workSpaceActionsApi = api.injectEndpoints({
       query: (body) => ({
         url: `/projects/${body.id}/article/`,
         method: 'POST',
-        body,
+        body: { ...body },
       }),
     }),
     sTTTranslate: build.mutation<IService, ISpeechToTextSummary>({

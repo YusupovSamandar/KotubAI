@@ -107,10 +107,10 @@ function Workspace() {
             <div
               style={{ margin: isMobile ? '0px 0 30px 0' : '47px 0 100px 0' }}
             >
-              <FileCmp
+              {/* <FileCmp
                 fileTxt={workspaceLanguageData[lang].yourFile}
                 downloadUrl={data?.input_file || '#'}
-              />
+              /> */}
             </div>
             <div className="workspace-buttons">
               <div className="workspace-buttons-item">
@@ -290,6 +290,7 @@ function Workspace() {
           </>
         ) : (
           <BtnGroup
+            setContentType={setContentType}
             btns={actionsLangList}
             activeLangBtn={activeLangBtn}
             activeActionId={executeFC}

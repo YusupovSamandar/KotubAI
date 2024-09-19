@@ -24,7 +24,7 @@ export default function useRoutes() {
   const { deviceType } = useTypedSelector((state) => state.layout);
   const [loginTelegram] = useLoginTelegramMutation();
   const [verifyToken] = useVerifyTokenMutation();
-
+  const FCMToken = localStorage.getItem('FCMtoken');
   useEffect(() => {
     // Check if the Telegram object exists on the window
     if (window.Telegram && window.Telegram.WebApp) {
@@ -48,6 +48,7 @@ export default function useRoutes() {
             first_name: userData.first_name,
             last_name: userData.last_name,
             telegram_id: userData.id,
+            device_token: FCMToken,
           })
             .unwrap()
             .then(() => {

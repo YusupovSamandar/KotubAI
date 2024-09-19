@@ -18,6 +18,7 @@ export interface IService {
   file_name: string;
   output_text: string;
   user: number;
+  type?: articleTypes;
   project: number;
 }
 

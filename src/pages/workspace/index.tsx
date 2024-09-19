@@ -242,7 +242,7 @@ function Workspace() {
               const existingServiceData = data[execObj.service].find(
                 (service) =>
                   service.lang === activeLangBtn &&
-                  (!service.type || service.type === activeArticleType)
+                  (!service?.type || service?.type === activeArticleType)
               );
               if (existingServiceData) {
                 setPageContent(existingServiceData.output_text);

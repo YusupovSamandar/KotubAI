@@ -8,16 +8,16 @@ const historySlice = createSlice({
   name: 'userHistory',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      //Login
-      .addMatcher(
-        uploadApi.endpoints.getHistory.matchFulfilled,
-        (state, action) => {
-          return action.payload.results;
-        }
-      );
-  },
+  // extraReducers: (builder) => {
+  //   builder
+  //     //Login
+  //     .addMatcher(
+  //       uploadApi.endpoints.getHistory.matchFulfilled,
+  //       (state, action) => {
+  //         return action.payload.results;
+  //       }
+  //     );
+  // },
 });
 
 export default historySlice.reducer;

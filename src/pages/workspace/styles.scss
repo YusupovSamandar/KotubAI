@@ -4,26 +4,35 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  &-file {
-    margin-top: 53px;
-    border-radius: 16px;
-    width: 319px;
-    padding: 12px;
-    border: 1px solid #717493;
-    background: #212a37;
+  .workspace_file_container {
+    margin: 30px 0;
+    width: 70%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    gap: 17px;
-    &-header {
-      display: inline-block;
-      padding: 17px 16px;
-      border-radius: 15px;
-      background-image: url('src/assets/svg/music (2).svg');
-      background-repeat: no-repeat;
-      background-size: cover;
+    border-radius: 21px;
+    border: 2px solid rgba(46, 142, 180, 0.21);
+    &-title {
+      color: #fff;
+      font-size: 17px;
+      margin: 30px 0 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    &-button {
+      button {
+        height: unset;
+        font-size: 25.025px;
+        font-style: normal;
+        font-weight: 700;
+        padding: 19px 52px;
+        margin-bottom: 40px;
+      }
     }
   }
+
   &-buttons {
     display: flex;
     justify-content: center;
@@ -33,6 +42,11 @@
 
     button {
       min-width: 173px;
+      display: flex;
+      padding: 12px 35px !important;
+      height: unset !important;
+      align-items: center;
+      justify-content: center;
       &:not(.active) {
         background-color: transparent;
       }
@@ -42,13 +56,20 @@
     margin-top: 53px;
     background: radial-gradient(circle at top left, #32383e, transparent 10%),
       radial-gradient(circle at top right, #32383e, transparent 10%), #15171c;
-    min-width: 790px;
     padding: 30px;
     border-radius: 30px;
   }
   &-load-wrapper {
     position: relative;
     min-height: calc(100vh - 108px);
+  }
+  &-modal {
+    .ant-modal-footer {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-direction: column-reverse;
+    }
   }
   .create-btn-worspace-mobile {
     border: none;
@@ -109,6 +130,11 @@
   justify-content: space-around;
   padding: 20px 0 0 0 !important;
   gap: 20px;
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .btn-group-underline {

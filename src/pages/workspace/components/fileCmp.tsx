@@ -1,6 +1,9 @@
-import { Button, Typography } from 'antd';
+import { Button, Flex, Typography } from 'antd';
 import { CloudDownloadOutlined } from '@ant-design/icons';
 import FileLogo from 'src/assets/img/fileLogo.png';
+import CustomButton from 'src/components/common/button';
+import { DownloadIcon } from '../icons';
+import { Link } from 'react-router-dom';
 const { Title, Paragraph } = Typography;
 
 function fileCmp({
@@ -13,26 +16,21 @@ function fileCmp({
   size?: string;
 }) {
   return (
-    <div className="workspace-file">
-      <div className="workspace-file-header">
-        <img src={FileLogo} width={39} alt="" />
+    <div className="workspace_file_container">
+      <div className="workspace_file_container-title">
+        <Title level={4}>Transkriptsiya fayli tayyor!</Title>
       </div>
-      <div className="workspace-file-desc">
-        <Typography>
-          <Title level={4} style={{ margin: 0 }}>
-            {fileTxt?.substring(0, 20) || 'No file'}
-          </Title>
-          {size && (
-            <Paragraph style={{ color: '#A6AAAF' }}>file: {size}</Paragraph>
-          )}
-        </Typography>
-      </div>
-      <div>
+      <div className="workspace_file_container-button">
         <Button
           onClick={() => window.open(downloadUrl, '_blank')}
-          icon={<CloudDownloadOutlined />}
-        ></Button>
+          type="primary"
+        >
+          <Flex align="center" justify="center" gap={18}>
+            <span>YUKLAB OLISH</span> <DownloadIcon />
+          </Flex>
+        </Button>
       </div>
+      <div></div>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 interface IPerWorkspaceLanguageData {
   yourFile: string;
   transcript: string;
+  text: string;
+  docx: string;
   summarize: string;
   uploadNewFileTxt: string;
   pageOnLoad: string;
@@ -8,6 +10,7 @@ interface IPerWorkspaceLanguageData {
   translate: string;
   askQuestion: string;
   contentLoading: string;
+  fileType: string;
   modal: {
     summarize: {
       language: string;
@@ -43,6 +46,9 @@ interface IWorkspaceLanguageData {
 export const workspaceLanguageData: IWorkspaceLanguageData = {
   en: {
     transcript: 'Transcript',
+    fileType: 'Choose file type',
+    text: 'Text',
+    docx: 'Doc file',
     yourFile: 'Your File',
     summarize: 'Summarize',
     article: 'Article',
@@ -80,6 +86,9 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
   },
   ru: {
     transcript: 'Транскрипт',
+    fileType: 'Выберите тип файла',
+    text: 'Текст',
+    docx: 'Doc файл',
     summarize: 'Суммировать',
     yourFile: 'Ваш файл',
     article: 'Статья',
@@ -116,6 +125,9 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
   },
   uz: {
     yourFile: 'Sizning faylingiz',
+    fileType: 'Fayl turi tanlang',
+    text: 'Matn',
+    docx: 'Doc fayl',
     transcript: 'Transkript',
     summarize: 'Xulosa qilish',
     article: 'Maqola',

@@ -27,6 +27,7 @@ function btnGroup({
       <div className="btn-group-underline btn-lang-group">
         {btns.map((btn) => (
           <Button
+            icon={<btn.Flag />}
             key={btn.id}
             className={btn.id === activeLangBtn ? 'active' : ''}
             type={btn.id === activeLangBtn ? 'primary' : 'default'}
@@ -42,7 +43,7 @@ function btnGroup({
       <div>
         <div className="ant-modal-header">
           <div className="ant-modal-title">
-            {workspaceLanguageData[lang].modal.article.type}
+            {workspaceLanguageData[lang].fileType}
           </div>
         </div>
         <div className="btn-group-underline btn-lang-group">
@@ -58,7 +59,7 @@ function btnGroup({
           >
             <Flex align="center" gap={10}>
               <TextSvg />
-              <span>Matn</span>
+              <span> {workspaceLanguageData[lang].text}</span>
             </Flex>
           </Button>
           <Button
@@ -73,7 +74,7 @@ function btnGroup({
           >
             <Flex align="center" gap={10}>
               <DocxSvg />
-              <span>Doc file</span>
+              <span> {workspaceLanguageData[lang].docx}</span>
             </Flex>
           </Button>
         </div>

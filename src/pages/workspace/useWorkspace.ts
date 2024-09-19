@@ -15,6 +15,19 @@ import {
 import { useTypedSelector } from 'src/app/store';
 import { workspaceLanguageData } from './languageData';
 import { IBtnLangList } from './types';
+import {
+  ArticleSvg,
+  SummarySvg,
+  TranslateSvg,
+} from 'src/assets/svg/dashboard_svg';
+import {
+  ArticleIcon,
+  BritishFlag,
+  RusFlag,
+  SummaryIcon,
+  TranslateIcon,
+  UzbFlag,
+} from './icons';
 interface IButtonGroup {
   Icon: any;
   label: string;
@@ -74,7 +87,7 @@ export default function useWorkspace() {
 
   const actionsList: IButtonGroup[] = [
     {
-      Icon: FileDoneOutlined,
+      Icon: SummaryIcon,
       label: workspaceLanguageData[lang].summarize,
       service: 'summary',
       content: 'txt',
@@ -90,7 +103,7 @@ export default function useWorkspace() {
       },
     },
     {
-      Icon: EditOutlined,
+      Icon: ArticleIcon,
       label: workspaceLanguageData[lang].article,
       content: 'txt',
       service: 'article',
@@ -107,7 +120,7 @@ export default function useWorkspace() {
       },
     },
     {
-      Icon: TranslationOutlined,
+      Icon: TranslateIcon,
       label: workspaceLanguageData[lang].translate,
       content: 'txt',
       service: 'translate',
@@ -143,6 +156,7 @@ export default function useWorkspace() {
     {
       label: 'English',
       id: 'en-US',
+      Flag: BritishFlag,
       onclickFC: async () => {
         setActiveLangBtn('en-US');
       },
@@ -150,6 +164,7 @@ export default function useWorkspace() {
     {
       label: 'Русский',
       id: 'ru-RU',
+      Flag: RusFlag,
       onclickFC: async () => {
         setActiveLangBtn('ru-RU');
       },
@@ -157,6 +172,7 @@ export default function useWorkspace() {
     {
       label: "O'zbek",
       id: 'uz-UZ',
+      Flag: UzbFlag,
       onclickFC: async () => {
         setActiveLangBtn('uz-UZ');
       },

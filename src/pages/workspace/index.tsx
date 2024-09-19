@@ -22,6 +22,7 @@ import { workspaceLanguageData } from './languageData';
 import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
 import Title from 'antd/es/typography/Title';
 import { useGetProfileMutation } from 'src/app/services/auth';
+import { TranscriptIcon } from './icons';
 const { Paragraph } = Typography;
 const { TextArea } = Input;
 
@@ -127,7 +128,7 @@ function Workspace() {
                       setPageContent(data.stt.output_text);
                       setFileURL(data.stt.output_docx);
                     }}
-                    icon={<FileTextOutlined />}
+                    icon={<TranscriptIcon />}
                     size={'large'}
                   >
                     {workspaceLanguageData[lang].transcript}
@@ -223,6 +224,7 @@ function Workspace() {
       </HeavyLoadSpinner>
 
       <Modal
+        className="workspace-modal"
         okText={workspaceLanguageData[lang].modal.confirms.ok}
         cancelText={workspaceLanguageData[lang].modal.confirms.cancel}
         centered

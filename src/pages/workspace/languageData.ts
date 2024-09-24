@@ -11,6 +11,7 @@ interface IPerWorkspaceLanguageData {
   askQuestion: string;
   contentLoading: string;
   fileType: string;
+  fileReady: string;
   modal: {
     summarize: {
       language: string;
@@ -54,6 +55,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     article: 'Article',
     translate: 'Translate',
     askQuestion: 'Ask Question',
+    fileReady: 'Your file is ready',
     modal: {
       summarize: {
         language: 'Choose Language',
@@ -94,6 +96,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     article: 'Статья',
     translate: 'Перевести',
     askQuestion: 'Задать вопрос',
+    fileReady: 'Ваш файл готов',
     modal: {
       summarize: {
         language: 'Выберите язык',
@@ -133,6 +136,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     article: 'Maqola',
     translate: 'Tarjima',
     askQuestion: 'Savol bering',
+    fileReady: 'Sizning faylingiz tayyor',
     modal: {
       summarize: {
         language: 'Tilni tanlang',
@@ -162,4 +166,120 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     pageOnLoad: "Fayl tayyor bo'lganda sizga Telegram orqali xabar beriladi",
     contentLoading: 'Kontent yuklanmoqda...',
   },
+};
+
+interface IWorkspaceErrorData {
+  errorCode: string;
+  errorMessage: string;
+}
+
+interface IWorkspaceErrorLangData {
+  en: IWorkspaceErrorData[];
+  ru: IWorkspaceErrorData[];
+  uz: IWorkspaceErrorData[];
+}
+
+export const workspaceErrorLangData: IWorkspaceErrorLangData = {
+  en: [
+    {
+      errorCode: 'project_input_empty',
+      errorMessage: 'Project Input text or input file is empty.',
+    },
+    {
+      errorCode: 'invalid_article_type',
+      errorMessage: 'Invalid article type',
+    },
+    {
+      errorCode: 'incorrect_format',
+      errorMessage: 'Incorrect file format. choose one: audio or video',
+    },
+    {
+      errorCode: 'incorrect_size',
+      errorMessage: 'File size must be max 50 mb',
+    },
+    {
+      errorCode: 'incorrect_duration',
+      errorMessage: 'Audio must be less than 60 minutes long!',
+    },
+    {
+      errorCode: 'hissob',
+      errorMessage: 'Sizning hissobingiz yetarli emas!',
+    },
+    {
+      errorCode: 'invalid_lang',
+      errorMessage: 'Invalid language. choose one: uz-UZ, ru-RU, en-US',
+    },
+    {
+      errorCode: 'stt_empty',
+      errorMessage: 'STT output text is empty.',
+    },
+  ],
+  ru: [
+    {
+      errorCode: 'project_input_empty',
+      errorMessage: 'Входной текст проекта или входной файл пуст.',
+    },
+    {
+      errorCode: 'invalid_article_type',
+      errorMessage: 'Недопустимый тип статьи',
+    },
+    {
+      errorCode: 'incorrect_format',
+      errorMessage: 'Неверный формат файла. выберите один: аудио или видео',
+    },
+    {
+      errorCode: 'incorrect_size',
+      errorMessage: 'Размер файла должен быть не более 50 МБ',
+    },
+    {
+      errorCode: 'incorrect_duration',
+      errorMessage: 'Аудио должно быть длиной не более 60 минут!',
+    },
+    {
+      errorCode: 'hissob',
+      errorMessage: 'Ваш баланс недостаточен!',
+    },
+    {
+      errorCode: 'invalid_lang',
+      errorMessage: 'Недопустимый язык. выберите один: uz-UZ, ru-RU, en-US',
+    },
+    {
+      errorCode: 'stt_empty',
+      errorMessage: 'Вывод текста STT пуст.',
+    },
+  ],
+  uz: [
+    {
+      errorCode: 'project_input_empty',
+      errorMessage: 'Proyekt kiruvchi matn yoki kiruvchi fayl bo`sh.',
+    },
+    {
+      errorCode: 'invalid_article_type',
+      errorMessage: 'Noto‘g‘ri maqola turi',
+    },
+    {
+      errorCode: 'incorrect_format',
+      errorMessage: 'Noto‘g‘ri fayl formati. birini tanlang: audio yoki video',
+    },
+    {
+      errorCode: 'incorrect_size',
+      errorMessage: 'Fayl hajmi maksimum 50 mb bo‘lishi kerak',
+    },
+    {
+      errorCode: 'incorrect_duration',
+      errorMessage: 'Audio 60 daqiqadan kam bo‘lishi kerak!',
+    },
+    {
+      errorCode: 'hissob',
+      errorMessage: 'Sizning hisobingiz yetarli emas!',
+    },
+    {
+      errorCode: 'invalid_lang',
+      errorMessage: 'Noto‘g‘ri til. birini tanlang: uz-UZ, ru-RU, en-US',
+    },
+    {
+      errorCode: 'stt_empty',
+      errorMessage: 'STT chiqqan matn bo‘sh.',
+    },
+  ],
 };

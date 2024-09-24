@@ -3,10 +3,11 @@ import { IBtnLangList } from './../types';
 import { useTypedSelector } from 'src/app/store';
 import { workspaceLanguageData } from '../languageData';
 import { Col, Row } from 'antd';
-import { useState } from 'react';
 import { DocxSvg, TextSvg } from 'src/assets/svg/dashboard_svg';
+import { outputTypes } from 'src/app/services/uploads/type';
 function btnGroup({
   btns,
+  contentType,
   activeLangBtn,
   activeActionId,
   activeArticleType,
@@ -17,10 +18,11 @@ function btnGroup({
   activeLangBtn: string;
   activeActionId: number;
   activeArticleType: string;
+  contentType: outputTypes;
   articleTypes: IBtnLangList[];
   setContentType: any;
 }) {
-  const [isfileType, setisFileType] = useState(true);
+  const isfileType = contentType === 'docx';
   const lang = useTypedSelector((state) => state.language);
   return (
     <div>
@@ -48,12 +50,11 @@ function btnGroup({
         </div>
         <div className="btn-group-underline btn-lang-group">
           <Button
-            className={isfileType ? 'active' : ''}
-            type={isfileType ? 'primary' : 'default'}
+            className={!isfileType ? 'active' : ''}
+            type={!isfileType ? 'primary' : 'default'}
             shape="round"
             onClick={() => {
               setContentType('text');
-              setisFileType(true);
             }}
             size={'large'}
           >
@@ -63,12 +64,11 @@ function btnGroup({
             </Flex>
           </Button>
           <Button
-            className={!isfileType ? 'active' : ''}
-            type={!isfileType ? 'primary' : 'default'}
+            className={isfileType ? 'active' : ''}
+            type={isfileType ? 'primary' : 'default'}
             shape="round"
             onClick={() => {
               setContentType('docx');
-              setisFileType(false);
             }}
             size={'large'}
           >

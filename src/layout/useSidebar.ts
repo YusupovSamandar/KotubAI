@@ -21,7 +21,6 @@ export default function useSidebar() {
     const secondsLeft = (seconds % 60).toString().slice(0, 2);
     return `${hours} ${sidebarLangData[lang].hour} ${minutes} ${sidebarLangData[lang].minute} ${secondsLeft} ${sidebarLangData[lang].second}`;
   };
-  console.log(historyData);
   const userBalanceDisplay = {
     en: {
       title: 'Remaining Time:',

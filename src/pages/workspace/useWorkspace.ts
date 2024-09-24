@@ -1,9 +1,4 @@
-import {
-  EditOutlined,
-  FileDoneOutlined,
-  MessageOutlined,
-  TranslationOutlined,
-} from '@ant-design/icons';
+import { MessageOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { actionTypes, IProject } from 'src/app/services/uploads/type';
 import {
@@ -15,11 +10,6 @@ import {
 import { useTypedSelector } from 'src/app/store';
 import { workspaceLanguageData } from './languageData';
 import { IBtnLangList } from './types';
-import {
-  ArticleSvg,
-  SummarySvg,
-  TranslateSvg,
-} from 'src/assets/svg/dashboard_svg';
 import {
   ArticleIcon,
   BritishFlag,

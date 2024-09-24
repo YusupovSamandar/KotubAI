@@ -1,10 +1,8 @@
 import { Button, Flex, Typography } from 'antd';
-import { CloudDownloadOutlined } from '@ant-design/icons';
-import FileLogo from 'src/assets/img/fileLogo.png';
-import CustomButton from 'src/components/common/button';
 import { DownloadIcon } from '../icons';
-import { Link } from 'react-router-dom';
-const { Title, Paragraph } = Typography;
+import { workspaceLanguageData } from '../languageData';
+import { useTypedSelector } from 'src/app/store';
+const { Title } = Typography;
 
 function fileCmp({
   fileTxt,
@@ -15,10 +13,11 @@ function fileCmp({
   downloadUrl: string;
   size?: string;
 }) {
+  const lang = useTypedSelector((state) => state.language);
   return (
     <div className="workspace_file_container">
       <div className="workspace_file_container-title">
-        <Title level={4}>Transkriptsiya fayli tayyor!</Title>
+        <Title level={4}>{workspaceLanguageData[lang].fileReady}</Title>
       </div>
       <div className="workspace_file_container-button">
         <Button

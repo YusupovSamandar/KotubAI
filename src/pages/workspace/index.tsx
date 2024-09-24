@@ -18,7 +18,7 @@ import FileCmp from './components/fileCmp';
 import './styles.scss';
 import { useTypedSelector } from 'src/app/store';
 import useWorkspace from './useWorkspace';
-import { workspaceLanguageData } from './languageData';
+import { workspaceErrorLangData, workspaceLanguageData } from './languageData';
 import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
 import Title from 'antd/es/typography/Title';
 import { useGetProfileMutation } from 'src/app/services/auth';
@@ -149,7 +149,7 @@ function Workspace() {
                       setExecuteFC(action.id);
                       // await action.onclickFC(data);
                     }}
-                    icon={<action.Icon />}
+                    icon={<action.Icon active={action.id === activeBtn} />}
                     size={'large'}
                   >
                     {action.label}
@@ -162,7 +162,13 @@ function Workspace() {
                 {!actionsLoading ? (
                   <FileCmp downloadUrl={fileURL} fileTxt={fileURL} />
                 ) : (
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      marginTop: '20px',
+                    }}
+                  >
                     <Spin />
                   </div>
                 )}
@@ -256,20 +262,28 @@ function Workspace() {
                 return;
               }
             }
-            if (executeFC === 1 || executeFC === 3) {
-              await execObj.onclickFC(data.id, activeLangBtn);
-            } else if (executeFC === 2) {
-              await execObj.onclickFC(
-                data.id,
-                activeLangBtn,
-                activeArticleType
-              );
-            } else if (executeFC === 4) {
-              await execObj.onclickFC(data.id, question);
+            try {
+              if (executeFC === 1 || executeFC === 3) {
+                await execObj.onclickFC(data.id, activeLangBtn);
+              } else if (executeFC === 2) {
+                await execObj.onclickFC(
+                  data.id,
+                  activeLangBtn,
+                  activeArticleType
+                );
+              } else if (executeFC === 4) {
+                await execObj.onclickFC(data.id, question);
+              }
+              setActiveBtn(executeFC);
+              getProfile().unwrap();
+            } catch (error) {
+              console.log(error.data.errors[0].code);
+              const errorMsg = workspaceErrorLangData[lang].find(
+                (er) => er.errorCode === error.data.errors[0].code
+              ).errorMessage;
+              message.error(errorMsg, 10);
             }
-            setActiveBtn(executeFC);
             setActionsLoading(false);
-            getProfile().unwrap();
           })();
         }}
         onCancel={() => {
@@ -295,6 +309,7 @@ function Workspace() {
         ) : (
           <BtnGroup
             setContentType={setContentType}
+            contentType={contentType}
             btns={actionsLangList}
             activeLangBtn={activeLangBtn}
             activeActionId={executeFC}

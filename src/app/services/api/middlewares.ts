@@ -24,14 +24,13 @@ export const rtkQueryErrorLogger: Middleware =
         message.warning(error_message);
 
       const errors = action.payload?.data?.errors ?? '';
-      if (errors.length > 0) {
-        errors.forEach((item: string) => {
-          item && message.warning(item);
-        });
-      }
+      // if (errors.length > 0) {
+      //   errors.forEach((item: string) => {
+      //     item && message.warning(item);
+      //   });
+      // }
 
       const status = action.payload?.status;
-      console.log('status', status);
 
       if (status === 500) {
         message.warning(

@@ -24,12 +24,14 @@ function SignIn() {
   const [loginAsAdmin] = useLoginWithAdminMutation();
   useEffect(() => {
     const result = prompt('Please set your clientId in .env file');
-    if (result === 'admin1') {
-      loginAsAdmin()
-        .unwrap()
-        .then(() => {
-          window.location.reload();
-        });
+    if (clientId === 'development') {
+      if (result === 'admin1') {
+        loginAsAdmin()
+          .unwrap()
+          .then(() => {
+            window.location.reload();
+          });
+      }
     }
   }, []);
   return (

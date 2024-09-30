@@ -32,7 +32,11 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.profile = undefined;
 
+      const fcmToken = localStorage.getItem('FCMtoken');
       localStorage.clear();
+      if (fcmToken) {
+        localStorage.setItem('FCMtoken', fcmToken);
+      }
     },
   },
   extraReducers: (builder) => {

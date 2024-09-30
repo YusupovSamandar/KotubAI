@@ -157,7 +157,7 @@ function Workspace() {
                 </div>
               ))}
             </div>
-            {contentType === 'docx' ? (
+            {contentType === 'docx' || !activeBtn ? (
               <>
                 {!actionsLoading ? (
                   <FileCmp downloadUrl={fileURL} fileTxt={fileURL} />
@@ -277,11 +277,11 @@ function Workspace() {
               setActiveBtn(executeFC);
               getProfile().unwrap();
             } catch (error) {
-              console.log(error.data.errors[0].code);
               const errorMsg = workspaceErrorLangData[lang].find(
                 (er) => er.errorCode === error.data.errors[0].code
               ).errorMessage;
               message.error(errorMsg, 10);
+              setActionsLoading(false);
             }
             setActionsLoading(false);
           })();

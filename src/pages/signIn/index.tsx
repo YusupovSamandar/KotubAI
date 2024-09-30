@@ -23,8 +23,8 @@ function SignIn() {
   const currLang = useTypedSelector((state) => state.language);
   const [loginAsAdmin] = useLoginWithAdminMutation();
   useEffect(() => {
-    const result = prompt('Please set your clientId in .env file');
     if (clientId === 'development') {
+      const result = prompt('Please set your clientId in .env file');
       if (result === 'admin1') {
         loginAsAdmin()
           .unwrap()

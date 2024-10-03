@@ -7,6 +7,8 @@ import { IServices } from 'src/app/services/type';
 import ServicesSelect from './components/servicesSelect';
 import { paymentLangData } from './components/data';
 import Greeting from './components/greeting';
+import MainStep2 from './step2';
+import './styles.scss';
 
 export default function Main() {
   const currLang = useTypedSelector((state) => state.language);
@@ -36,20 +38,37 @@ export default function Main() {
   const [actionType, setActionType] = useState<'s-t-t' | 'smr' | 't-t-s'>(
     's-t-t'
   );
-  const [serviceType, setServiceType] = useState<IServices>(
-    searchParams.get('service') as IServices
-  );
+  const currentStep = searchParams.get('service')
+    ? searchParams.get('lang') && searchParams.get('inputType')
+      ? 3
+      : 2
+    : 1;
+  const [steps, setSteps] = useState<1 | 2 | 3>(currentStep);
 
   useEffect(() => {
-    setServiceType(searchParams.get('service') as IServices);
-  }, [searchParams.get('service')]);
+    setSteps(
+      searchParams.get('service')
+        ? searchParams.get('lang') && searchParams.get('inputType')
+          ? 3
+          : 2
+        : 1
+    );
+  }, [searchParams]);
+
   return (
     <div className="main-page">
       {/* <Select
         optionsValue={actionType}
         setActionType={setActionType as Dispatch<SetStateAction<string>>}
       /> */}
-      {!serviceType ? <ServicesSelect /> : <Greeting actionType={actionType} />}
+
+      {steps === 1 ? (
+        <ServicesSelect setSteps={setSteps} />
+      ) : steps === 2 ? (
+        <MainStep2 setSteps={setSteps} />
+      ) : (
+        <Greeting actionType={actionType} />
+      )}
     </div>
   );
 }

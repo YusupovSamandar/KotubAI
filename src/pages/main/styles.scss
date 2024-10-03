@@ -1,44 +1,83 @@
 @import 'src/styles/variables.scss';
 
-.main-greeting {
-  max-width: 640px;
-  flex-shrink: 0;
-  border-radius: 32px;
-  overflow: hidden;
-  background: radial-gradient(circle at top left, #32383e, transparent 20%),
-    radial-gradient(circle at top right, #32383e, transparent 20%), #1c1e23;
-  margin: 52px auto;
-  &-header {
-    border-bottom: 1px solid #26272f;
-    padding: 20px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-  }
-  &-form {
-    padding: 20px;
-  }
-  &-form {
-    .ant-select-arrow {
-      color: white !important;
+.main {
+  &-step2 {
+    margin: 52px auto;
+    &-submits {
+      margin: 0 45px;
     }
-    &-select {
-      background-color: #27292e !important;
-      width: 100% !important;
+    &-btn_group {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      margin: 0 45px;
+      .ant-btn {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
     }
-    .ant-select-selector {
-      border: none !important;
+    &-container {
+      h3.ant-typography {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      text-align: center;
+      background-color: $over_dark;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      border-radius: 32px;
+    }
+    &-submits {
+      .ant-btn {
+        width: 100%;
+      }
     }
   }
-  &-submit {
-    text-align: right;
-    margin-top: 20px;
-    button {
-      background-color: #1b2c2a;
-      color: #52edac;
-      &:hover {
-        background-color: #213634 !important;
-        color: #52edac !important;
+  &-greeting {
+    max-width: 640px;
+    flex-shrink: 0;
+    border-radius: 32px;
+    overflow: hidden;
+    background: radial-gradient(circle at top left, #32383e, transparent 20%),
+      radial-gradient(circle at top right, #32383e, transparent 20%), #1c1e23;
+    margin: 52px auto;
+    &-header {
+      border-bottom: 1px solid #26272f;
+      padding: 20px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    &-form {
+      padding: 20px;
+    }
+    &-form {
+      .ant-select-arrow {
+        color: white !important;
+      }
+      &-select {
+        background-color: #27292e !important;
+        width: 100% !important;
+      }
+      .ant-select-selector {
+        border: none !important;
+      }
+    }
+    &-submit {
+      text-align: right;
+      margin-top: 20px;
+      button {
+        background-color: #1b2c2a;
+        color: #52edac;
+        &:hover {
+          background-color: #213634 !important;
+          color: #52edac !important;
+        }
       }
     }
   }

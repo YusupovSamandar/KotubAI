@@ -7,6 +7,8 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { IServices } from 'src/app/services/type';
+import { UserInputOptions } from 'src/constants/type';
+import { LanguageTypes } from 'src/app/services/uploads/type';
 
 interface IForm {
   name: string;
@@ -18,6 +20,10 @@ interface IForm {
 export default function useGreeting(actionType) {
   const [searchParams] = useSearchParams();
   const selectedServiceType = searchParams.get('service') as IServices;
+  const selectedUserInputType = searchParams.get(
+    'inputType'
+  ) as UserInputOptions;
+  const selectedLanguage = searchParams.get('lang') as LanguageTypes;
   const navigate = useNavigate();
   const [createProject, { isLoading, error: sTTError }] =
     useCreateProjectMutation();
@@ -57,7 +63,7 @@ export default function useGreeting(actionType) {
     const formData = new FormData();
     formData.append('name', value.name);
     formData.append('article_type', 'article');
-    formData.append('lang', value.lang);
+    formData.append('lang', selectedLanguage);
     formData.append(
       'action_type',
       selectedServiceType === 'transcript' ? 'stt' : selectedServiceType
@@ -88,5 +94,6 @@ export default function useGreeting(actionType) {
     normFile,
     sTTError,
     selectedServiceType,
+    selectedUserInputType,
   };
 }

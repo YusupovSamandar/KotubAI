@@ -18,6 +18,7 @@ import {
   TranslateIcon,
   UzbFlag,
 } from './icons';
+import useActionButtons from './useActionButtons';
 interface IButtonGroup {
   Icon: any;
   label: string;
@@ -31,8 +32,9 @@ export default function useWorkspace() {
   const [data, setData] = useState<IProject | null>(null);
   const [pageContent, setPageContent] = useState<string>(' ');
   const [fileURL, setFileURL] = useState<string>(null);
-  const [activeLangBtn, setActiveLangBtn] = useState<string>('en-US');
+
   const [activeArticleType, setActiveArticleType] = useState<string>('article');
+  const { actionsLangList, activeLangBtn } = useActionButtons();
 
   const lang = useTypedSelector((state) => state.language);
   const [postSTTSummary, { isLoading: isLoadingSTTSummary }] =
@@ -142,32 +144,7 @@ export default function useWorkspace() {
       },
     },
   ];
-  const actionsLangList: IBtnLangList[] = [
-    {
-      label: 'English',
-      id: 'en-US',
-      Flag: BritishFlag,
-      onclickFC: async () => {
-        setActiveLangBtn('en-US');
-      },
-    },
-    {
-      label: 'Русский',
-      id: 'ru-RU',
-      Flag: RusFlag,
-      onclickFC: async () => {
-        setActiveLangBtn('ru-RU');
-      },
-    },
-    {
-      label: "O'zbek",
-      id: 'uz-UZ',
-      Flag: UzbFlag,
-      onclickFC: async () => {
-        setActiveLangBtn('uz-UZ');
-      },
-    },
-  ];
+
   return {
     pageContent,
     actionsList,

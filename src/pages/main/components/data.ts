@@ -14,6 +14,7 @@ export interface IEachGreetingLang {
   fileUpload: string;
   docxUpload: string;
   submit: string;
+  youtubeError: string;
 }
 export interface IEachLang {
   en: IEachGreetingLang;
@@ -72,6 +73,7 @@ export const greetingLang: IEachLang = {
       article: 'Generate article',
     },
     input_text: 'Input text',
+    youtubeError: 'Failed to load audio from Youtube',
     projectName: 'Project Name',
     projectNameWarning: 'Project name is required!',
     languageWarning: 'Language is required!',
@@ -88,6 +90,7 @@ export const greetingLang: IEachLang = {
       translate: 'Fayl tarjima qilish',
       article: 'Berilgan mavzuda maqola yozish',
     },
+    youtubeError: 'youtubedan audio yuklab olinmadi.',
     input_text: 'Matn kiriting',
     projectName: 'Loyiha nomi',
     projectNameWarning: 'Loyiha nomi kerak!',
@@ -105,6 +108,7 @@ export const greetingLang: IEachLang = {
       summary: 'Суммировать из аудио',
       translate: 'Перевести документ',
     },
+    youtubeError: 'Не удалось загрузить аудио с Youtube',
     input_text: 'Введите текст',
     projectName: 'Название проекта',
     projectNameWarning: 'Название проекта обязательно!',

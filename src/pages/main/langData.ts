@@ -5,7 +5,12 @@ interface IMainData {
     article: string;
     translate: string;
   };
+  chooseInputType: string;
   serviceTitle: string;
+  audioVideo: string;
+  youtubeLink: string;
+  text: string;
+  docFile: string;
 }
 
 interface IMainLangData {
@@ -23,6 +28,11 @@ export const mainLangData: IMainLangData = {
       translate: 'Translate',
     },
     serviceTitle: 'Select service type',
+    chooseInputType: 'choose input type',
+    audioVideo: 'Audio/Video',
+    youtubeLink: 'YouTube link',
+    docFile: 'doc file',
+    text: 'text',
   },
   ru: {
     services: {
@@ -32,6 +42,11 @@ export const mainLangData: IMainLangData = {
       translate: 'Перевод',
     },
     serviceTitle: 'Выберите тип услуги',
+    chooseInputType: 'choose input type',
+    audioVideo: 'Audio/Video',
+    youtubeLink: 'YouTube link',
+    docFile: 'doc file',
+    text: 'text',
   },
   uz: {
     services: {
@@ -41,5 +56,10 @@ export const mainLangData: IMainLangData = {
       translate: 'Tarjima',
     },
     serviceTitle: 'Xizmat turini tanlang',
+    chooseInputType: 'Choose input type',
+    audioVideo: 'Audio/Video',
+    youtubeLink: 'YouTube link',
+    docFile: 'doc file',
+    text: 'text',
   },
 };

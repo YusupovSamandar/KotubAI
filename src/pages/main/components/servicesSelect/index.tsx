@@ -9,8 +9,13 @@ import './styles.scss';
 import useParamsHook from 'src/hooks/params';
 import { mainLangData } from '../../langData';
 import { useTypedSelector } from 'src/app/store';
+import { Dispatch, SetStateAction } from 'react';
 const { Title } = Typography;
-function ServicesSelect() {
+function ServicesSelect({
+  setSteps,
+}: {
+  setSteps: Dispatch<SetStateAction<2 | 1 | 3>>;
+}) {
   const { handleMakeParams } = useParamsHook();
   const lang = useTypedSelector((state) => state.language);
   const allServices = [
@@ -46,6 +51,7 @@ function ServicesSelect() {
             <div
               onClick={() => {
                 handleMakeParams('service', service.service);
+                // setSteps(2);
               }}
               className="services-container-item"
             >

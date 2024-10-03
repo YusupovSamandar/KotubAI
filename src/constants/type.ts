@@ -20,3 +20,5 @@ export interface IMonthData<TData> {
   11: TData;
   12: TData;
 }
+
+export type UserInputOptions = 'audio/video' | 'yt_link' | 'text' | 'doc';

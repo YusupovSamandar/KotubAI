@@ -2,6 +2,7 @@
 export type actionTypes = 'stt' | 'summary' | 'article' | 'translate';
 export type outputTypes = 'text' | 'docx';
 export type articleTypes = 'article' | 'news' | 'interview' | 'reportage';
+export type LanguageTypes = 'uz-UZ' | 'en-US' | 'ru-RU';
 export interface ISpeechToText {
   name: string;
   input_text: string;
@@ -11,7 +12,7 @@ export interface ISpeechToText {
 
 export interface IService {
   id: number;
-  lang: 'uz-UZ' | 'en-US' | 'ru-RU';
+  lang: LanguageTypes;
   input_text: string | null;
   input_file: string;
   output_docx: string;

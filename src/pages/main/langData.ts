@@ -51,7 +51,7 @@ export const mainLangData: IMainLangData = {
   uz: {
     services: {
       transcript: 'Transkripsiya',
-      summary: 'Izoh',
+      summary: 'Xulosa qilish',
       article: 'Maqola',
       translate: 'Tarjima',
     },

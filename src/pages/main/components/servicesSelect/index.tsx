@@ -11,11 +11,7 @@ import { mainLangData } from '../../langData';
 import { useTypedSelector } from 'src/app/store';
 import { Dispatch, SetStateAction } from 'react';
 const { Title } = Typography;
-function ServicesSelect({
-  setSteps,
-}: {
-  setSteps: Dispatch<SetStateAction<2 | 1 | 3>>;
-}) {
+function ServicesSelect() {
   const { handleMakeParams } = useParamsHook();
   const lang = useTypedSelector((state) => state.language);
   const allServices = [

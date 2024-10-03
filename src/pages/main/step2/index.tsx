@@ -6,16 +6,13 @@ import useParamsHook from 'src/hooks/params';
 import { workspaceLanguageData } from 'src/pages/workspace/languageData';
 import useActionButtons from 'src/pages/workspace/useActionButtons';
 import { mainLangData } from '../langData';
+import { IServices } from 'src/app/services/type';
 
-function MainStep2({
-  setSteps,
-}: {
-  setSteps: Dispatch<SetStateAction<2 | 1 | 3>>;
-}) {
+function MainStep2() {
   const { actionsLangList, activeLangBtn, userInputType, userInputTypeList } =
     useActionButtons();
   const lang = useTypedSelector((state) => state.language);
-  const { handleMakeParams } = useParamsHook();
+  const { handleMakeParams, searchParams } = useParamsHook();
 
   const handleSubmit = () => {
     if (activeLangBtn && userInputType) {
@@ -24,6 +21,11 @@ function MainStep2({
       // setSteps(3);
     }
   };
+  const selectedService = searchParams.get('service') as IServices;
+  const selectedUserInputTypeList =
+    selectedService === 'transcript'
+      ? userInputTypeList.slice(0, 2)
+      : userInputTypeList;
 
   return (
     <div className="main-step2">
@@ -56,20 +58,21 @@ function MainStep2({
         <Divider />
         <Flex align="center" justify="center">
           <div className="main-step2-btn_group">
-            {userInputTypeList.map((btn) => (
-              <Button
-                style={{ width: 'calc(50% - 20px)' }}
-                icon={<btn.Icon selected={btn.value === userInputType} />}
-                key={btn.value}
-                className={btn.value === userInputType ? 'active' : ''}
-                type={btn.value === userInputType ? 'primary' : 'default'}
-                shape="round"
-                onClick={btn.onclickFC}
-                size={'large'}
-              >
-                {btn.label}
-              </Button>
-            ))}
+            {selectedService &&
+              selectedUserInputTypeList.map((btn) => (
+                <Button
+                  style={{ width: 'calc(50% - 20px)' }}
+                  icon={<btn.Icon selected={btn.value === userInputType} />}
+                  key={btn.value}
+                  className={btn.value === userInputType ? 'active' : ''}
+                  type={btn.value === userInputType ? 'primary' : 'default'}
+                  shape="round"
+                  onClick={btn.onclickFC}
+                  size={'large'}
+                >
+                  {btn.label}
+                </Button>
+              ))}
           </div>
         </Flex>
         <br />

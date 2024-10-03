@@ -79,19 +79,11 @@ export default function useGreeting(actionType) {
     navigate(`/${data.id}`);
   };
 
-  const normFile = (e: any) => {
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e?.fileList;
-  };
-
   const [form] = Form.useForm();
   return {
     form,
     onFinish,
     isLoading,
-    normFile,
     sTTError,
     selectedServiceType,
     selectedUserInputType,

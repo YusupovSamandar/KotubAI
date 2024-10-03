@@ -1,3 +1,3 @@
-import TranscriptGreeting from './transcript';
+import TranscriptGreeting from './greetingForm';
 
 export { TranscriptGreeting };

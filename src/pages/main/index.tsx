@@ -63,9 +63,9 @@ export default function Main() {
       /> */}
 
       {steps === 1 ? (
-        <ServicesSelect setSteps={setSteps} />
+        <ServicesSelect />
       ) : steps === 2 ? (
-        <MainStep2 setSteps={setSteps} />
+        <MainStep2 />
       ) : (
         <Greeting actionType={actionType} />
       )}

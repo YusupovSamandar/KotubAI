@@ -18,6 +18,7 @@ export const windowSize =
   typeof window !== 'undefined' ? window.innerWidth : 1440;
 
 export const uploadProps: UploadProps = {
+  style: { padding: '20px 0' },
   accept: 'audio/*, video/mp4',
   name: 'file',
   beforeUpload: (file) => {
@@ -54,4 +55,4 @@ export const uploadProps: UploadProps = {
   },
 };
 
-export const uploadDocProps = {...uploadProps, accept: '.docx,'}
+export const uploadDocProps = { ...uploadProps, accept: '.docx,' };

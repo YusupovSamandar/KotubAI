@@ -12,7 +12,6 @@ import {
 import { Music } from 'iconsax-react';
 import fileLanguageOptions from './upload_data';
 import useGreeting from './useGreeting';
-import { uploadProps, uploadDocProps } from 'src/constants/form';
 import { useEffect } from 'react';
 import { useTypedSelector } from 'src/app/store';
 import { greetingLang } from './data';
@@ -29,7 +28,6 @@ const Greeting: React.FC<{
     form,
     onFinish,
     isLoading,
-    normFile,
     sTTError,
     selectedServiceType,
     selectedUserInputType,
@@ -56,9 +54,6 @@ const Greeting: React.FC<{
       }
     }
   }, [sTTError]);
-
-  const fileUploadProps =
-    selectedServiceType === 'transcript' ? uploadProps : uploadDocProps;
 
   return (
     <div className="main-greeting">

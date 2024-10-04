@@ -12,6 +12,9 @@ interface IPerWorkspaceLanguageData {
   contentLoading: string;
   fileType: string;
   fileReady: string;
+  readMore: string;
+  readLess: string;
+  save: string;
   modal: {
     summarize: {
       language: string;
@@ -56,6 +59,9 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     translate: 'Translate',
     askQuestion: 'Ask Question',
     fileReady: 'Your file is ready',
+    readMore: 'Read More',
+    readLess: 'Read Less',
+    save: 'Save',
     modal: {
       summarize: {
         language: 'Choose Language',
@@ -87,6 +93,7 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     contentLoading: 'Content is loading...',
   },
   ru: {
+    save: 'Сохранить',
     transcript: 'Транскрипт',
     fileType: 'Выберите тип файла',
     text: 'Текст',
@@ -97,6 +104,8 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     translate: 'Перевести',
     askQuestion: 'Задать вопрос',
     fileReady: 'Ваш файл готов',
+    readMore: 'Читать далее',
+    readLess: 'Читать меньше',
     modal: {
       summarize: {
         language: 'Выберите язык',
@@ -137,6 +146,9 @@ export const workspaceLanguageData: IWorkspaceLanguageData = {
     translate: 'Tarjima',
     askQuestion: 'Savol bering',
     fileReady: 'Sizning faylingiz tayyor',
+    readMore: 'ko’proq ko’rsatish',
+    readLess: 'kamroq ko’rsatish',
+    save: 'Saqlash',
     modal: {
       summarize: {
         language: 'Tilni tanlang',

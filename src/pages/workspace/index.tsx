@@ -1,28 +1,18 @@
-import {
-  Button,
-  Input,
-  Modal,
-  Skeleton,
-  Spin,
-  Typography,
-  message,
-} from 'antd';
+import { Button, Input, Modal, Spin, Switch, Typography, message } from 'antd';
 import { useEffect, useState } from 'react';
-import { FileTextOutlined } from '@ant-design/icons';
 import { Link, useParams } from 'react-router-dom';
+import { useGetProfileMutation } from 'src/app/services/auth';
 import { useGetProjectMutation } from 'src/app/services/uploads';
-import { IProject, outputTypes } from 'src/app/services/uploads/type';
-import { CopyIcon } from 'src/assets/svg/dashboard_svg';
+import { outputTypes } from 'src/app/services/uploads/type';
+import { useTypedSelector } from 'src/app/store';
+import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
 import BtnGroup from './components/btnGroup';
 import FileCmp from './components/fileCmp';
-import './styles.scss';
-import { useTypedSelector } from 'src/app/store';
-import useWorkspace from './useWorkspace';
-import { workspaceErrorLangData, workspaceLanguageData } from './languageData';
-import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
-import Title from 'antd/es/typography/Title';
-import { useGetProfileMutation } from 'src/app/services/auth';
 import { TranscriptIcon } from './icons';
+import { workspaceErrorLangData, workspaceLanguageData } from './languageData';
+import './styles.scss';
+import useWorkspace from './useWorkspace';
+import WorkspaceTextResult from './components/textResult';
 const { Paragraph } = Typography;
 const { TextArea } = Input;
 
@@ -157,69 +147,49 @@ function Workspace() {
                 </div>
               ))}
             </div>
-            {contentType === 'docx' || !activeBtn ? (
-              <>
-                {!actionsLoading ? (
-                  <FileCmp downloadUrl={fileURL} fileTxt={fileURL} />
-                ) : (
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      marginTop: '20px',
-                    }}
-                  >
-                    <Spin />
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="workspace-results">
-                <Typography>
+            <div className="workspace-content_wrapper">
+              {contentType === 'docx' ? (
+                <>
                   {!actionsLoading ? (
-                    pageContent?.split('\n').map((line, index) => (
-                      <Paragraph key={index} style={{ color: '#fff' }}>
-                        {line}
-                        <br />
-                      </Paragraph>
-                    ))
+                    <FileCmp downloadUrl={fileURL} fileTxt={fileURL} />
                   ) : (
-                    <div>
-                      <Title style={{ textAlign: 'center' }} level={5}>
-                        {workspaceLanguageData[lang].contentLoading}
-                      </Title>
-                      <Skeleton
-                        className="custom-skeleton"
-                        active
-                        title={false}
-                        paragraph={{ rows: 4 }}
-                      />
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        marginTop: '20px',
+                      }}
+                    >
+                      <Spin />
                     </div>
                   )}
-                  {!actionsLoading && pageContent?.length > 1 && (
-                    <div style={{ textAlign: 'right' }}>
-                      {contextHolder}
-                      <Button
-                        onClick={() => {
-                          navigator.clipboard
-                            .writeText(pageContent)
-                            .then(() => {
-                              messageApi.open({
-                                type: 'success',
-                                content: 'copied to clipboard',
-                              });
-                            });
-                        }}
-                        style={{ border: 'none', background: 'none' }}
-                      >
-                        <CopyIcon />
-                      </Button>
-                    </div>
-                  )}
-                </Typography>
-              </div>
-            )}
+                </>
+              ) : (
+                pageContent &&
+                pageContent.length > 1 && (
+                  <div className="workspace-results">
+                    <WorkspaceTextResult
+                      actionsLoading={actionsLoading}
+                      contextHolder={contextHolder}
+                      messageApi={messageApi}
+                      pageContent={pageContent}
+                    />
+                  </div>
+                )
+              )}
+            </div>
+
             <br />
+            <div className="workspace-content_toggle">
+              <p>Tekst format</p>
+              <Switch
+                defaultChecked
+                onChange={(checked) =>
+                  setContentType(checked ? 'docx' : 'text')
+                }
+              />
+              <p>Doc format</p>
+            </div>
             <Link to="/">
               <Button type="primary" className="create-btn-worspace-mobile">
                 {workspaceLanguageData[lang].uploadNewFileTxt}
@@ -308,8 +278,6 @@ function Workspace() {
           </>
         ) : (
           <BtnGroup
-            setContentType={setContentType}
-            contentType={contentType}
             btns={actionsLangList}
             activeLangBtn={activeLangBtn}
             activeActionId={executeFC}

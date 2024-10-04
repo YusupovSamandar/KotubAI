@@ -1,28 +1,21 @@
-import { Button, Flex } from 'antd';
+import { Button } from 'antd';
 import { IBtnLangList } from './../types';
 import { useTypedSelector } from 'src/app/store';
 import { workspaceLanguageData } from '../languageData';
 import { Col, Row } from 'antd';
-import { DocxSvg, TextSvg } from 'src/assets/svg/dashboard_svg';
-import { outputTypes } from 'src/app/services/uploads/type';
 function btnGroup({
   btns,
-  contentType,
   activeLangBtn,
   activeActionId,
   activeArticleType,
   articleTypes,
-  setContentType,
 }: {
   btns: IBtnLangList[];
   activeLangBtn: string;
   activeActionId: number;
   activeArticleType: string;
-  contentType: outputTypes;
   articleTypes: IBtnLangList[];
-  setContentType: any;
 }) {
-  const isfileType = contentType === 'docx';
   const lang = useTypedSelector((state) => state.language);
   return (
     <div>
@@ -41,45 +34,6 @@ function btnGroup({
           </Button>
         ))}
       </div>
-      <br />
-      <div>
-        <div className="ant-modal-header">
-          <div className="ant-modal-title">
-            {workspaceLanguageData[lang].fileType}
-          </div>
-        </div>
-        <div className="btn-group-underline btn-lang-group">
-          <Button
-            className={!isfileType ? 'active' : ''}
-            type={!isfileType ? 'primary' : 'default'}
-            shape="round"
-            onClick={() => {
-              setContentType('text');
-            }}
-            size={'large'}
-          >
-            <Flex align="center" gap={10}>
-              <TextSvg />
-              <span> {workspaceLanguageData[lang].text}</span>
-            </Flex>
-          </Button>
-          <Button
-            className={isfileType ? 'active' : ''}
-            type={isfileType ? 'primary' : 'default'}
-            shape="round"
-            onClick={() => {
-              setContentType('docx');
-            }}
-            size={'large'}
-          >
-            <Flex align="center" gap={10}>
-              <DocxSvg />
-              <span> {workspaceLanguageData[lang].docx}</span>
-            </Flex>
-          </Button>
-        </div>
-      </div>
-      <br />
 
       {activeActionId === 2 && (
         <div>

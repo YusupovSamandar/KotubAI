@@ -1,18 +1,21 @@
 import { Button, Divider, Flex } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useTypedSelector } from 'src/app/store';
 import useParamsHook from 'src/hooks/params';
 import { workspaceLanguageData } from 'src/pages/workspace/languageData';
 import useActionButtons from 'src/pages/workspace/useActionButtons';
 import { mainLangData } from '../langData';
 import { IServices } from 'src/app/services/type';
+import { greetingLang } from '../components/data';
+import { LanguageTypes } from 'src/app/services/uploads/type';
 
 function MainStep2() {
   const { actionsLangList, activeLangBtn, userInputType, userInputTypeList } =
     useActionButtons();
   const lang = useTypedSelector((state) => state.language);
   const { handleMakeParams, searchParams } = useParamsHook();
+  const [outputLang, setOutputLang] = useState<LanguageTypes>('en-US');
 
   const handleSubmit = () => {
     if (activeLangBtn && userInputType) {
@@ -31,7 +34,29 @@ function MainStep2() {
     <div className="main-step2">
       <div className="main-step2-container">
         <Title style={{ marginTop: '20px' }} level={3}>
-          {workspaceLanguageData[lang].modal.summarize.language}
+          {greetingLang[lang].language}
+        </Title>
+        <Divider />
+        <Flex align="center" justify="center">
+          <div className="main-step2-btn_group">
+            {actionsLangList.map((btn) => (
+              <Button
+                style={{ flexGrow: 1 }}
+                icon={<btn.Flag />}
+                key={btn.id}
+                className={btn.id === outputLang ? 'active' : ''}
+                type={btn.id === outputLang ? 'primary' : 'default'}
+                shape="round"
+                onClick={() => setOutputLang(btn.id)}
+                size={'large'}
+              >
+                {btn.label}
+              </Button>
+            ))}
+          </div>
+        </Flex>
+        <Title style={{ marginTop: '20px' }} level={3}>
+          {greetingLang[lang].serviceLanguage}
         </Title>
         <Divider />
         <Flex align="center" justify="center">

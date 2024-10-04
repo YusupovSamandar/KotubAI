@@ -110,6 +110,34 @@ $font-primary: 'Poppins', sans-serif;
     width: 474px;
   }
 }
+@mixin scroll-textArea {
+  overflow-y: auto;
+  /* width */
+  &::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 20px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $bg;
+    border-radius: 20px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    // background: #878a99;
+    background: $primary;
+    border-radius: 20px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    // background: #878a99;
+    background: $primary;
+    cursor: pointer;
+  }
+}
 
 @mixin scroll-table {
   overflow-x: auto;

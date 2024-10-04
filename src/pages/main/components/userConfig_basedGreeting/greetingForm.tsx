@@ -3,6 +3,7 @@ import { greetingLang } from '../data';
 import { useTypedSelector } from 'src/app/store';
 import { UserInputOptions } from 'src/constants/type';
 import MainGreetingDragger from '../servicesSelect/dragger';
+import TextArea from 'antd/es/input/TextArea';
 
 function TranscriptGreeting({
   selectedUserInputType,
@@ -20,9 +21,20 @@ function TranscriptGreeting({
               <Input placeholder={greetingLang[lang].youtubeLink} />
             </Form.Item>
           </Col>
-        ) : selectedUserInputType === 'audio/video' ? (
+        ) : selectedUserInputType === 'audio/video' ||
+          selectedUserInputType === 'doc' ? (
           <Col xs={24}>
-            <MainGreetingDragger fileType="audio/video" />
+            <MainGreetingDragger fileType={selectedUserInputType} />
+          </Col>
+        ) : selectedUserInputType === 'text' ? (
+          <Col xs={24}>
+            <Form.Item name="input_text">
+              <TextArea
+                placeholder={greetingLang[lang].input_text}
+                rows={4}
+                maxLength={6}
+              />
+            </Form.Item>
           </Col>
         ) : null}
       </Row>

@@ -15,6 +15,7 @@ export interface IEachGreetingLang {
   docxUpload: string;
   submit: string;
   youtubeError: string;
+  serviceLanguage: string;
 }
 export interface IEachLang {
   en: IEachGreetingLang;
@@ -77,11 +78,12 @@ export const greetingLang: IEachLang = {
     projectName: 'Project Name',
     projectNameWarning: 'Project name is required!',
     languageWarning: 'Language is required!',
-    language: 'Choose language',
+    language: 'Choose audio/video language',
     youtubeLink: 'Youtube link',
     fileUpload: 'Upload audio file',
     submit: 'Submit',
     docxUpload: 'Upload docx file',
+    serviceLanguage: 'Choose output language',
   },
   uz: {
     mainHeader: {
@@ -95,11 +97,12 @@ export const greetingLang: IEachLang = {
     projectName: 'Loyiha nomi',
     projectNameWarning: 'Loyiha nomi kerak!',
     languageWarning: 'Tilni tanlang!',
-    language: 'Tilni tanlang',
+    language: 'Audio/video tilini tanlang',
     youtubeLink: 'Youtube link joylash',
     fileUpload: 'Audio faylni yuklash',
     submit: "Jo'natish",
     docxUpload: 'Doc fayl yuklash',
+    serviceLanguage: 'Chiqish tilini tanlang',
   },
   ru: {
     mainHeader: {
@@ -113,10 +116,11 @@ export const greetingLang: IEachLang = {
     projectName: 'Название проекта',
     projectNameWarning: 'Название проекта обязательно!',
     languageWarning: 'Выберите язык!',
-    language: 'Выберите язык',
+    language: 'Выберите язык аудио/видео',
     youtubeLink: 'Разместить ссылку на Youtube',
     fileUpload: 'Загрузить аудиофайл',
     submit: 'Отправить',
     docxUpload: 'Загрузить docx файл',
+    serviceLanguage: 'Выберите язык вывода',
   },
 };

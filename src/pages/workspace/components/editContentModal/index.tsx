@@ -3,9 +3,16 @@ import { useState } from 'react';
 import { EditContentIcon } from 'src/assets/svg/dashboard_svg';
 import { workspaceLanguageData } from '../../languageData';
 import { useTypedSelector } from 'src/app/store';
+import WorkspaceAudioPlayer from '../audio';
 const { TextArea } = Input;
 
-function EditContentModal({ content }: { content: string }) {
+function EditContentModal({
+  content,
+  playerUrl,
+}: {
+  content: string;
+  playerUrl?: string;
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newContentValue, setNewContentValue] = useState(content);
   const lang = useTypedSelector((state) => state.language);
@@ -37,6 +44,13 @@ function EditContentModal({ content }: { content: string }) {
           setIsModalOpen(false);
         }}
       >
+        {playerUrl && (
+          <div>
+            <br />
+            <br />
+            <WorkspaceAudioPlayer audioUrl={playerUrl} />
+          </div>
+        )}
         <TextArea
           className="workspace-content_editModal-textArea"
           rows={10}

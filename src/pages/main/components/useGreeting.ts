@@ -24,6 +24,7 @@ export default function useGreeting(actionType) {
     'inputType'
   ) as UserInputOptions;
   const selectedLanguage = searchParams.get('lang') as LanguageTypes;
+  const selectedOutputLang = searchParams.get('outputLang') as LanguageTypes;
   const navigate = useNavigate();
   const [createProject, { isLoading, error: sTTError }] =
     useCreateProjectMutation();
@@ -64,6 +65,7 @@ export default function useGreeting(actionType) {
     formData.append('name', value.name);
     formData.append('article_type', 'article');
     formData.append('lang', selectedLanguage);
+    formData.append('outputLang', selectedLanguage);
     formData.append(
       'action_type',
       selectedServiceType === 'transcript' ? 'stt' : selectedServiceType

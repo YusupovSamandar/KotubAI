@@ -81,7 +81,7 @@
     position: relative;
     // background: radial-gradient(circle at top left, #32383e, transparent 10%),
     //   radial-gradient(circle at top right, #32383e, transparent 10%), #15171c;
-    padding: 30px;
+    padding: 20px 30px 30px;
     border-radius: 30px;
     &-readMore_btn {
       font-size: 12px;
@@ -92,9 +92,33 @@
       cursor: pointer;
     }
   }
+
+  &-audio_player {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    .ant-btn {
+      height: unset;
+      padding: 8px;
+      width: unset;
+      background-color: #18bdff;
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .ant-slider {
+      flex-grow: 1;
+      .ant-slider-rail {
+        background-color: #d9d9d9;
+      }
+    }
+  }
+
   &-content_toggle {
     .ant-switch {
-      background: #42d0ff !important;
+      &.ant-switch-checked {
+        background: #42d0ff !important;
+      }
+      background: #52edac !important;
     }
     display: flex;
     align-items: center;

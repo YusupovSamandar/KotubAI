@@ -5,6 +5,7 @@ import { workspaceLanguageData } from './../../languageData';
 import { useTypedSelector } from 'src/app/store';
 import { useState } from 'react';
 import EditContentModal from '../editContentModal';
+import WorkspaceAudioPlayer from '../audio';
 const { Paragraph } = Typography;
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
   actionsLoading: boolean;
   messageApi: any;
   contextHolder: any;
+  playerUrl?: string;
 }
 
 function WorkspaceTextResult({
@@ -19,6 +21,7 @@ function WorkspaceTextResult({
   contextHolder,
   messageApi,
   pageContent,
+  playerUrl,
 }: Props) {
   const lang = useTypedSelector((state) => state.language);
   const [showFullContent, setShowFullContent] = useState(false);
@@ -30,6 +33,7 @@ function WorkspaceTextResult({
   return (
     <div>
       <Typography>
+        {playerUrl && <WorkspaceAudioPlayer audioUrl={playerUrl} />}
         {!actionsLoading ? (
           <div>
             {showFullContent
@@ -66,7 +70,7 @@ function WorkspaceTextResult({
           />
         ) : (
           <Flex justify="end">
-            <EditContentModal content={pageContent} />
+            <EditContentModal playerUrl={playerUrl} content={pageContent} />
           </Flex>
         )}
       </Typography>

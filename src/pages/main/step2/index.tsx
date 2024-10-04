@@ -19,8 +19,15 @@ function MainStep2() {
 
   const handleSubmit = () => {
     if (activeLangBtn && userInputType) {
-      handleMakeParams('lang', activeLangBtn);
-      handleMakeParams('inputType', userInputType);
+      const newQueryParams: {
+        value: string;
+        key: string;
+      }[] = [
+        { value: activeLangBtn, key: 'lang' },
+        { value: userInputType, key: 'inputType' },
+        { value: outputLang, key: 'outputLang' },
+      ];
+      handleMakeParams('', '', newQueryParams);
       // setSteps(3);
     }
   };

@@ -169,6 +169,7 @@ function Workspace() {
                 pageContent.length > 1 && (
                   <div className="workspace-results">
                     <WorkspaceTextResult
+                      playerUrl={data?.action_type === 'stt' && data.input_file}
                       actionsLoading={actionsLoading}
                       contextHolder={contextHolder}
                       messageApi={messageApi}

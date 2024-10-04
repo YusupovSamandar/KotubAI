@@ -48,7 +48,9 @@ export default function Main() {
   useEffect(() => {
     setSteps(
       searchParams.get('service')
-        ? searchParams.get('lang') && searchParams.get('inputType')
+        ? searchParams.get('lang') &&
+          searchParams.get('inputType') &&
+          searchParams.get('outputLang')
           ? 3
           : 2
         : 1

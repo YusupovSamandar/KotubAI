@@ -102,7 +102,7 @@ export const greetingLang: IEachLang = {
     fileUpload: 'Audio faylni yuklash',
     submit: "Jo'natish",
     docxUpload: 'Doc fayl yuklash',
-    serviceLanguage: 'Chiqish tilini tanlang',
+    serviceLanguage: 'Natija tilini tanlang',
   },
   ru: {
     mainHeader: {

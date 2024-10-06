@@ -10,3 +10,9 @@ export interface ISpeechToTextArticle {
   lang: string;
   type: string;
 }
+
+export interface IEditOutputTxt {
+  output_text: string;
+  projectId: string;
+  serviceId: number;
+}

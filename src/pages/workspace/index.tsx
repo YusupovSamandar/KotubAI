@@ -42,6 +42,8 @@ function Workspace() {
     fileURL,
     setPageContent,
     setFileURL,
+    currentServiceId,
+    setCurrentServiceId,
   } = useWorkspace();
 
   const [getWorkspaceContent, { isLoading }] = useGetProjectMutation();
@@ -53,6 +55,8 @@ function Workspace() {
       .then((res) => {
         setContentType(res.output_type);
         setData(res);
+        const defaultServiceId =
+          res.action_type === 'stt' ? res.stt.id : res[res.action_type][0].id;
         const responseTxt =
           res.action_type === 'stt'
             ? res[res.action_type].output_text
@@ -61,6 +65,7 @@ function Workspace() {
           res.action_type === 'stt'
             ? res[res.action_type].output_docx
             : res[res.action_type][0].output_docx;
+        setCurrentServiceId(defaultServiceId);
         setPageContent(responseTxt);
         setFileURL(responseFile);
         if (res.action_type !== 'stt') {
@@ -87,13 +92,22 @@ function Workspace() {
     fetchPageData();
   }, []);
   if (isLoading && !data) {
-    return;
+    return (
+      <div style={{ textAlign: 'center' }}>
+        <Spin />
+      </div>
+    );
   }
   return (
     <div className="main-loading-wrapper">
       <HeavyLoadSpinner
         txt={workspaceLanguageData[lang].pageOnLoad}
-        isLoading={!data?.[data?.action_type] && !isLoading}
+        isLoading={
+          (!data?.[data?.action_type] ||
+            (data?.action_type !== 'stt' &&
+              data[data.action_type].length === 0)) &&
+          !isLoading
+        }
       >
         <div className="workspace-load-wrapper">
           <div className="workspace">
@@ -169,6 +183,10 @@ function Workspace() {
                 pageContent.length > 1 && (
                   <div className="workspace-results">
                     <WorkspaceTextResult
+                      id={id}
+                      setContent={setPageContent}
+                      sttId={currentServiceId}
+                      activeBtn={activeBtn}
                       playerUrl={data?.action_type === 'stt' && data.input_file}
                       actionsLoading={actionsLoading}
                       contextHolder={contextHolder}
@@ -184,6 +202,7 @@ function Workspace() {
             <div className="workspace-content_toggle">
               <p>Tekst format</p>
               <Switch
+                checked={contentType === 'docx'}
                 defaultChecked
                 onChange={(checked) =>
                   setContentType(checked ? 'docx' : 'text')
@@ -230,6 +249,7 @@ function Workspace() {
                 setFileURL(existingServiceData.output_docx);
                 setActiveBtn(executeFC);
                 setActionsLoading(false);
+                setCurrentServiceId(existingServiceData.id);
                 return;
               }
             }

@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import { IBtnLangList } from './../types';
+import { IArticleList, IBtnLangList } from './../types';
 import { useTypedSelector } from 'src/app/store';
 import { workspaceLanguageData } from '../languageData';
 import { Col, Row } from 'antd';
@@ -14,7 +14,7 @@ function btnGroup({
   activeLangBtn: string;
   activeActionId: number;
   activeArticleType: string;
-  articleTypes: IBtnLangList[];
+  articleTypes: IArticleList[];
 }) {
   const lang = useTypedSelector((state) => state.language);
   return (

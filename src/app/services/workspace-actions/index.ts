@@ -1,6 +1,10 @@
 import { api } from '../api';
 import { IService, IServiceArticle } from '../uploads/type';
-import { ISpeechToTextSummary, ISpeechToTextArticle } from './type';
+import {
+  ISpeechToTextSummary,
+  ISpeechToTextArticle,
+  IEditOutputTxt,
+} from './type';
 
 export const workSpaceActionsApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -32,6 +36,35 @@ export const workSpaceActionsApi = api.injectEndpoints({
         body,
       }),
     }),
+    editStt: build.mutation<IService, IEditOutputTxt>({
+      query: (body) => ({
+        url: 'projects/' + body.projectId + '/speechtotext/' + body.serviceId,
+        method: 'PATCH',
+        body,
+      }),
+    }),
+    // edits
+    editSummary: build.mutation<IService, IEditOutputTxt>({
+      query: (body) => ({
+        url: 'projects/' + body.projectId + '/summary/' + body.serviceId,
+        method: 'PATCH',
+        body,
+      }),
+    }),
+    editArticle: build.mutation<IService, IEditOutputTxt>({
+      query: (body) => ({
+        url: 'projects/' + body.projectId + '/article/' + body.serviceId,
+        method: 'PATCH',
+        body,
+      }),
+    }),
+    editTranslate: build.mutation<IService, IEditOutputTxt>({
+      query: (body) => ({
+        url: 'projects/' + body.projectId + '/translate/' + body.serviceId,
+        method: 'PATCH',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -40,4 +73,8 @@ export const {
   useSTTArticleMutation,
   useSTTTranslateMutation,
   useSTTQuestionMutation,
+  useEditSttMutation,
+  useEditTranslateMutation,
+  useEditSummaryMutation,
+  useEditArticleMutation,
 } = workSpaceActionsApi;

@@ -9,12 +9,12 @@ import {
   TextSvg,
   YoutubeIcon,
 } from 'src/assets/svg/dashboard_svg';
+import { UserInputOptions } from 'src/constants/type';
 
 function useActionButtons() {
   const [activeLangBtn, setActiveLangBtn] = useState<string>('en-US');
-  const [userInputType, setUserInputType] = useState<
-    'audio/video' | 'yt_link' | 'text' | 'doc'
-  >('audio/video');
+  const [userInputType, setUserInputType] =
+    useState<UserInputOptions>('audio_video');
   const lang = useTypedSelector((state) => state.language);
 
   const actionsLangList: IBtnLangList[] = [
@@ -47,9 +47,9 @@ function useActionButtons() {
     {
       label: mainLangData[lang].audioVideo,
       Icon: AudioVideoIcon,
-      value: 'audio/video',
+      value: 'audio_video',
       onclickFC: async () => {
-        setUserInputType('audio/video');
+        setUserInputType('audio_video');
       },
     },
     {
@@ -71,9 +71,9 @@ function useActionButtons() {
     {
       label: mainLangData[lang].docFile,
       Icon: DocxSvg,
-      value: 'doc',
+      value: 'docx',
       onclickFC: async () => {
-        setUserInputType('doc');
+        setUserInputType('docx');
       },
     },
   ];

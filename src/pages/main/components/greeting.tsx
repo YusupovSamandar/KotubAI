@@ -1,14 +1,4 @@
-import {
-  Button,
-  Col,
-  Form,
-  Input,
-  Row,
-  Select,
-  Spin,
-  Upload,
-  message,
-} from 'antd';
+import { Button, Col, Form, Input, message } from 'antd';
 import { Music } from 'iconsax-react';
 import fileLanguageOptions from './upload_data';
 import useGreeting from './useGreeting';
@@ -17,8 +7,6 @@ import { useTypedSelector } from 'src/app/store';
 import { greetingLang } from './data';
 import HeavyLoadSpinner from 'src/components/common/heavyLoadSpinner';
 import { TranscriptGreeting } from './userConfig_basedGreeting';
-
-const { Dragger } = Upload;
 
 const Greeting: React.FC<{
   actionType: string;

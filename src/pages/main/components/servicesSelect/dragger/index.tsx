@@ -8,11 +8,11 @@ import { greetingLang } from '../../data';
 function MainGreetingDragger({
   fileType,
 }: {
-  fileType: 'doc' | 'audio/video';
+  fileType: 'docx' | 'audio_video';
 }) {
   const { Dragger } = Upload;
   const lang = useTypedSelector((state) => state.language);
-  const isAudioFile = fileType === 'audio/video';
+  const isAudioFile = fileType === 'audio_video';
   const fileUploadProps = isAudioFile ? uploadProps : uploadDocProps;
   const normFile = (e: any) => {
     if (Array.isArray(e)) {

@@ -9,7 +9,7 @@ import {
 } from 'src/app/services/workspace-actions';
 import { useTypedSelector } from 'src/app/store';
 import { workspaceLanguageData } from './languageData';
-import { IBtnLangList } from './types';
+import { IArticleList, IBtnLangList } from './types';
 import {
   ArticleIcon,
   BritishFlag,
@@ -32,6 +32,7 @@ export default function useWorkspace() {
   const [data, setData] = useState<IProject | null>(null);
   const [pageContent, setPageContent] = useState<string>(' ');
   const [fileURL, setFileURL] = useState<string>(null);
+  const [currentServiceId, setCurrentServiceId] = useState<number>(null);
 
   const [activeArticleType, setActiveArticleType] = useState<string>('article');
   const { actionsLangList, activeLangBtn } = useActionButtons();
@@ -46,7 +47,7 @@ export default function useWorkspace() {
   const [postSTTQuestion, { isLoading: isLoadingSTTQuestion }] =
     useSTTQuestionMutation();
 
-  const articleTypes: IBtnLangList[] = [
+  const articleTypes: IArticleList[] = [
     {
       label: workspaceLanguageData[lang].modal.article.types.article,
       id: 'article',
@@ -70,9 +71,9 @@ export default function useWorkspace() {
     },
     {
       label: workspaceLanguageData[lang].modal.article.types.interview,
-      id: 'interwiew',
+      id: 'interview',
       onclickFC: async () => {
-        setActiveArticleType('interwiew');
+        setActiveArticleType('interview');
       },
     },
   ];
@@ -92,6 +93,7 @@ export default function useWorkspace() {
         setData((prev) => ({ ...prev, summary: [...prev.summary, res] }));
         setPageContent(res.output_text);
         setFileURL(res.output_docx);
+        setCurrentServiceId(res.id);
       },
     },
     {
@@ -107,6 +109,7 @@ export default function useWorkspace() {
           type: type,
         }).unwrap();
         setData((prev) => ({ ...prev, article: [...prev.article, res] }));
+        setCurrentServiceId(res.id);
         setPageContent(res.output_text);
         setFileURL(res.output_docx);
       },
@@ -124,25 +127,26 @@ export default function useWorkspace() {
         }).unwrap();
         setData((prev) => ({ ...prev, translate: [...prev.translate, res] }));
         // setFileURL(hostName + '/' + res.detail);
+        setCurrentServiceId(res.id);
         setPageContent(res.output_text);
         setFileURL(res.output_docx);
       },
     },
-    {
-      Icon: MessageOutlined,
-      label: workspaceLanguageData[lang].askQuestion,
-      content: 'asdsd',
-      service: 'question',
-      id: 4,
-      onclickFC: async (projectId, question) => {
-        const FormDT = new FormData();
-        FormDT.append('question', question);
-        FormDT.append('id', projectId + '');
-        const res = await postSTTQuestion(FormDT).unwrap();
-        setPageContent(res.output_text);
-        setFileURL(res.output_docx);
-      },
-    },
+    // {
+    //   Icon: MessageOutlined,
+    //   label: workspaceLanguageData[lang].askQuestion,
+    //   content: 'asdsd',
+    //   service: 'question',
+    //   id: 4,
+    //   onclickFC: async (projectId, question) => {
+    //     const FormDT = new FormData();
+    //     FormDT.append('question', question);
+    //     FormDT.append('id', projectId + '');
+    //     const res = await postSTTQuestion(FormDT).unwrap();
+    //     setPageContent(res.output_text);
+    //     setFileURL(res.output_docx);
+    //   },
+    // },
   ];
 
   return {
@@ -155,8 +159,10 @@ export default function useWorkspace() {
     fileURL,
     isLoadingSTTTranslate,
     setPageContent,
+    setCurrentServiceId,
     setFileURL,
     setData,
     data,
+    currentServiceId,
   };
 }

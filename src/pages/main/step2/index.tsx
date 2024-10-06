@@ -40,50 +40,60 @@ function MainStep2() {
   return (
     <div className="main-step2">
       <div className="main-step2-container">
-        <Title style={{ marginTop: '20px' }} level={3}>
-          {greetingLang[lang].language}
-        </Title>
-        <Divider />
-        <Flex align="center" justify="center">
-          <div className="main-step2-btn_group">
-            {actionsLangList.map((btn) => (
-              <Button
-                style={{ flexGrow: 1 }}
-                icon={<btn.Flag />}
-                key={btn.id}
-                className={btn.id === outputLang ? 'active' : ''}
-                type={btn.id === outputLang ? 'primary' : 'default'}
-                shape="round"
-                onClick={() => setOutputLang(btn.id)}
-                size={'large'}
-              >
-                {btn.label}
-              </Button>
-            ))}
-          </div>
-        </Flex>
-        <Title style={{ marginTop: '20px' }} level={3}>
-          {greetingLang[lang].serviceLanguage}
-        </Title>
-        <Divider />
-        <Flex align="center" justify="center">
-          <div className="main-step2-btn_group">
-            {actionsLangList.map((btn) => (
-              <Button
-                style={{ flexGrow: 1 }}
-                icon={<btn.Flag />}
-                key={btn.id}
-                className={btn.id === activeLangBtn ? 'active' : ''}
-                type={btn.id === activeLangBtn ? 'primary' : 'default'}
-                shape="round"
-                onClick={btn.onclickFC}
-                size={'large'}
-              >
-                {btn.label}
-              </Button>
-            ))}
-          </div>
-        </Flex>
+        {(userInputType === 'audio_video' || userInputType === 'yt_link') && (
+          <>
+            <Title style={{ marginTop: '20px' }} level={3}>
+              {greetingLang[lang].language}
+            </Title>
+            <Divider />
+            <Flex align="center" justify="center">
+              <div className="main-step2-btn_group">
+                {actionsLangList.map((btn) => (
+                  <Button
+                    style={{ flexGrow: 1 }}
+                    icon={<btn.Flag />}
+                    key={btn.id}
+                    className={btn.id === activeLangBtn ? 'active' : ''}
+                    type={btn.id === activeLangBtn ? 'primary' : 'default'}
+                    shape="round"
+                    onClick={btn.onclickFC}
+                    size={'large'}
+                  >
+                    {btn.label}
+                  </Button>
+                ))}
+              </div>
+            </Flex>
+          </>
+        )}
+        {selectedService !== 'transcript' && (
+          <>
+            {' '}
+            <Title style={{ marginTop: '20px' }} level={3}>
+              {greetingLang[lang].serviceLanguage}
+            </Title>
+            <Divider />
+            <Flex align="center" justify="center">
+              <div className="main-step2-btn_group">
+                {actionsLangList.map((btn) => (
+                  <Button
+                    style={{ flexGrow: 1 }}
+                    icon={<btn.Flag />}
+                    key={btn.id}
+                    className={btn.id === outputLang ? 'active' : ''}
+                    type={btn.id === outputLang ? 'primary' : 'default'}
+                    shape="round"
+                    onClick={() => setOutputLang(btn.id)}
+                    size={'large'}
+                  >
+                    {btn.label}
+                  </Button>
+                ))}
+              </div>
+            </Flex>
+          </>
+        )}
+
         <Title style={{ marginTop: '20px' }} level={3}>
           {mainLangData[lang].chooseInputType}
         </Title>

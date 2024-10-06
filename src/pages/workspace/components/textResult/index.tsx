@@ -3,25 +3,33 @@ import Title from 'antd/es/typography/Title';
 import { CopyIcon, EditContentIcon } from 'src/assets/svg/dashboard_svg';
 import { workspaceLanguageData } from './../../languageData';
 import { useTypedSelector } from 'src/app/store';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import EditContentModal from '../editContentModal';
 import WorkspaceAudioPlayer from '../audio';
 const { Paragraph } = Typography;
 
 interface Props {
+  id: string;
+  sttId?: number;
   pageContent: string;
   actionsLoading: boolean;
   messageApi: any;
   contextHolder: any;
   playerUrl?: string;
+  activeBtn: number | null;
+  setContent: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function WorkspaceTextResult({
+  id,
+  sttId,
   actionsLoading,
   contextHolder,
   messageApi,
   pageContent,
   playerUrl,
+  activeBtn,
+  setContent,
 }: Props) {
   const lang = useTypedSelector((state) => state.language);
   const [showFullContent, setShowFullContent] = useState(false);
@@ -68,11 +76,18 @@ function WorkspaceTextResult({
             messageApi={messageApi}
             pageContent={pageContent}
           />
-        ) : (
+        ) : !actionsLoading ? (
           <Flex justify="end">
-            <EditContentModal playerUrl={playerUrl} content={pageContent} />
+            <EditContentModal
+              setPageContent={setContent}
+              id={id}
+              sttId={sttId}
+              playerUrl={playerUrl}
+              content={pageContent}
+              activeBtn={activeBtn}
+            />
           </Flex>
-        )}
+        ) : null}
       </Typography>
     </div>
   );

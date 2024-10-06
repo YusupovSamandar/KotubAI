@@ -21,19 +21,15 @@ function TranscriptGreeting({
               <Input placeholder={greetingLang[lang].youtubeLink} />
             </Form.Item>
           </Col>
-        ) : selectedUserInputType === 'audio/video' ||
-          selectedUserInputType === 'doc' ? (
+        ) : selectedUserInputType === 'audio_video' ||
+          selectedUserInputType === 'docx' ? (
           <Col xs={24}>
             <MainGreetingDragger fileType={selectedUserInputType} />
           </Col>
         ) : selectedUserInputType === 'text' ? (
           <Col xs={24}>
             <Form.Item name="input_text">
-              <TextArea
-                placeholder={greetingLang[lang].input_text}
-                rows={4}
-                maxLength={6}
-              />
+              <TextArea placeholder={greetingLang[lang].input_text} rows={4} />
             </Form.Item>
           </Col>
         ) : null}

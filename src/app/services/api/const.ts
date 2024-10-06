@@ -1,5 +1,5 @@
 const productionHostName = 'https://api.kotibai.uz';
-const testHostName = 'https://test.kotib.ai';
+const testHostName = 'https://api.kotibai.uz';
 
 const clientId = import.meta.env.VITE_APP_ENV;
 

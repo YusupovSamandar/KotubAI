@@ -31,7 +31,7 @@ export const mainLangData: IMainLangData = {
     chooseInputType: 'Choose input type',
     audioVideo: 'Audio/Video',
     youtubeLink: 'YouTube link',
-    docFile: 'doc file',
+    docFile: 'docx file',
     text: 'text',
   },
   ru: {
@@ -45,7 +45,7 @@ export const mainLangData: IMainLangData = {
     chooseInputType: 'Выберите тип ввода',
     audioVideo: 'Audio/Video',
     youtubeLink: 'YouTube link',
-    docFile: 'doc file',
+    docFile: 'docx file',
     text: 'text',
   },
   uz: {
@@ -59,7 +59,7 @@ export const mainLangData: IMainLangData = {
     chooseInputType: 'Shakl turini tanlang',
     audioVideo: 'Audio/Video',
     youtubeLink: 'YouTube link',
-    docFile: 'doc file',
+    docFile: 'docx file',
     text: 'text',
   },
 };

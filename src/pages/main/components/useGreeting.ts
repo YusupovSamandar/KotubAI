@@ -64,8 +64,12 @@ export default function useGreeting(actionType) {
     const formData = new FormData();
     formData.append('name', value.name);
     formData.append('article_type', 'article');
-    formData.append('lang', selectedLanguage);
-    formData.append('outputLang', selectedLanguage);
+    if (selectedLanguage) {
+      formData.append('audio_lang', selectedLanguage);
+    }
+    formData.append('lang', selectedOutputLang);
+    formData.append('input_type', selectedUserInputType);
+
     formData.append(
       'action_type',
       selectedServiceType === 'transcript' ? 'stt' : selectedServiceType

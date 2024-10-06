@@ -15,6 +15,7 @@ export const uploadApi = api.injectEndpoints({
         body,
       }),
     }),
+
     deleteProject: build.mutation<string, IDeleteSpeechToText>({
       query: (body) => ({
         url: 'projects/' + body.id + '/',

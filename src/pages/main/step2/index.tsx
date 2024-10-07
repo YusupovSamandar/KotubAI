@@ -103,7 +103,7 @@ function MainStep2() {
             {selectedService &&
               selectedUserInputTypeList.map((btn) => (
                 <Button
-                  style={{ width: 'calc(50% - 20px)' }}
+                  style={{ flexGrow: 1, flexBasis: 'calc(50% - 10px)' }}
                   icon={<btn.Icon selected={btn.value === userInputType} />}
                   key={btn.value}
                   className={btn.value === userInputType ? 'active' : ''}

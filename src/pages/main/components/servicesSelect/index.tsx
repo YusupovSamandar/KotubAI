@@ -41,7 +41,7 @@ function ServicesSelect() {
       <Title className="services-title" level={2}>
         {mainLangData[lang].serviceTitle}
       </Title>
-      <Row gutter={[13, 13]} className="services-container">
+      <Row gutter={[13, 13]} justify="center" className="services-container">
         {allServices.map((service) => (
           <Col sm={12} key={service.service}>
             <div

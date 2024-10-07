@@ -14,7 +14,7 @@
     justify-content: center;
     border: 2px solid rgba(46, 142, 180, 0.21);
   }
-  .workspace_file_container {
+  &_file_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -152,6 +152,26 @@
     &:hover {
       background-color: #1b2c2a !important;
       border: 2px solid #1b2c2a !important;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .workspace {
+    &-content_wrapper {
+      width: 90%;
+    }
+    &_file_container {
+      &-title h4 {
+        font-size: 18px !important;
+      }
+      &-button button {
+        padding: 10px 20px;
+        font-size: 14px;
+        svg {
+          width: 20px;
+        }
+      }
     }
   }
 }

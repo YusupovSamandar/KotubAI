@@ -96,3 +96,12 @@
 .anticon.anticon-delete {
   color: white !important;
 }
+
+@media screen and (max-width: 600px) {
+  .main-step2-btn_group {
+    margin: 0 0;
+  }
+  .main-step2-container {
+    padding: 10px 12px;
+  }
+}

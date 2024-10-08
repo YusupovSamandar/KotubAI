@@ -12,7 +12,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import Message from 'src/components/common/Message';
 import { useEffect } from 'react';
 const { VITE_APP_VAPID_KEY } = import.meta.env;
-// import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   onMessage(messaging, (payload) => {

@@ -15,7 +15,13 @@ function TranscriptGreeting({
     <>
       <Row gutter={[20, 34]}>
         {/* xs={2}  md={6} lg={8} */}
-        {selectedUserInputType === 'yt_link' ? (
+        {selectedUserInputType === 'site_link' ? (
+          <Col xs={24}>
+            <Form.Item name="input_text">
+              <Input placeholder={greetingLang[lang].site_link} />
+            </Form.Item>
+          </Col>
+        ) : selectedUserInputType === 'yt_link' ? (
           <Col xs={24}>
             <Form.Item name="input_text">
               <Input placeholder={greetingLang[lang].youtubeLink} />

@@ -16,6 +16,7 @@ export interface IEachGreetingLang {
   submit: string;
   youtubeError: string;
   serviceLanguage: string;
+  site_link: string;
 }
 export interface IEachLang {
   en: IEachGreetingLang;
@@ -84,6 +85,7 @@ export const greetingLang: IEachLang = {
     submit: 'Submit',
     docxUpload: 'Upload docx file',
     serviceLanguage: 'Choose output language',
+    site_link: 'Website Url',
   },
   uz: {
     mainHeader: {
@@ -103,6 +105,7 @@ export const greetingLang: IEachLang = {
     submit: "Jo'natish",
     docxUpload: 'Doc fayl yuklash',
     serviceLanguage: 'Natija tilini tanlang',
+    site_link: 'Veb-sayt havolasi',
   },
   ru: {
     mainHeader: {
@@ -122,5 +125,6 @@ export const greetingLang: IEachLang = {
     submit: 'Отправить',
     docxUpload: 'Загрузить docx файл',
     serviceLanguage: 'Выберите язык вывода',
+    site_link: 'Ссылка на веб-сайт',
   },
 };

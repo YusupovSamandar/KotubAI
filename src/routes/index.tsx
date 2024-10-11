@@ -7,12 +7,27 @@ import Workspace from 'src/pages/workspace';
 import useRoutes from './useRoutes';
 import { Aferta, PrivacyPolicy } from 'src/pages/signIn/aferta';
 import VideoPlayerWorskpace from 'src/pages/videoplayer';
+import { useEffect } from 'react';
+import { useEditProfileMutation } from 'src/app/services/auth';
+import { useTypedSelector } from 'src/app/store';
 
 const clientId = import.meta.env.VITE_OAuthClientId;
 
 function RoutElements() {
   const { isAuthenticated, deviceType } = useRoutes();
+  const myProfile = useTypedSelector((state) => state.auth.profile);
   const location = useLocation();
+  const [editProfile] = useEditProfileMutation();
+
+  useEffect(() => {
+    if (
+      localStorage.getItem('FCMtoken') &&
+      myProfile &&
+      !myProfile?.device_token
+    ) {
+      editProfile({ device_token: localStorage.getItem('FCMtoken') });
+    }
+  }, [myProfile]);
 
   return (
     <div className="root">

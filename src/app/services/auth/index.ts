@@ -56,6 +56,13 @@ export const authApi = api.injectEndpoints({
     getProfile: build.mutation<IProfile, void>({
       query: () => ({ url: 'auth/profile' }),
     }),
+    editProfile: build.mutation<IProfile, Partial<IProfile>>({
+      query: (body) => ({
+        url: 'auth/profile',
+        method: 'PATCH',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -66,4 +73,5 @@ export const {
   useVerifyTokenMutation,
   useLoginTelegramMutation,
   useLoginWithAdminMutation,
+  useEditProfileMutation,
 } = authApi;

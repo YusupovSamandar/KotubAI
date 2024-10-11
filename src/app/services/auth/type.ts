@@ -50,6 +50,7 @@ export interface IProfile {
   credit_seconds: string;
   used_sums: string;
   used_seconds: string;
+  device_token: string | null;
 }
 
 //Verify Types

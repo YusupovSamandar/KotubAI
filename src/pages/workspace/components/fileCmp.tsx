@@ -25,7 +25,7 @@ function fileCmp({
           type="primary"
         >
           <Flex align="center" justify="center" gap={18}>
-            <span>YUKLAB OLISH</span> <DownloadIcon />
+            <span>YUKLAB OLISH</span> <DownloadIcon size={16} />
           </Flex>
         </Button>
       </div>

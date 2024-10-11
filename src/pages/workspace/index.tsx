@@ -187,7 +187,7 @@ function Workspace() {
                       setContent={setPageContent}
                       sttId={currentServiceId}
                       activeBtn={activeBtn}
-                      playerUrl={data?.action_type === 'stt' && data.input_file}
+                      playerUrl={!activeBtn && data.input_file}
                       actionsLoading={actionsLoading}
                       contextHolder={contextHolder}
                       messageApi={messageApi}

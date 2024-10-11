@@ -98,6 +98,7 @@ function LayoutSidebar() {
           <div className="user-balance-container">
             <p>{userBalanceDisplay[lang].title}</p>
             <p>{userBalanceDisplay[lang].time}</p>
+            <p>{Math.trunc(Number(profileDetails?.credit_sums))} so'm</p>
             <PaymentModal />
           </div>
         )}

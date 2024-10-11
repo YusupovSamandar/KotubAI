@@ -76,6 +76,14 @@ function useActionButtons() {
         setUserInputType('docx');
       },
     },
+    {
+      label: 'Website Url',
+      Icon: TextSvg,
+      value: 'site_link',
+      onclickFC: async () => {
+        setUserInputType('site_link');
+      },
+    },
   ];
   return {
     activeLangBtn,

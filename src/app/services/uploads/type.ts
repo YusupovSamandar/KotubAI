@@ -32,6 +32,7 @@ export interface IProject {
   name: string;
   stt: IService;
   user: number;
+  loading: boolean;
   input_file: string;
   input_text: string;
   summary: IService[];

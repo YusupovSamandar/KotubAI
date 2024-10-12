@@ -125,7 +125,11 @@ export default function useWorkspace() {
           id: projectId,
           lang: lang,
         }).unwrap();
-        setData((prev) => ({ ...prev, translate: [...prev.translate, res] }));
+        setData((prev) => ({
+          ...prev,
+          translate: [...prev.translate, res],
+          loading: true,
+        }));
         // setFileURL(hostName + '/' + res.detail);
         setCurrentServiceId(res.id);
         setPageContent(res.output_text);

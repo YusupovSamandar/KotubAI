@@ -102,12 +102,7 @@ function Workspace() {
     <div className="main-loading-wrapper">
       <HeavyLoadSpinner
         txt={workspaceLanguageData[lang].pageOnLoad}
-        isLoading={
-          (!data?.[data?.action_type] ||
-            (data?.action_type !== 'stt' &&
-              data[data.action_type].length === 0)) &&
-          !isLoading
-        }
+        isLoading={data?.loading}
       >
         <div className="workspace-load-wrapper">
           <div className="workspace">

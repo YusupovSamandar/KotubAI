@@ -62,7 +62,10 @@ const Greeting: React.FC<{
                   },
                 ]}
               >
-                <Input placeholder={greetingLang[lang].projectName} />
+                <Input
+                  maxLength={50}
+                  placeholder={greetingLang[lang].projectName}
+                />
               </Form.Item>
             </Col>
 

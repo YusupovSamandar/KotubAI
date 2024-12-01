@@ -23,7 +23,7 @@ export const rtkQueryErrorLogger: Middleware =
         error_message !== 'A validation error occurred.' &&
         message.warning(error_message);
 
-      const errors = action.payload?.data?.errors ?? '';
+      const errors = action.payload?.data ?? '';
       // if (errors.length > 0) {
       //   errors.forEach((item: string) => {
       //     item && message.warning(item);
@@ -37,6 +37,9 @@ export const rtkQueryErrorLogger: Middleware =
           "Server bilan bog'liq xatolik. Iltimos bu haqda ma'sul xodimlarga xabar bering"
         );
         window.location.href = '/404';
+      } else if (status === 400) {
+        const detailError = errors?.errors?.[0].detail;
+        message.error(JSON.stringify(detailError ? detailError : errors));
       } else if (status === 401 || status === 403) {
         dispatch(logout());
         message.warning('Iltimos avval tizimga kiring!');

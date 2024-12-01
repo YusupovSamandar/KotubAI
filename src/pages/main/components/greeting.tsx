@@ -16,32 +16,10 @@ const Greeting: React.FC<{
     form,
     onFinish,
     isLoading,
-    sTTError,
     selectedServiceType,
     selectedUserInputType,
   } = useGreeting(actionType);
   const lang = useTypedSelector((state) => state.language);
-  useEffect(() => {
-    if (sTTError) {
-      if ('status' in sTTError) {
-        messageApi.open({
-          type: 'error',
-          duration: 5,
-          content: JSON.stringify(
-            (sTTError.data as any)?.errors[0]?.code === 'invalid_youtube'
-              ? greetingLang[lang].youtubeError
-              : sTTError.data || sTTError.status
-          ),
-        });
-      } else {
-        messageApi.open({
-          type: 'error',
-          duration: 5,
-          content: JSON.stringify(sTTError.message),
-        });
-      }
-    }
-  }, [sTTError]);
 
   return (
     <div className="main-greeting">
